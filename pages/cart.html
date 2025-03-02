@@ -47,7 +47,7 @@
     <!-- NEEDS TO BE ALLIGNED WITH LOGIN CODE ... -->
     <script>
       // Function to retrieve the user's name from localStorage and display a personalized message when page is loaded
-      window.onload = addUserName; // attaching the event handler = addUserName function​​
+      window.onload = addUserName; // attaching the event handler = addUserName function
       function addUserName() {
         // Retrieve stored username from local storage
         const userName = localStorage.fname;
@@ -71,9 +71,11 @@
             </div>
             <div class="col-4">Curry</div> <!-- takes 4 out of 12 columns -->
             <div class="col-3 d-flex align-items-center">
-                <button class="btn btn-sm btn-outline-secondary">-</button> <!-- "btn btn-sm btn-outline-secondary" is small, gray-bordered button -->
-                <span class="mx-2">1</span> <!-- mx-2 is spacing -->
-                <button class="btn btn-sm btn-outline-secondary">+</button>
+                <div id="quantitySelector" class="d-flex align-items-center gap-1"> <!-- Adjusted gap size -->
+                    <button id="decrease" class="btn btn-sm btn-outline-secondary px-2 py-1">-</button> <!-- Smaller buttons -->
+                    <input id="quantity" class="mx-1 text-center w-25 fs-6" type="number" value="1" min="1" readonly> <!-- Smaller input with fixed width -->
+                    <button id="increase" class="btn btn-sm btn-outline-secondary px-2 py-1">+</button> <!-- Smaller buttons -->
+                </div>
             </div>
             <div class="col-2">100 kr</div>
             <div class="col-1">
@@ -88,9 +90,11 @@
             </div>
             <div class="col-4">Garam masala</div>
             <div class="col-3 d-flex align-items-center">
-                <button class="btn btn-sm btn-outline-secondary">-</button>
-                <span class="mx-2">1</span>
-                <button class="btn btn-sm btn-outline-secondary">+</button>
+                <div id="quantitySelector" class="d-flex align-items-center gap-1"> <!-- Adjusted gap size -->
+                    <button id="decrease1" class="btn btn-sm btn-outline-secondary px-2 py-1">-</button> <!-- Smaller buttons -->
+                    <input id="quantity1" class="mx-1 text-center w-25 fs-6" type="number" value="1" min="1" readonly> <!-- Smaller input with fixed width -->
+                    <button id="increase1" class="btn btn-sm btn-outline-secondary px-2 py-1">+</button> <!-- Smaller buttons -->
+                </div>
             </div>
             <div class="col-2">120 kr</div>
             <div class="col-1">
@@ -117,6 +121,47 @@
         <button id="continueshopping">Continue shopping</button> 
         <button id="checkout">CHECKOUT</button> <!-- button triggers an event to validate terms acceptance before proceeding -->
     </div>
+
+<!-- Script for controlling quantities buttons-->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        const quantityInput = document.getElementById("quantity");
+        const increaseBtn = document.getElementById("increase");
+        const decreaseBtn = document.getElementById("decrease");
+
+        increaseBtn.addEventListener("click", function () {
+            let value = parseInt(quantityInput.value);
+            quantityInput.value = value + 1;
+        });
+
+        decreaseBtn.addEventListener("click", function () {
+            let value = parseInt(quantityInput.value);
+            if (value > 1) {
+                quantityInput.value = value - 1;
+            }
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const quantityInput = document.getElementById("quantity1");
+        const increaseBtn = document.getElementById("increase1");
+        const decreaseBtn = document.getElementById("decrease1");
+
+        increaseBtn.addEventListener("click", function () {
+            let value = parseInt(quantityInput.value);
+            quantityInput.value = value + 1;
+        });
+
+        decreaseBtn.addEventListener("click", function () {
+            let value = parseInt(quantityInput.value);
+            if (value > 1) {
+                quantityInput.value = value - 1;
+            }
+        });
+    });
+
+
+    </script>
 
 
 </body>

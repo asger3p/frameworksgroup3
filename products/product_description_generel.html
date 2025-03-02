@@ -11,74 +11,100 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!--CSS styling-->
-    <style>
-        .image-container {
-            display: flex; /* Enable flexbox */
-            justify-content: center; /* Center items horizontally */
-            
-        }
-        .heading-container {
-            display: flex;
-            align-items: flex-start;
-        }
-
-    </style>
-</head>
-<body>
-    <!--Insert header here-->
-
-    <!-- Product image-->
- 
-   
-    <!-- Product name -->
-    <div class="container text-center">
-        <div class="row">
-            <div class="col-12 d-flex justify-content-center">
-                <div class="image-container">
-                    <img src="/images/no_image.jpg" alt="Centered Image" class="img-fluid" style="max-width: 80%; height: auto;">
-                </div>
-            </div>
-            <div class="col-12">
-                <h1 class="text-left">This is a Heading</h1>
-            </div>
-        </div>
-    </div>
-    <div class = "container text-center">
-        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-    </div>
-
-    <!-- Here is a quantity container-->
-    <div class="container mt-5">
-        <div class="row"> 
-            <!-- Quantity Selector -->
-            <div class="col-md-2">
-                    <div class="d-flex align-items-center">
-                        <button class="btn btn-outline-secondary" id="decrease">−</button>
-                        <input type="text" id="quantity" class="form-control text-center mx-2" value="1" style="width: 60px;" readonly>
-                        <button class="btn btn-outline-primary" id="increase">+</button>
-                </div>
-            </div>
     
-            <!-- Second Container -->
-            <div class="col-md-6">
-                <div class = "border p-1">
-                    <p>200 g</p>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row">
+          <!-- Left Column with Image -->
+          <div class="col-6 text-center">
+            <div class="image-container">
+              <img src="/images/no_image.jpg" alt="Centered Image" class="img-fluid" style="max-width: 80%; height: auto;">
+            </div>
+          </div>
+      
+          <!-- Right Column with Text & Dropdown -->
+          <div class="col-6">
+            <h1 class="text-left">This is a Heading</h1>
+            <p>
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            </p>
+      
+            <!-- Dropdown Box -->
+            <div class="dropdown w-100 mt-4">
+              <div class="dropdown-box border p-2" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <h5 class="mb-0">Choose amount</h5>
+              </div>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#" data-value="50 g" data-price="50">50 g</a>
+                <a class="dropdown-item" href="#" data-value="100 g" data-price="100">100 g</a>
+                <a class="dropdown-item" href="#" data-value="1 kg" data-price="200">1 kg</a>
+              </div>
+            </div>
+      
+            <!-- Quantity Selector + Price -->
+            <div class="w-100 mt-3">
+              <label for="quantitySelector" class="form-label text-muted d-block">Quantity</label>
+              <div class="d-flex justify-content-between align-items-center">
+                <!-- Quantity Selector -->
+                <div id="quantitySelector" class="d-flex align-items-center gap-2">
+                  <button id = "decrease" class="btn btn-sm btn-outline-secondary px-3 py-2">-</button>
+                  <input id="quantity" class="mx-1 fs-5 text-center w-25" type="number" value="1" min="1" readonly>
+                  <button id = "increase" class="btn btn-sm btn-outline-secondary px-3 py-2">+</button>
+                </div>
+                <!-- Price -->
+                <span id = "price" class="mb-0" data-value="0">0 kr</span>
+              </div>
+              <div class="w-100 mt-3">
+                <button class="btn btn-dark px-4 py-2 w-100">ADD</button>
                 </div>
             </div>
-        </div>
-    </div>
+          </div> <!-- Closes Right Column -->
+        </div> <!-- Closes Row -->
+      </div> <!-- Closes Container -->
+      
+  
 
-    <!-- this is the script to control the cointainer-->
+    <!-- This is a script to control the dropdown box, the quantity container and the dynamic price-->
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-        const quantityInput = document.getElementById("quantity");
-        const increaseBtn = document.getElementById("increase");
-        const decreaseBtn = document.getElementById("decrease");
+      document.addEventListener("DOMContentLoaded", function() {
+          const dropdownBox = document.getElementById("dropdownMenuButton");
+          const dropdownMenu = document.querySelector(".dropdown-menu");
+          const dropdownItems = document.querySelectorAll(".dropdown-item");
+          const priceSpan = document.getElementById("price");
+          const quantityInput = document.getElementById("quantity");
+          const increaseBtn = document.getElementById("increase");
+          const decreaseBtn = document.getElementById("decrease");
 
-        increaseBtn.addEventListener("click", function () {
+          let selectedPrice = 0; 
+
+          // Toggle dropdown visibility
+        dropdownBox.addEventListener("click", function() {
+            dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
+        });
+
+  
+          // Handle item selection
+          dropdownItems.forEach(item => {
+              item.addEventListener("click", function(event) {
+                  event.preventDefault();
+                  dropdownBox.innerHTML = `<h5 class="mb-0">${this.dataset.value}</h5>`;
+                  dropdownMenu.style.display = "none"; // Hide dropdown after selection
+                   
+                  // Get the selected value and price and update
+                  const selectedValue = this.dataset.value;
+                  selectedPrice = parseInt(this.dataset.price);
+                  priceSpan.innerHTML = `${selectedPrice} kr`;
+              });
+          });
+
+          increaseBtn.addEventListener("click", function () {
             let value = parseInt(quantityInput.value);
             quantityInput.value = value + 1;
+            priceSpan.innerHTML = `${selectedPrice * quantityInput.value} kr`;
         });
 
         decreaseBtn.addEventListener("click", function () {
@@ -86,9 +112,12 @@
             if (value > 1) {
                 quantityInput.value = value - 1;
             }
+            priceSpan.innerHTML = `${selectedPrice * quantityInput.value} kr`;
         });
-    });
-    </script>
+  
+         
+      });
+  </script>
     
     
 </body>
