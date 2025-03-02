@@ -22,21 +22,8 @@
 </head>
 
 <body>
-    <!-- Navbar with profile and cart icons (bootstrap) -->
-    <nav class="navbar bg-body-tertiary">
-        <div class="container-fluid d-flex justify-content-between">
-            <a class="navbar-brand">Spice</a>
-            <form class="d-flex" role="search"> <!-- wrapping search bar and button next to each other, "role" is for accessibility-->
-                <input 
-                  class="form-control me-2" type="search" placeholder="Search" aria-label="Search" /> <!-- applies Bootstrap form styling -->
-                <button class="btn btn-outline-success" type="submit">Search</button> <!-- dtyles the search button as a green-bordered button -->
-            </form>
-            <div>
-                <i class="bi bi-person-circle fs-4 me-3"></i> <!-- bootstrap icon for profile, "fs-4" makes icons larger (Font Size 4), "me-3" adds right margin to the profile icon for spacing -->
-                <i class="bi bi-cart fs-4"></i> <!-- bootstrap icon for cart -->
-            </div>
-        </div>
-    </nav>
+    <!-- Navbar -->
+    <div id="navbar-container"></div>
 
     <!-- Greeting message -->
     <div class="container mt-4"> <!-- "container" controls the width and alignment, "mt-4" adds margin-top -->
@@ -46,6 +33,14 @@
 
     <!-- NEEDS TO BE ALLIGNED WITH LOGIN CODE ... -->
     <script>
+        // Load the navbar from navbar.html
+      fetch('../pages/navbar.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('navbar-container').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading the navbar:', error));
+        
       // Function to retrieve the user's name from localStorage and display a personalized message when page is loaded
       window.onload = addUserName; // attaching the event handler = addUserName function​​
       function addUserName() {

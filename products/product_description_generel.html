@@ -26,6 +26,8 @@
     </style>
 </head>
 <body>
+    <!-- Navbar -->
+    <div id="navbar-container"></div>
     <!--Insert header here-->
 
     <!-- Product image-->
@@ -68,6 +70,16 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Load navbar from external file
+        fetch('../pages/navbar.html')
+          .then(response => response.text())
+          .then(data => {
+            document.getElementById('navbar-container').innerHTML = data;
+          })
+          .catch(error => console.error('Error loading navbar:', error));
+      </script>
 
     <!-- this is the script to control the cointainer-->
     <script>
