@@ -9,6 +9,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.6.2/js/bootstrap.min.js"></script>
 </head>
 <body>
+    <!-- Navbar -->
+    <div id="navbar-container"></div>
+
     <div class="container">
         <h2 class="mb-4">Checkout</h2>
         <div class="row">
@@ -265,5 +268,16 @@
 
         </div>
     </div>
+    <!-- Load Navbar -->
+    <script>
+        fetch('navbar.html')
+          .then(response => response.text())
+          .then(data => {
+          document.getElementById("navbar-container").innerHTML = data;
+          const script = document.createElement("script");
+          script.src = "navbar.js";
+          document.body.appendChild(script);
+        });
+    </script>
 </body>
 </html>

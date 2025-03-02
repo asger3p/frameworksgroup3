@@ -26,6 +26,8 @@
     </style>
 </head>
 <body>
+    <!-- Navbar -->
+    <div id="navbar-container"></div>
     <!--Insert header here-->
 
     <!-- Product image-->
@@ -68,6 +70,18 @@
             </div>
         </div>
     </div>
+
+    <!-- Load Navbar -->
+    <script>
+        fetch('../pages/navbar.html')
+          .then(response => response.text())
+          .then(data => {
+          document.getElementById("navbar-container").innerHTML = data;
+          const script = document.createElement("script");
+          script.src = "navbar.js";
+          document.body.appendChild(script);
+        });
+    </script>
 
     <!-- this is the script to control the cointainer-->
     <script>
