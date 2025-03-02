@@ -71,15 +71,17 @@
         </div>
     </div>
 
+    <!-- Load Navbar -->
     <script>
-        // Load navbar from external file
         fetch('../pages/navbar.html')
           .then(response => response.text())
           .then(data => {
-            document.getElementById('navbar-container').innerHTML = data;
-          })
-          .catch(error => console.error('Error loading navbar:', error));
-      </script>
+          document.getElementById("navbar-container").innerHTML = data;
+          const script = document.createElement("script");
+          script.src = "navbar.js";
+          document.body.appendChild(script);
+        });
+    </script>
 
     <!-- this is the script to control the cointainer-->
     <script>
