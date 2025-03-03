@@ -11,6 +11,11 @@
     color: white;
 }
 
+.navbar-brand img {
+    max-height: 3rem;
+    width: auto; 
+}
+
 .navbar a {
     color: white;
     text-decoration: none;
