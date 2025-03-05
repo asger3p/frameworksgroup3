@@ -27,7 +27,7 @@
 
     <!-- Greeting message -->
     <div class="container mt-4"> <!-- "container" controls the width and alignment, "mt-4" adds margin-top -->
-        <h2 id="message">See your cart here</h2> 
+        <h2 id="greeting">Your Cart</h2> 
     </div>
 
 
@@ -44,17 +44,21 @@
         });
         
       // Function to retrieve the user's name from localStorage and display a personalized message when page is loaded
-      window.onload = addUserName; // attaching the event handler = addUserName function​​
-      function addUserName() {
         // Retrieve stored username from local storage
-        const userName = localStorage.fname;
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstName = localStorage.getItem('userFirstName');
+            const greetingElement = document.getElementById('greeting');
 
         // If userName exists, update message with personalized greeting
-        if (userName !== undefined) {
-          document.getElementById("message").innerHTML = "See your cart here, " +
-            userName;
+        if (firstName) {
+          greetingElement.textContent = `Your cart, , ${firstName}?`;
+        }else {
+            greetingElement.textContent = "Your Cart";
         }
-      }
+
+         // Call updateGreeting when page loads
+        window.addEventListener('load', updateGreeting);
+      });
     </script>
 
 

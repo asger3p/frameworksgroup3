@@ -15,6 +15,11 @@
     <!-- Navbar -->
     <div id="navbar-container"></div>
 
+    <!-- Greeting -->
+    <div class="container mt-4">
+      <h2 id="greeting">Welcome</h2>
+    </div>
+
     <!-- Carousel -->
     <div id="carouselExample" class="carousel slide">
       <div class="carousel-inner">
@@ -38,8 +43,23 @@
       </button>
     </div>
 
-    <!-- Load Navbar -->
+    <!-- Update Greeting and Load Navbar -->
     <script>
+      // Update Greeting:
+      function updateGreeting() {
+        const firstName = localStorage.getItem('userFirstName');
+        const greetingElement = document.getElementById('greeting');
+
+        if (firstName) {
+          greetingElement.textContent = `Hi there, ${firstName}!`;
+        } else {
+          greetingElement.textContent = 'Hi there, spice enthusiast!'
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', updateGreeting);
+
+      // Load Navbar:
       fetch('navbar.html')
         .then(response => response.text())
         .then(data => {
