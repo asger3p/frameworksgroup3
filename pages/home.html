@@ -13,20 +13,7 @@
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="navbar bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand">Spice</a>
-        <form class="d-flex" role="search">
-          <input
-            class="form-control me-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div>
-    </nav>
+    <div id="navbar-container"></div>
 
     <!-- Carousel -->
     <div id="carouselExample" class="carousel slide">
@@ -50,6 +37,19 @@
         <span class="visually-hidden">Next</span>
       </button>
     </div>
+
+    <!-- Load Navbar -->
+    <script>
+      fetch('navbar.html')
+        .then(response => response.text())
+        .then(data => {
+        document.getElementById("navbar-container").innerHTML = data;
+        const script = document.createElement("script");
+        script.src = "navbar.js";
+        document.body.appendChild(script);
+      });
+  </script>
+
     <!-- Carousel with cards -->
     <!-- Selector -->
     <!-- Carousel with cards -->
