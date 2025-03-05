@@ -13,13 +13,13 @@ body {
     font-family: Verdana, sans-serif !important;
 }
 
-/* Navbar */
+/* Navbar (can be changed) */
 .navbar {
     background-color: var(--primary-green) !important; /* Light green navbar */
 }
 
 .navbar-brand {
-    color: var(--primary-orange);
+    color: white;
     font-weight: bold;
 }
 
