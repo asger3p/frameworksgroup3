@@ -1,4 +1,11 @@
 // navbar.js
+// Load Navbar
+fetch('../pages/navbar.html')
+  .then(response => response.text())
+  .then(data => {
+      document.getElementById('navbar-container').innerHTML = data;
+  })
+  .catch(error => console.error('Error loading the navbar:', error));
 
 document.addEventListener("DOMContentLoaded", () => {
     const userName = localStorage.getItem("fname");

@@ -39,15 +39,9 @@
     </div>
 
     <!-- Load Navbar -->
-    <script>
-      fetch('navbar.html')
-        .then(response => response.text())
-        .then(data => {
-        document.getElementById("navbar-container").innerHTML = data;
-        const script = document.createElement("script");
-        script.src = "navbar.js";
-        document.body.appendChild(script);
-      });
+    
+    <script src="../js/navbar.js"></script>
+
   </script>
 
     <!-- Carousel with cards -->

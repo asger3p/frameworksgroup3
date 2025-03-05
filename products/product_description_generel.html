@@ -72,16 +72,9 @@
     </div>
 
     <!-- Load Navbar -->
-    <script>
-        fetch('../pages/navbar.html')
-          .then(response => response.text())
-          .then(data => {
-          document.getElementById("navbar-container").innerHTML = data;
-          const script = document.createElement("script");
-          script.src = "navbar.js";
-          document.body.appendChild(script);
-        });
-    </script>
+    
+    <script src="../js/navbar.js"></script>
+
 
     <!-- this is the script to control the cointainer-->
     <script>
