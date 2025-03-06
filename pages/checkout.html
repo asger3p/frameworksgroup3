@@ -9,8 +9,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.6.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h2 class="mb-4">Checkout</h2>
+    <!-- Navbar -->
+    <div id="navbar-container"></div>
+
+    <div class="container mt-4">
+        <h3 class="mb-4">Checkout</h3>
         <div class="row">
 
             <!-- Left Column: Forms -->
@@ -19,7 +22,7 @@
                 <!-- 1. Your Products -->
                  <div class="card mb-4">
                     <div class="card-header">
-                        <h4>1. Your Produts</h4>
+                        <h5>1. Your Products</h5>
                     </div>
 
                     <!-- Maybe use below something similar as in the cart page? -->
@@ -40,105 +43,70 @@
                     </div>
                 </div>
 
-                <!-- 2. Login/Create Account -->
-                <div class="card mb-4">
-                    <div class="card-header border-0 bg-white">
-                    <h4>2. Login/Create Account</h4>
-                    </div>
-
-                        <div class="row mb-4">
-                        <div class="col-md-6 mb-3 mb-md-0">
-                            <label for="email" class="form-label text-uppercase small text-muted">EMAIL</label>
-                            <input type="email" class="form-control bg-light border-0 rounded-0" id="email" placeholder="Email">
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="password" class="form-label text-uppercase small text-muted">PASSWORD</label>
-                            <input type="password" class="form-control bg-light border-0 rounded-0" id="password" placeholder="Password">
-                        </div>
-                    </div>
-
-                    <div class="text-end mb-4">
-                        <a href="#" class="text-muted small text-decoration-none">DID YOU FORGET YOUR PASSWORD?</a>
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="form-label text-uppercase small text-muted">CREATE USER</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="createUser">
-                            <span class="form-check-label"></span>
-                        </div>
-                    </div>
-
-                    <div class="d-flex justify-content-between">
-                        <button class="btn btn-outline-dark border-1 px-4 py-2">CHECK OUT AS GUEST</button>
-                        <button class="btn btn-dark px-4 py-2">LOG IN</button>
-                    </div>
-                </div>
-
-                <!-- 3. Personal Info -->
+                <!-- 2. Personal Info -->
                 <div class="card mb-4">
                     <div class="card-header">
-                    <h4>3. Personal Information</h4>
+                    <h5>2. Personal Information</h5>
                     </div>
 
                     <div class="card-body">
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label for="checkout-email" class="form-label">EMAIL</label>
+                                <label for="checkout-email" class="form-label text-uppercase small text-muted">EMAIL</label>
                                 <input type="email" class="form-control" id="checkout-email" placeholder="Email">
                             </div>
                             <div class="col-md-6">
-                                <label for="phone" class="form-label">PHONE NUMBER</label>
+                                <label for="phone" class="form-label text-uppercase small text-muted">PHONE NUMBER</label>
                                 <input type="tel" class="form-control" id="phone" placeholder="Phone number">
                             </div>
                         </div>
 
-                            <h5 class="mb-3">Shipping address</h5>
+                            <h6 class="mb-3">Shipping address</h6>
 
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <label for="firstName" class="form-label">FIRST NAME</label>
+                                    <label for="firstName" class="form-label text-uppercase small text-muted">FIRST NAME</label>
                                     <input type="text" class="form-control" id="firstName" placeholder="First Name">
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="lastName" class="form-label">LAST NAME</label>
+                                    <label for="lastName" class="form-label text-uppercase small text-muted">LAST NAME</label>
                                     <input type="text" class="form-control" id="lastName" placeholder="Last Name">
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <label for="address" class="form-label">STREET ADDRESS</label>
+                                    <label for="address" class="form-label text-uppercase small text-muted">STREET ADDRESS</label>
                                     <input type="text" class="form-control" id="address" placeholder="Street Address">
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="apt" class="form-label">APT, SUITE, ETC.</label>
+                                    <label for="apt" class="form-label text-uppercase small text-muted">APT, SUITE, ETC.</label>
                                     <input type="text" class="form-control" id="apt" placeholder="Apt, suite, etc.">
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <label for="zip" class="form-label">ZIP/POSTAL CODE</label>
+                                    <label for="zip" class="form-label text-uppercase small text-muted">ZIP/POSTAL CODE</label>
                                     <input type="text" class="form-control" id="zip" placeholder="Zip/Postal Code">
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="city" class="form-label">CITY</label>
+                                    <label for="city" class="form-label text-uppercase small text-muted">CITY</label>
                                     <input type="text" class="form-control" id="city" placeholder="City">
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <label for="state" class="form-label">STATE/COUNTY</label>
+                                    <label for="state" class="form-label text-uppercase small text-muted">STATE/COUNTY</label>
                                     <input type="text" class="form-control" id="state" placeholder="State/County">
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="country" class="form-label">COUNTRY</label>
+                                    <label for="country" class="form-label text-uppercase small text-muted">COUNTRY</label>
                                     <select class="form-control" id="country">
                                         <option selected>Choose a country</option>
                                         <!-- Other countries -->
@@ -149,68 +117,68 @@
 
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="differentBilling">
-                                <label class="form-check-label" for="differentBilling">USE DIFFERENT BILLING ADDRESS</label>
+                                <label class="form-check-label text-uppercase small text-muted" for="differentBilling">USE DIFFERENT BILLING ADDRESS</label>
                             </div>
                     </div>
                 </div>
 
-                <!-- 4. Shipping -->
+                <!-- 3. Shipping -->
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h4>4. Shipping</h4>
+                        <h5>4. Shipping</h5>
                     </div>
                     <div class="card-body">
                         <!-- Shipping options, radio buttons -->
                          <div class="form-check mb-3">
                          <input class="form-check-input" type="radio" name="shipping" id="standard" checked>
-                         <label class="form-check-label" for="standard">
+                         <label class="form-check-label small text-muted" for="standard">
                             Standard Shipping (3-5 business days) - 39 DKK
                          </label>
                          </div>
                          <div class="form-check mb-3">
                             <input class="form-check-input" type="radio" name="shipping" id="express" checked>
-                            <label class="form-check-label" for="express">
+                            <label class="form-check-label small text-muted" for="express">
                                Express Shipping (1-2 business days) - 89 DKK
                             </label>
                          </div>
                     </div>
                 </div>
 
-                <!-- 5. Payment -->
+                <!-- 4. Payment -->
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h4>5. Payment</h4>
+                        <h5>5. Payment</h5>
                     </div>
 
                     <div class="card-body">
                         <!-- Payment options, radio buttons -->
                          <div class="form-check mb-3">
                             <input class="form-check-input" type="radio" name="payment" id="creditCard" checked>
-                            <label class="form-check-label" for="creditCard">Credit Card</label>
+                            <label class="form-check-label text-uppercase small text-muted" for="creditCard">Credit Card</label>
                          </div>
 
                          <!-- Credit card form -->
                           <div id="ccForm" class="ms-4 mb-3">
                             <div class="row mb-3">
                                 <div class="col-12">
-                                    <label for="cardName" class="form-label">NAME ON CARD</label>
+                                    <label for="cardName" class="form-label text-uppercase small text-muted">NAME ON CARD</label>
                                     <input type="text" class="form-control" id="cardName">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-12">
-                                    <label for="cardNumber" class="form-label">CARD NUMBER</label>
+                                    <label for="cardNumber" class="form-label text-uppercase small text-muted">CARD NUMBER</label>
                                     <input type="text" class="form-control" id="cardNumber">
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="expDate" class="form-label">EXPIRATION DATE</label>
+                                    <label for="expDate" class="form-label text-uppercase small text-muted">EXPIRATION DATE</label>
                                     <input type="text" class="form-control" id="expDate" placeholder="MM/YY">
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="cvv" class="form-label">CVV</label>
+                                    <label for="cvv" class="form-label text-uppercase small text-muted">CVV</label>
                                     <input type="text" class="form-control" id="cvv">
                                 </div>
                             </div>
@@ -219,21 +187,18 @@
                           <!-- Other payment methods -->
                          <div class="form-check mb-3">
                             <input class="form-check-input" type="radio" name="payment" id="mobilePay" checked>
-                            <label class="form-check-label" for="mobilePay">MobilePay</label>
+                            <label class="form-check-label text-uppercase small text-muted" for="mobilePay">MobilePay</label>
                          </div>
 
                          <div class="form-check mb-3">
                             <input class="form-check-input" type="radio" name="payment" id="applePay" checked>
-                            <label class="form-check-label" for="applePay">Apple Pay</label>
+                            <label class="form-check-label text-uppercase small text-muted" for="applePay">Apple Pay</label>
                          </div>
                     </div>
                 </div>
 
-                <!-- 6. Confirm -->
+                <!-- 5. Confirm -->
                 <div class="card mb-4">
-                    <div class="card-header">
-                        <h4>6. Confirm</h4>
-                    </div>
                     <button type="submit" class="btn btn-dark w-100 py-2">COMPLETE ORDER</button>
                 </div>
             </div>
@@ -244,7 +209,7 @@
                 <!-- Order Summary -->
                  <div class="card">
                     <div class="card-header">
-                        <h4>Summary</h4>
+                        <h5>Summary</h5>
                     </div>
                     <div class="card-body">
                         <div class="d-flex justify-content-between mb-2">
@@ -265,5 +230,16 @@
 
         </div>
     </div>
+    <!-- Load Navbar -->
+    <script>
+        fetch('navbar.html')
+          .then(response => response.text())
+          .then(data => {
+          document.getElementById("navbar-container").innerHTML = data;
+          const script = document.createElement("script");
+          script.src = "navbar.js";
+          document.body.appendChild(script);
+        });
+    </script>
 </body>
 </html>
