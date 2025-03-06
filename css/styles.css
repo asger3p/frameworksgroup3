@@ -1,0 +1,165 @@
+/* Custom colors */
+:root {
+    --primary-green: #99C087;
+    --primary-orange: #FF640A;
+    --background-light: #F9F9F9;
+    --text-dark: #333333;
+}
+
+/* General Styles */
+body {
+    background-color: var(--background-light) !important; /* Light grey/beige */
+    color: var(--text-dark) !important; /* Dark grey text */
+    font-family: Verdana, sans-serif !important;
+}
+
+/* Navbar (can be changed) */
+.navbar {
+    background-color: var(--primary-green) !important; /* Light green navbar */
+}
+
+.navbar-brand {
+    color: white;
+    font-weight: bold;
+}
+
+.navbar a {
+    color: white;
+}
+
+.navbar a:hover {
+    color: var(--primary-orange);
+    text-decoration: none;
+}
+
+/* General Button Styles */
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary-orange) !important; /* Orange buttons */
+    border-color: var(--primary-orange);
+    color: white;
+}
+
+.btn-outline-success {
+    color: var(--primary-green) !important;
+    border-color: var(--primary-green);
+}
+
+.btn-outline-success:hover {
+    background-color: var(--primary-green) !important;
+    color: white;
+}
+
+/* Quantity and Small Buttons */
+
+.btn-sm,
+.btn-outline-secondary,
+.btn-outline-primary {
+    background-color: transparent !important;
+    border-color: var(--primary-green);
+    color: var(--primary-green);
+}
+
+.btn-sm:hover,
+.btn-outline-secondary:hover,
+.btn-outline-primary:hover  {
+    background-color: var(--primary-green) !important;
+    border-color: var(--primary-green);
+    color: white;
+}
+
+/* Remove Button */
+.btn-sm.btn-outline-danger {
+    border-color: var(--text-dark) !important;
+    color: var(--text-dark);
+}
+
+.btn-sm.btn-outline-danger:hover {
+    background-color: var(--text-dark) !important;
+    color: white;
+}
+
+/* Specific Cart and Checkout Buttons */
+#continueshopping,
+#checkout,
+.add-to-cart {
+    background-color: var(--primary-orange);
+    border-color: var(--primary-orange);
+    color: white;
+}
+
+#continueshopping:hover,
+#checkout:hover,
+.add-to-cart:hover {
+    background-color: var(--primary-green);
+    border-color: var(--primary-green);
+}
+
+/* Icons */
+.bi-person-circle,
+.bi-cart {
+    color: white;
+}
+
+/* Links */
+a {
+    color: var(--primary-orange);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--primary-green);
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #8B4513;
+}
+
+/* Form and Card Styles */
+.form-control {
+    border: 1px solid var(--primary-green) !important; /* Light green border */
+}
+
+.card {
+    border-color: var(--primary-green);
+}
+
+.card-header {
+    background-color: var(--primary-green);
+    color: white;
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-orange) !important;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Specific Product Page Styles */
+body {
+    background-color: var(--background-light);
+    color: var(--text-dark);
+}
+
+h1 {
+    color: var(--text-dark);
+}
+
+/* Quantity container border */
+.border {
+    border-color: var(--primary-green) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+}
