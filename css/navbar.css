@@ -1,0 +1,55 @@
+/* navbar.css */
+
+.navbar {
+    background-color: #99C087 !important; /* Light green background */
+    padding: 1rem;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: white;
+}
+
+.navbar-brand img {
+    max-height: 3rem;
+    width: auto; 
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    color: #f4f4f4;
+}
+
+.search-bar {
+    max-width: 300px;
+    margin-left: auto; /* Push search bar to the right */
+}
+
+.search-bar input {
+    border: none;
+}
+
+.search-bar button {
+    background-color: white;
+    color: #99C087;
+    border: none;
+}
+
+.icon-links {
+    display: flex;
+    gap: 1rem; /* Add space between icons */
+}
+
+.icon-links i {
+    color: white;
+    font-size: 2rem; /* Bigger icons */
+}
+
+.icon-links i:hover {
+    color: #f4f4f4;
+}
