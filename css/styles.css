@@ -39,18 +39,18 @@ body {
 
 .btn-primary {
     background-color: var(--primary-orange) !important; /* Orange buttons */
-    border-color: var(--primary-orange);
-    color: white;
+    border-color: var(--primary-orange) !important;
+    color: white !important;
 }
 
 .btn-outline-success {
     color: var(--primary-green) !important;
-    border-color: var(--primary-green);
+    border-color: var(--primary-green) !important;
 }
 
 .btn-outline-success:hover {
     background-color: var(--primary-green) !important;
-    color: white;
+    color: white !important;
 }
 
 /* Quantity and Small Buttons */
@@ -59,43 +59,43 @@ body {
 .btn-outline-secondary,
 .btn-outline-primary {
     background-color: transparent !important;
-    border-color: var(--primary-green);
-    color: var(--primary-green);
+    border-color: var(--primary-green) !important;
+    color: var(--primary-green) !important;
 }
 
 .btn-sm:hover,
 .btn-outline-secondary:hover,
 .btn-outline-primary:hover  {
     background-color: var(--primary-green) !important;
-    border-color: var(--primary-green);
-    color: white;
+    border-color: var(--primary-green) !important;
+    color: white !important;
 }
 
 /* Remove Button */
 .btn-sm.btn-outline-danger {
     border-color: var(--text-dark) !important;
-    color: var(--text-dark);
+    color: var(--text-dark) !important;
 }
 
 .btn-sm.btn-outline-danger:hover {
     background-color: var(--text-dark) !important;
-    color: white;
+    color: white !important;
 }
 
 /* Specific Cart and Checkout Buttons */
 #continueshopping,
 #checkout,
 .add-to-cart {
-    background-color: var(--primary-orange);
-    border-color: var(--primary-orange);
-    color: white;
+    background-color: var(--primary-orange) !important;
+    border-color: var(--primary-orange) !important;
+    color: white !important;
 }
 
 #continueshopping:hover,
 #checkout:hover,
 .add-to-cart:hover {
-    background-color: var(--primary-green);
-    border-color: var(--primary-green);
+    background-color: var(--primary-green) !important;
+    border-color: var(--primary-green) !important;
 }
 
 /* Icons */
@@ -106,18 +106,18 @@ body {
 
 /* Links */
 a {
-    color: var(--primary-orange);
+    color: var(--primary-orange) !important;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover {
-    color: var(--primary-green);
+    color: var(--primary-green) !important;
     text-decoration: underline;
 }
 
 a:visited {
-    color: #8B4513;
+    color: #8B4513 !important;
 }
 
 /* Form and Card Styles */
@@ -126,12 +126,12 @@ a:visited {
 }
 
 .card {
-    border-color: var(--primary-green);
+    border-color: var(--primary-green) !important;
 }
 
 .card-header {
-    background-color: var(--primary-green);
-    color: white;
+    background-color: var(--primary-green) !important;
+    color: white !important; 
 }
 
 /* Footer */
@@ -144,12 +144,12 @@ footer {
 
 /* Specific Product Page Styles */
 body {
-    background-color: var(--background-light);
-    color: var(--text-dark);
+    background-color: var(--background-light) !important;
+    color: var(--text-dark) !important;
 }
 
 h1 {
-    color: var(--text-dark);
+    color: var(--text-dark) !important;
 }
 
 /* Quantity container border */
