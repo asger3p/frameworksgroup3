@@ -37,7 +37,7 @@
     <script src="../js/navbar.js">
         
       // Function to retrieve the user's name from localStorage and display a personalized message when page is loaded
-      window.onload = addUserName; // attaching the event handler = addUserName function​​
+      window.onload = addUserName; // attaching the event handler = addUserName function
       function addUserName() {
         // Retrieve stored username from local storage
         const userName = localStorage.fname;
@@ -61,11 +61,13 @@
             </div>
             <div class="col-4">Curry</div> <!-- takes 4 out of 12 columns -->
             <div class="col-3 d-flex align-items-center">
-                <button class="btn btn-sm btn-outline-secondary">-</button> <!-- "btn btn-sm btn-outline-secondary" is small, gray-bordered button -->
-                <span class="mx-2">1</span> <!-- mx-2 is spacing -->
-                <button class="btn btn-sm btn-outline-secondary">+</button>
+                <div class="quantity-selector d-flex align-items-center gap-1"> <!-- Adjusted gap size -->
+                    <button class="decrease btn btn-sm btn-outline-secondary px-2 py-1">-</button> 
+                    <input class="quantity-input mx-1 text-center w-25 fs-6" type="number" value="1" min="1" readonly> 
+                    <button class="increase btn btn-sm btn-outline-secondary px-2 py-1">+</button>
+                </div>
             </div>
-            <div class="col-2">100 kr</div>
+            <div class="price col-2" data-price="100">100 kr</div>
             <div class="col-1">
                 <button class="btn btn-sm btn-outline-danger">×</button> <!-- remove button: "btn btn-sm btn-outline-danger", means a small red button with a "×" -->
             </div>
@@ -78,11 +80,13 @@
             </div>
             <div class="col-4">Garam masala</div>
             <div class="col-3 d-flex align-items-center">
-                <button class="btn btn-sm btn-outline-secondary">-</button>
-                <span class="mx-2">1</span>
-                <button class="btn btn-sm btn-outline-secondary">+</button>
+                <div class="quantity-selector d-flex align-items-center gap-1"><!-- Adjusted gap size -->
+                    <button class="decrease btn btn-sm btn-outline-secondary px-2 py-1">-</button> <!-- Smaller buttons -->
+                    <input class="quantity-input mx-1 text-center w-25 fs-6" type="number" value="1" min="1" readonly> <!-- Smaller input with fixed width -->
+                    <button class="increase btn btn-sm btn-outline-secondary px-2 py-1">+</button> <!-- Smaller buttons -->
+                </div>
             </div>
-            <div class="col-2">120 kr</div>
+            <div class="price col-2" data-price="120">120 kr</div>
             <div class="col-1">
                 <button class="btn btn-sm btn-outline-danger">×</button>
             </div>
@@ -92,7 +96,7 @@
 
     <!-- Total price -->
     <div class="container mt-4 text-end"> <!-- text-end for right alignment-->
-        <h4>Total Price: <span>200</span> kr</h4> <!-- Display subtotal amount dynamically based on cart items -->
+        <h4 id="totalPrice">Total Price: <span>0</span> kr</h4> <!-- Display subtotal amount dynamically based on cart items -->
     </div>
     
     <!-- Buttons: Continue Shopping & Checkout -->
@@ -107,6 +111,59 @@
         <button id="continueshopping">Continue shopping</button> 
         <button id="checkout">CHECKOUT</button> <!-- button triggers an event to validate terms acceptance before proceeding -->
     </div>
+
+<!-- Script for controlling quantities buttons-->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    function updateTotalPrice() {
+        let total = 0;
+        document.querySelectorAll(".row").forEach(row => {
+            const quantity = parseInt(row.querySelector(".quantity-input").value);
+            const unitPrice = parseInt(row.querySelector(".price").dataset.price);
+            total += quantity * unitPrice;
+        });
+
+        document.querySelector("#totalPrice span").innerText = total; // Update total price
+    }
+
+    document.querySelectorAll(".quantity-selector").forEach(selector => {
+        const quantityInput = selector.querySelector(".quantity-input");
+        const increaseBtn = selector.querySelector(".increase");
+        const decreaseBtn = selector.querySelector(".decrease");
+        const priceSpan = selector.closest(".row").querySelector(".price");
+
+        let selectedPrice = parseInt(priceSpan.dataset.price);
+
+        increaseBtn.addEventListener("click", function () {
+            let value = parseInt(quantityInput.value);
+            quantityInput.value = value + 1;
+            priceSpan.innerHTML = `${selectedPrice * quantityInput.value} kr`;
+            updateTotalPrice(); // Update total price
+        });
+
+        decreaseBtn.addEventListener("click", function () {
+            let value = parseInt(quantityInput.value);
+            if (value > 1) {
+                quantityInput.value = value - 1;
+                priceSpan.innerHTML = `${selectedPrice * quantityInput.value} kr`;
+                updateTotalPrice(); // Update total price
+            }
+        });
+    });
+
+    document.querySelectorAll(".btn-outline-danger").forEach(button => {
+        button.addEventListener("click", function () {
+            const row = this.closest(".row"); // Find the parent row of the clicked button
+            row.remove(); // Remove the row from the DOM
+            updateTotalPrice(); // Update the total price after removal
+        });
+    });
+
+    updateTotalPrice(); // Run once on page load
+});
+
+</script>
+
 
 
 </body>
