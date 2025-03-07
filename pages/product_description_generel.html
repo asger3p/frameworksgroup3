@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+
+    <!-- Bootstrap framework -->
+    <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Load Products Data -->
+    <script src="/js/products.js"></script>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Left Column with Image -->
+            <div class="col-6 text-center">
+                <div class="image-container">
+                    <img id="productImage" src="/images/no_image.jpg" alt="Product Image" class="img-fluid" style="max-width: 80%; height: auto;">
+                </div>
+            </div>
+
+            <!-- Right Column with Text & Dropdown -->
+            <div class="col-6">
+                <h1 id="productName" class="text-left">Loading...</h1>
+                <p id="productDescription">Loading product details...</p>
+
+                <!-- Dropdown Box -->
+                <div class="dropdown w-100 mt-4">
+                    <div class="dropdown-box border p-2" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <h5 class="mb-0">Choose amount</h5>
+                    </div>
+                    <div class="dropdown-menu" id="sizeDropdown" aria-labelledby="dropdownMenuButton">
+                        <!-- Options will be loaded dynamically -->
+                    </div>
+                </div>
+
+                <!-- Quantity Selector + Price -->
+                <div class="w-100 mt-3">
+                    <label for="quantitySelector" class="form-label text-muted d-block">Quantity</label>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <!-- Quantity Selector -->
+                        <div id="quantitySelector" class="d-flex align-items-center gap-2">
+                            <button id="decrease" class="btn btn-sm btn-outline-secondary px-3 py-2">-</button>
+                            <input id="quantity" class="mx-1 fs-5 text-center w-25" type="number" value="1" min="1" readonly>
+                            <button id="increase" class="btn btn-sm btn-outline-secondary px-3 py-2">+</button>
+                        </div>
+                        <!-- Price -->
+                        <span id="price" class="mb-0" data-value="0">0 kr</span>
+                    </div>
+                    <div class="w-100 mt-3">
+                        <button class="btn btn-dark px-4 py-2 w-100">ADD</button>
+                    </div>
+                </div>
+            </div> <!-- Closes Right Column -->
+        </div> <!-- Closes Row -->
+    </div> <!-- Closes Container -->
+
+    <!-- Script to Load Product Data Dynamically -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get the product ID from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('productId'); 
+
+            // Find the product in the products array (loaded from products.js)
+            const product = products.find(p => p.id === productId);
+
+            if (product) {
+                // Populate the page with product details
+                document.getElementById("productName").innerText = product.name;
+                document.getElementById("productDescription").innerText = product.description;
+                document.getElementById("productImage").src = product.image;
+
+                // Get the dropdown and clear it
+                const dropdownMenu = document.getElementById("sizeDropdown");
+                dropdownMenu.innerHTML = "";
+
+                let selectedPrice = 0;
+
+                // Populate dropdown dynamically with sizes
+                product.sizes.forEach(sizeOption => {
+                    const sizeLink = document.createElement("a");
+                    sizeLink.classList.add("dropdown-item");
+                    sizeLink.href = "#";
+                    sizeLink.dataset.value = sizeOption.size;
+                    sizeLink.dataset.price = sizeOption.price;
+                    sizeLink.innerText = `${sizeOption.size}`;
+                    //sizeLink is used to create <a> elements
+                    //the above will create this: <a class="dropdown-item" href="#" data-value="50 g" data-price="50">50 g</a>
+
+                    sizeLink.addEventListener("click", function (event) {
+                        event.preventDefault(); //prevents the page from jumping to the top
+                        document.getElementById("dropdownMenuButton").innerHTML = `<h5 class="mb-0">${sizeOption.size}</h5>`;
+                        selectedPrice = sizeOption.price;
+                        document.getElementById("price").innerText = `${selectedPrice} kr`;
+                    });
+
+                    dropdownMenu.appendChild(sizeLink); //this adds the created <a></a> to the dropdown html
+                });
+
+                // Quantity selection logic
+                const quantityInput = document.getElementById("quantity");
+                const increaseBtn = document.getElementById("increase");
+                const decreaseBtn = document.getElementById("decrease");
+                const priceSpan = document.getElementById("price");
+
+                increaseBtn.addEventListener("click", function () {
+                    let value = parseInt(quantityInput.value);
+                    quantityInput.value = value + 1;
+                    priceSpan.innerText = `${selectedPrice * quantityInput.value} kr`;
+                });
+
+                decreaseBtn.addEventListener("click", function () {
+                    let value = parseInt(quantityInput.value);
+                    if (value > 1) {
+                        quantityInput.value = value - 1;
+                    }
+                    priceSpan.innerText = `${selectedPrice * quantityInput.value} kr`;
+                });
+
+            } else {
+                console.error("Product not found!");
+                document.getElementById("productName").innerText = "Product Not Found";
+                document.getElementById("productDescription").innerText = "We couldn't find the product you were looking for.";
+            }
+        });
+    </script>
+
+</body>
+</html>
