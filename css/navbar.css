@@ -53,3 +53,21 @@
 .icon-links i:hover {
     color: #f4f4f4;
 }
+/* Style for the logout button */
+#logoutButton {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem; /* Same size as the other icons */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+#logoutButton i {
+    margin-right: 5px;
+}
+
+#logoutButton:hover {
+    color: #f4f4f4; /* Same hover effect as the other icons */
+}

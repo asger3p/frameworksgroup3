@@ -1,27 +1,37 @@
 document.getElementById("loginForm").addEventListener("submit", function (e) {
   e.preventDefault(); // Prevent form submission
 
-  const name = document.getElementById("name").value;
-  localStorage.setItem("fname", name); // Save the name in local storage
+  // Get values from form
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
-  // Redirect or show success message
-  window.location.href = "home.html"; // or whatever page they should land on
-});
+  // Get stored data from localStorage
+  const storedEmail = localStorage.getItem("email");
+  const storedPassword = localStorage.getItem("password");
+  const firstName = localStorage.getItem("fname");
 
-// Get references to the password input and toggle button
-const passwordInput = document.getElementById('password');
-const togglePasswordButton = document.getElementById('toggle-password');
+  // Check if credentials match
+  if (email === storedEmail && password === storedPassword) {
+    // Save login status & user name
+    localStorage.setItem("isLoggedIn", "true");
 
-// Add event listener to the button
-togglePasswordButton.addEventListener('click', () => {
-// Toggle password visibility
-  if (passwordInput.type === 'password') {
-    passwordInput.type = 'text';
-    togglePasswordButton.textContent = 'Hide';
+    // Redirect to home page
+    window.location.href = "home.html";
   } else {
-    passwordInput.type = 'password';
-    togglePasswordButton.textContent = 'Show';
+    alert("Invalid email or password.");
   }
 });
 
-  
+    // Password visibility toggle
+const passwordInput = document.getElementById("password");
+const togglePasswordButton = document.getElementById("toggle-password");
+
+togglePasswordButton.addEventListener("click", () => {
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";
+    togglePasswordButton.textContent = "Hide";
+  } else {
+    passwordInput.type = "password";
+    togglePasswordButton.textContent = "Show";
+  }
+});
