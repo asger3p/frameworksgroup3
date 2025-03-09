@@ -19,7 +19,6 @@
 
     <!-- Link to external stylesheet for styling page: <link rel="stylesheet" href="css/styles.css"> -->
     <link rel="stylesheet" href="/css/styles.css">
-    <!-- Link to external js file: <script defer src="js/jsfile.js"></script>-->    
 </head>
 
 <body>
@@ -51,52 +50,19 @@
     </script>
 
 
-    <div class="container mt-4"> 
-        <h3<>Overview of Items:</h3>
-        
-        <!-- Example item in cart -->
-        <div class="row align-items-center border-bottom py-2">
-            <div class="col-2"> <!-- takes 2 out of 12 columns -->
-                <img src="images/curry/emu.jpg" alt="Item" class="img-fluid" style="max-width: 50px;"> <!-- "img-fluid" does image responsive -->
-            </div>
-            <div class="col-4">Curry</div> <!-- takes 4 out of 12 columns -->
-            <div class="col-3 d-flex align-items-center">
-                <div class="quantity-selector d-flex align-items-center gap-1"> <!-- Adjusted gap size -->
-                    <button class="decrease btn btn-sm btn-outline-secondary px-2 py-1">-</button> 
-                    <input class="quantity-input mx-1 text-center w-25 fs-6" type="number" value="1" min="1" readonly> 
-                    <button class="increase btn btn-sm btn-outline-secondary px-2 py-1">+</button>
-                </div>
-            </div>
-            <div class="price col-2" data-price="100">100 kr</div>
-            <div class="col-1">
-                <button class="btn btn-sm btn-outline-danger">×</button> <!-- remove button: "btn btn-sm btn-outline-danger", means a small red button with a "×" -->
-            </div>
-        </div>
-
-        <!-- Item two-->
-        <div class="row align-items-center border-bottom py-2">
-            <div class="col-2">
-                <img src="images/garammasala/emu.jpg" alt="Item" class="img-fluid" style="max-width: 50px;">
-            </div>
-            <div class="col-4">Garam masala</div>
-            <div class="col-3 d-flex align-items-center">
-                <div class="quantity-selector d-flex align-items-center gap-1"><!-- Adjusted gap size -->
-                    <button class="decrease btn btn-sm btn-outline-secondary px-2 py-1">-</button> <!-- Smaller buttons -->
-                    <input class="quantity-input mx-1 text-center w-25 fs-6" type="number" value="1" min="1" readonly> <!-- Smaller input with fixed width -->
-                    <button class="increase btn btn-sm btn-outline-secondary px-2 py-1">+</button> <!-- Smaller buttons -->
-                </div>
-            </div>
-            <div class="price col-2" data-price="120">120 kr</div>
-            <div class="col-1">
-                <button class="btn btn-sm btn-outline-danger">×</button>
-            </div>
-        </div>
-
+    <div class="container mt-4">
+        <h3>Overview of Items:</h3>
+        <div id="cartItems"></div>
     </div>
 
     <!-- Total price -->
     <div class="container mt-4 text-end"> <!-- text-end for right alignment-->
         <h4 id="totalPrice">Total Price: <span>0</span> kr</h4> <!-- Display subtotal amount dynamically based on cart items -->
+    </div>
+
+    <!-- Clear all in cart button -->
+    <div class="container mt-4 text-end">
+        <button id="clearCart" class="btn btn-outline-danger">Clear Cart</button>
     </div>
     
     <!-- Buttons: Continue Shopping & Checkout -->
@@ -161,10 +127,116 @@
 
     updateTotalPrice(); // Run once on page load
 });
-
 </script>
 
+<!-- script for loading and displaying items in cart-->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        function loadCart() {
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const cartItemsContainer = document.getElementById("cartItems");
+            cartItemsContainer.innerHTML = "";
 
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
+                updateTotalPrice(cart); // ensure correct total price
+                return;
+            }
+
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                const itemTotalPrice = item.price * item.quantity;
+                total += itemTotalPrice;
+
+                const cartRow = document.createElement("div");
+                cartRow.classList.add("row", "align-items-center", "border-bottom", "py-2");
+                cartRow.innerHTML = `
+                    <div class="col-2">
+                        <img src="${item.image}" alt="${item.name}" class="img-fluid" style="max-width: 50px;">
+                    </div>
+                    <div class="col-4">${item.name} (${item.size})</div>
+                    <div class="col-3 d-flex align-items-center">
+                        <button class="decrease btn btn-sm btn-outline-secondary px-2 py-1" data-index="${index}">-</button>
+                        <input class="quantity-input mx-1 text-center w-25 fs-6" type="number" value="${item.quantity}" min="1" readonly>
+                        <button class="increase btn btn-sm btn-outline-secondary px-2 py-1" data-index="${index}">+</button>
+                    </div>
+                    <div class="col-2 price">${itemTotalPrice} kr</div>
+                    <div class="col-1">
+                        <button class="btn btn-sm btn-outline-danger remove" data-index="${index}">×</button>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(cartRow);
+            });
+
+            updateTotalPrice(cart);
+
+            document.querySelectorAll(".increase").forEach(button => {
+                button.addEventListener("click", function () {
+                    const index = this.dataset.index;
+                    cart[index].quantity++;
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                    loadCart();
+                    updateTotalPrice(cart);  // update total price immediately
+                });
+            });
+
+            document.querySelectorAll(".decrease").forEach(button => {
+                button.addEventListener("click", function () {
+                    const index = this.dataset.index;
+                    if (cart[index].quantity > 1) {
+                        cart[index].quantity--;
+                    } else {
+                        cart.splice(index, 1);
+                    }
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                    loadCart();
+                    updateTotalPrice(cart);  // update total price immediately
+                });
+            });
+
+            document.querySelectorAll(".remove").forEach(button => {
+                button.addEventListener("click", function () {
+                    const index = this.dataset.index;
+                    cart.splice(index, 1);
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                    loadCart();
+                });
+            });
+        }
+
+        function updateTotalPrice(cart) {
+            let total = 0;
+            cart.forEach(item => {
+                total += item.price * item.quantity;
+            });
+            document.getElementById("totalPrice").innerHTML = `Total Price: <span>${total}</span> kr`;
+        }
+
+        loadCart();
+    });
+
+    // clearing cart
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("clearCart").addEventListener("click", function () {
+            localStorage.removeItem("cart");
+            location.reload();
+        });
+    });
+</script>
+
+<!-- Navigation to home page-->
+<script>
+    document.getElementById("continueshopping").addEventListener("click", function () {
+        window.location.href = "home.html";
+    });
+</script>
+<!-- Navigation to checkout page-->
+<script>
+    document.getElementById("checkout").addEventListener("click", function () {
+        window.location.href = "checkout.html";
+    });
+</script>
 
 </body>
 </html>

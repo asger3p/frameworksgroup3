@@ -7,6 +7,7 @@
 
     <!-- Bootstrap framework -->
     <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -16,6 +17,10 @@
 </head>
 
 <body>
+    <!-- Navbar -->
+    <div id="navbar-container"></div>
+    <script src="/js/navbar.js"></script>
+     
     <div class="container mt-5">
         <div class="row">
             <!-- Left Column with Image -->
@@ -28,6 +33,7 @@
             <!-- Right Column with Text & Dropdown -->
             <div class="col-6">
                 <h1 id="productName" class="text-left">Loading...</h1>
+                <h5 id="productSubheading" class="text-muted">Loading...</h5>
                 <p id="productDescription">Loading product details...</p>
 
                 <!-- Dropdown Box -->
@@ -51,10 +57,12 @@
                             <button id="increase" class="btn btn-sm btn-outline-secondary px-3 py-2">+</button>
                         </div>
                         <!-- Price -->
-                        <span id="price" class="mb-0" data-value="0">0 kr</span>
+                        <div id="price-container" class="price-box">
+                            <span id="price" data-value="0">0 kr</span>
+                        </div>
                     </div>
                     <div class="w-100 mt-3">
-                        <button class="btn btn-dark px-4 py-2 w-100">ADD</button>
+                        <button class="btn btn-primary px-4 py-2">ADD TO CART</button>
                     </div>
                 </div>
             </div> <!-- Closes Right Column -->
@@ -74,7 +82,8 @@
             if (product) {
                 // Populate the page with product details
                 document.getElementById("productName").innerText = product.name;
-                document.getElementById("productDescription").innerText = product.description;
+                document.getElementById("productSubheading").innerText = product.subheading;
+                document.getElementById("productDescription").innerHTML = product.description; // innerHTML to allow line breaks
                 document.getElementById("productImage").src = product.image;
 
                 // Get the dropdown and clear it
@@ -97,6 +106,7 @@
                     sizeLink.addEventListener("click", function (event) {
                         event.preventDefault(); //prevents the page from jumping to the top
                         document.getElementById("dropdownMenuButton").innerHTML = `<h5 class="mb-0">${sizeOption.size}</h5>`;
+                        selectedSize = sizeOption.size;
                         selectedPrice = sizeOption.price;
                         document.getElementById("price").innerText = `${selectedPrice} kr`;
                     });
@@ -123,6 +133,40 @@
                     }
                     priceSpan.innerText = `${selectedPrice * quantityInput.value} kr`;
                 });
+
+                // add item to cart when "ADD" button is clicked
+            document.querySelector(".btn-dark").addEventListener("click", function () {
+                if (!selectedSize) {
+                    alert("Please select a size before adding to cart!");
+                    return;
+                }
+
+                // Retrieve the cart from localStorage, or create an empty array if cart doesn't exist
+                const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+                // Check if the selected product (same ID and size) is already in the cart
+                const existingItemIndex = cart.findIndex(item => item.id === productId && item.size === selectedSize);
+
+                if (existingItemIndex > -1) {
+                        // If the product is already in the cart, increase its quantity
+                    cart[existingItemIndex].quantity += parseInt(quantityInput.value);
+                } else {
+                    // If the product is NOT in the cart, add it as a new object
+                    cart.push({
+                        id: productId,
+                        name: product.name,
+                        size: selectedSize,
+                        price: selectedPrice,
+                        quantity: parseInt(quantityInput.value), // Quantity chosen by user
+                        image: product.image
+                    });
+                }
+
+                // Save the updated cart back to localStorage
+                localStorage.setItem("cart", JSON.stringify(cart));
+                // Show confirmation message to the user
+                alert("Item added to cart!");
+            });
 
             } else {
                 console.error("Product not found!");
