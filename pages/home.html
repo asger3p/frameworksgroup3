@@ -15,7 +15,7 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css" />
   </head>
   <body>
     <!-- Navbar -->
@@ -37,15 +37,21 @@
           class="me-2"
           style="height: 3em; width: auto"
         />
-        <h1 class="fw-bold mb-0">Welcome!</h1>
+        <h2 class="fw-bold mb-0">Welcome!</h2>
       </div>
     </div>
 
     <!-- Load Navbar -->
-    
-    <script src="../js/navbar.js"></script>
-
-  </script>
+    <script>
+      fetch("navbar.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("navbar-container").innerHTML = data;
+          const script = document.createElement("script");
+          script.src = "navbar.js";
+          document.body.appendChild(script);
+        });
+    </script>
 
     <!-- Featured (carousel with cards) -->
     <div class="container-fluid featured">
@@ -139,13 +145,35 @@
             data-bs-ride="carousel"
           >
             <div class="carousel-inner"></div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#allCarousel"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#allCarousel"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Mediterranean category content -->
-    <div class="tab-content" id="myTabContent">
+      <!-- Mediterranean category content -->
       <div
         class="tab-pane fade show active"
         id="mediterranean-tab-pane"
@@ -160,13 +188,35 @@
             data-bs-ride="carousel"
           >
             <div class="carousel-inner"></div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#allCarousel"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#allCarousel"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Indian category content -->
-    <div class="tab-content" id="myTabContent">
+      <!-- Indian category content -->
       <div
         class="tab-pane fade show active"
         id="indian-tab-pane"
@@ -181,13 +231,35 @@
             data-bs-ride="carousel"
           >
             <div class="carousel-inner"></div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#allCarousel"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#allCarousel"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Asian category content -->
-    <div class="tab-content" id="myTabContent">
+      <!-- Asian category content -->
       <div
         class="tab-pane fade show active"
         id="asian-tab-pane"
@@ -202,6 +274,30 @@
             data-bs-ride="carousel"
           >
             <div class="carousel-inner"></div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#allCarousel"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#allCarousel"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
           </div>
         </div>
       </div>

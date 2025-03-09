@@ -4,29 +4,29 @@ document.addEventListener("DOMContentLoaded", function () {
       id: "featuredCarousel",
       cards: [
         {
-          title: "Card 1",
+          title: "Cumin",
           text: "This is the content for card 1",
-          image: "/images/no_image.jpg",
+          image: "/images/1-cumin_seeds.jpg",
         },
         {
-          title: "Card 2",
+          title: "Coriander",
           text: "This is the content for card 2",
-          image: "/images/no_image.jpg",
+          image: "/images/2-coriander_seeds.jpg",
         },
         {
-          title: "Card 3",
+          title: "Cardamom",
           text: "This is the content for card 3",
-          image: "/images/no_image.jpg",
+          image: "/images/3-cardamom_pods.jpg",
         },
         {
-          title: "Card 4",
+          title: "Star Anise",
           text: "This is the content for card 4",
-          image: "/images/no_image.jpg",
+          image: "/images/4-star_anise.jpg",
         },
         {
-          title: "Card 5",
+          title: "Cloves",
           text: "This is the content for card 5",
-          image: "/images/no_image.jpg",
+          image: "/images/5-cloves.jpg",
         },
       ],
     },
@@ -34,29 +34,79 @@ document.addEventListener("DOMContentLoaded", function () {
       id: "allCarousel",
       cards: [
         {
-          title: "Card 1",
+          title: "Cumin",
           text: "This is the content for card 1",
-          image: "/images/no_image.jpg",
+          image: "/images/1-cumin_seeds.jpg",
         },
         {
-          title: "Card 2",
+          title: "Coriander",
           text: "This is the content for card 2",
-          image: "/images/no_image.jpg",
+          image: "/images/2-coriander_seeds.jpg",
         },
         {
-          title: "Card 3",
+          title: "Cardamom",
           text: "This is the content for card 3",
-          image: "/images/no_image.jpg",
+          image: "/images/3-cardamom_pods.jpg",
         },
         {
-          title: "Card 4",
+          title: "Star Anise",
           text: "This is the content for card 4",
-          image: "/images/no_image.jpg",
+          image: "/images/4-star_anise.jpg",
         },
         {
-          title: "Card 5",
+          title: "Cloves",
           text: "This is the content for card 5",
-          image: "/images/no_image.jpg",
+          image: "/images/5-cloves.jpg",
+        },
+        {
+          title: "Bay Leaves",
+          text: "This is the content for card 1",
+          image: "/images/6-bay_leaves.jpg",
+        },
+        {
+          title: "Turmeric",
+          text: "This is the content for card 2",
+          image: "/images/7-turmeric.jpg",
+        },
+        {
+          title: "Paprika",
+          text: "This is the content for card 3",
+          image: "/images/8-paprika.jpg",
+        },
+        {
+          title: "Cinanmon",
+          text: "This is the content for card 4",
+          image: "/images/9-cinnamon.jpg",
+        },
+        {
+          title: "Cloves",
+          text: "This is the content for card 5",
+          image: "/images/10-ginger.jpg",
+        },
+        {
+          title: "Chili",
+          text: "This is the content for card 1",
+          image: "/images/11-chili.jpg",
+        },
+        {
+          title: "Oregano",
+          text: "This is the content for card 2",
+          image: "/images/12-oregano.jpg",
+        },
+        {
+          title: "Garam Masala",
+          text: "This is the content for card 3",
+          image: "/images/13-garammasala.jpg",
+        },
+        {
+          title: "Curry",
+          text: "This is the content for card 4",
+          image: "/images/14-curry.jpg",
+        },
+        {
+          title: "Taco",
+          text: "This is the content for card 5",
+          image: "/images/15-taco.jpg",
         },
       ],
     },
@@ -121,36 +171,6 @@ document.addEventListener("DOMContentLoaded", function () {
       ],
     },
     {
-      id: "allCarousel",
-      cards: [
-        {
-          title: "Card 1",
-          text: "This is the content for card 1",
-          image: "/images/no_image.jpg",
-        },
-        {
-          title: "Card 2",
-          text: "This is the content for card 2",
-          image: "/images/no_image.jpg",
-        },
-        {
-          title: "Card 3",
-          text: "This is the content for card 3",
-          image: "/images/no_image.jpg",
-        },
-        {
-          title: "Card 4",
-          text: "This is the content for card 4",
-          image: "/images/no_image.jpg",
-        },
-        {
-          title: "Card 5",
-          text: "This is the content for card 5",
-          image: "/images/no_image.jpg",
-        },
-      ],
-    },
-    {
       id: "asianCarousel",
       cards: [
         {
@@ -180,7 +200,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
       ],
     },
-  ];
+  ];  
 
   function getCardsPerSlide() {
     if (window.innerWidth >= 1200) return 5;
@@ -221,9 +241,11 @@ document.addEventListener("DOMContentLoaded", function () {
                         </div>
                         `).join("")}
                 </div>
+                
             `;
       carouselInner.appendChild(slide);
     });
+    
   }
 
   function generateAllCarousels() {
