@@ -13,15 +13,28 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container-fluid d-flex align-items-center">
-            <a class="navbar-brand d-flex align-items-center" href="#">
+            <!-- Logo links to home.html -->
+            <a class="navbar-brand d-flex align-items-center" href="home.html">
                 <img src="/images/logo-white.png" alt="Spice Planet Logo" width="50" height="50" class="me-2">
             </a>    
+            <!-- Search bar -->
             <form class="d-flex search-bar" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn" type="submit">Search</button>
             </form>
+
             <div class="icon-links profile-cart-icons ms-3">
                 <a href="login.html" aria-label="Login"><i class="bi bi-person-circle"></i></a>
+
+            <!-- User links -->
+            <div class="icon-links ms-3 d-flex align-items-center">
+                <span id="welcomeMessage" class="me-3 text-white"></span>
+                <a href="login.html" id="loginNavItem" class="me-2" aria-label="Login"><i class="bi bi-person-circle"></i></a>
+                <!-- Logout button with icon -->
+                <button id="logoutButton" class="btn btn-danger btn-sm d-none">
+                    <i class="bi bi-box-arrow-right"></i>
+                </button>
+
                 <a href="cart.html" aria-label="Cart"><i class="bi bi-cart"></i></a>
             </div>
 
