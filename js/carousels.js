@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     {
       id: "featuredCarousel",
       cards: products.filter(product =>
-        ["product_cuminSeeds", "product_cardamomPods", "product_rasAlHanout"].includes(product.id)
+        ["product_cuminSeeds", "product_cardamonPods", "product_rasElHanout"].includes(product.id)
       ),
     },
     {
