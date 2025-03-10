@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const carousel = [
+  const carousels = [
     {
       id: "featuredCarousel",
       cards: products.filter(product =>
@@ -22,6 +22,26 @@ document.addEventListener("DOMContentLoaded", function () {
       id: "asianCarousel",
       cards: products.filter(p => p.cuisine.includes("Asian")),
     },
+    {
+      id: "latinAmericanCarousel",
+      cards: products.filter(p => p.cuisine.includes("Latin American")),
+    },
+    {
+      id: "allTypesCarousel",
+      cards: products,
+    },
+    {
+      id: "wholeCarousel",
+      cards: products.filter(p => p.type === "Whole"),
+    },
+    {
+      id: "groundCarousel",
+      cards: products.filter(p => p.type === "Ground"),
+    },
+    {
+      id: "blendCarousel",
+      cards: products.filter(p => p.type === "Blend"),
+    }
   ];
 
   function getCardsPerSlide() {
@@ -73,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function generateAllCarousels() {
-    carousel.forEach(generateCarousel);
+    carousels.forEach(generateCarousel);
   }
 
   generateAllCarousels();
