@@ -206,6 +206,7 @@ h1 {
     padding: 10px;
     text-align: center;
     width: 150px;
+    z-index: 9999; /* Ensure it appears above everything */
 }
 
 /* Show menu when toggled */
