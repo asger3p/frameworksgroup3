@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const carousel = [
     {
       id: "featuredCarousel",
-      cards: products.filter((product) =>
-        ["product_cuminSeeds"].includes(product.id)
+      cards: products.filter(product =>
+        ["product_cuminSeeds", "product_cardamomPods", "product_rasAlHanout"].includes(product.id)
       ),
     },
     {
@@ -12,15 +12,15 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       id: "mediterraneanCarousel",
-      cards: products.filter((p) => p.cuisine === "Mediterranean"),
+      cards: products.filter(p => p.cuisine.includes("Mediterranean")),
     },
     {
       id: "indianCarousel",
-      cards: products.filter((p) => p.cuisine === "Indian"),
+      cards: products.filter(p => p.cuisine.includes("Indian")),
     },
     {
       id: "asianCarousel",
-      cards: products.filter((p) => p.cuisine=== "Asian"),
+      cards: products.filter(p => p.cuisine.includes("Asian")),
     },
   ];
 

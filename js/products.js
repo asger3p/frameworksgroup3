@@ -45,7 +45,7 @@ const products = [
             "<strong>Pairs well with:</strong> Cinnamon, cloves, star anise.",
         image: "/images/3-cardamom_pods.jpg" ,
         link: "/pages/product_description_generel.html?productId=product_cardamonPods",
-        cuisine: "Indian",
+        cuisine: ["Indian"],
         type: "Whole",
         sizes: [
             { size: "50 g", price: 100 },
@@ -63,7 +63,7 @@ const products = [
             "<strong>Pairs well with:</strong> Cardamom pods, cloves, cinnamon.",
         image: "/images/4-star_anise.jpg" ,
         link: "/pages/product_description_generel.html?productId=product_starAnis",
-        cuisine: "Asian",
+        cuisine: ["Asian"],
         type: "Whole",
         sizes: [
             { size: "50 g", price: 90 },
@@ -117,7 +117,7 @@ const products = [
             "<strong>Pairs well with:</strong> Cumin seeds, ginger, curry powder.",
         image: "/images/7-turmeric.jpg" ,
         link: "/pages/product_description_generel.html?productId=product_turmeric",
-        cuisine: "Indian",
+        cuisine: ["Indian"],
         type: "Ground",
         sizes: [
             { size: "50 g", price: 40 },
@@ -189,7 +189,7 @@ const products = [
             "<strong>Pairs well with:</strong> Paprika, cumin seeds, oregano.",
         image: "/images/11-chili.jpg" ,
         link: "/pages/product_description_generel.html?productId=product_chili",
-        cuisine: "Latin American",
+        cuisine: ["Latin American"],
         type: "Ground",
         sizes: [
             { size: "50 g", price: 45 },
@@ -207,7 +207,7 @@ const products = [
             "<strong>Pairs well with:</strong> Paprika, garlic powder, bay leaves.",
         image: "/images/12-oregano.jpg" ,
         link: "/pages/product_description_generel.html?productId=product_oregano",
-        cuisine: "Mediterranean",
+        cuisine: ["Mediterranean"],
         type: "Ground",
         sizes: [
             { size: "50 g", price: 40 },
@@ -261,7 +261,7 @@ const products = [
             "<strong>Pairs well with:</strong> Coriander seeds, paprika, oregano.",
         image: "/images/15-taco.jpg" ,
         link: "/pages/product_description_generel.html?productId=product_taco",
-        cuisine: "Latin American",
+        cuisine: ["Latin American"],
         type: "Blend",
         sizes: [
             { size: "50 g", price: 45 },
@@ -279,7 +279,7 @@ const products = [
             "<strong>Pairs well with:</strong> Oregano, paprika, coriander seeds.",
         image: "/images/16-zaatar.jpg" ,
         link: "/pages/product_description_generel.html?productId=product_zaatar",
-        cuisine: "Mediteranean",
+        cuisine: ["Mediteranean"],
         type: "Blend",
         sizes: [
             { size: "50 g", price: 60 },
@@ -297,7 +297,7 @@ const products = [
             "<strong>Pairs well with:</strong> Ginger powder, bay leaves, chili powder.",
         image: "/images/17-chinese_five_spice.jpg",
         link: "/pages/product_description_generel.html?productId=product_chineseFiveSpice",
-        cuisine: "Asian",
+        cuisine: ["Asian"],
         type: "Blend",
         sizes: [
             { size: "50 g", price: 60 },
@@ -314,8 +314,8 @@ const products = [
             "<strong>Usage Tip:</strong> Stir Ras el Hanout into olive oil for a flavorful marinade or dressing.<br>"+
             "<strong>Pairs well with:</strong> Turmeric, cinnamon, bay leaves.",
         image: "/images/18-ras_el_hanout.jpg" ,
-        link: "/pages/product_description_generel.html?productId=product_rasElHanout",
-        cuisine: "Mediteranean",
+        link: "/pages/product_description_generel.html?productId=product_rasEl",
+        cuisine: ["Mediteranean"],
         type: "Blend",
         sizes: [
             { size: "50 g", price: 70 },
