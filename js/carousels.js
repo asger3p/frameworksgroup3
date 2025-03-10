@@ -5,26 +5,31 @@ document.addEventListener("DOMContentLoaded", function () {
       cards: [
         {
           title: "Cumin",
+          url: "/pages/product_description_generel.html?productId=product_cuminSeeds",
           text: "This is the content for card 1",
           image: "/images/1-cumin_seeds.jpg",
         },
         {
           title: "Coriander",
+          url: "/pages/product_description_generel.html?productId=product_corianderSeeds",
           text: "This is the content for card 2",
           image: "/images/2-coriander_seeds.jpg",
         },
         {
           title: "Cardamom",
+          url: "/pages/product_description_generel.html?productId=product_cardamomPods",
           text: "This is the content for card 3",
           image: "/images/3-cardamom_pods.jpg",
         },
         {
           title: "Star Anise",
+          url: "/pages/product_description_generel.html?productId=product_starAnise",
           text: "This is the content for card 4",
           image: "/images/4-star_anise.jpg",
         },
         {
           title: "Cloves",
+          url: "/pages/product_description_generel.html?productId=product_cloves",
           text: "This is the content for card 5",
           image: "/images/5-cloves.jpg",
         },
@@ -107,6 +112,21 @@ document.addEventListener("DOMContentLoaded", function () {
           title: "Taco",
           text: "This is the content for card 5",
           image: "/images/15-taco.jpg",
+        },
+        {
+          title: "Zaatar",
+          text: "This is the content for card 5",
+          image: "/images/16-zaatar.jpg",
+        },
+        {
+          title: "Chinese Five Spice",
+          text: "This is the content for card 5",
+          image: "/images/17-chinese_five_spice.jpg",
+        },
+        {
+          title: "Ras El Hanout",
+          text: "This is the content for card 5",
+          image: "/images/18-ras_el_hanout.jpg",
         },
       ],
     },
@@ -230,19 +250,18 @@ document.addEventListener("DOMContentLoaded", function () {
       const slide = document.createElement("div");
       slide.className = `carousel-item ${isActive}`;
       slide.innerHTML = `
-                <div class="d-flex justify-content-center"> 
-                    ${group.map((card) => `
-                        <div class="card" style="width: 18rem; margin-right: 15px;">
-                            <img src="${card.image}" class="card-img-top" alt="${card.title}">
-                            <div class="card-body">
-                            <h5 class="card-title">${card.title}</h5>
-                                <p class="card-text">${card.text}</p>
-                            </div>
-                        </div>
-                        `).join("")}
-                </div>
-                
-            `;
+          <div class="d-flex justify-content-center"> 
+              ${group.map((card) => `
+                  <a href="${card.url}" class="card" style="width: 18rem; margin-right: 15px; text-decoration: none; color: inherit;">
+                      <img src="${card.image}" class="card-img-top" alt="${card.title}">
+                      <div class="card-body">
+                          <h5 class="card-title">${card.title}</h5>
+                          <p class="card-text">${card.text}</p>
+                      </div>
+                  </a>
+              `).join("")}
+          </div>
+      `;
       carouselInner.appendChild(slide);
     });
     
