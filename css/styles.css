@@ -163,3 +163,77 @@ h1 {
         font-size: 1.2rem;
     }
 }
+
+/* Standard margins for all pages*/
+.container {
+    padding-left: 5%;
+    padding-right: 5%;
+    max-width: 1200px; /* prevents content from getting too wide */
+    margin: auto;
+}
+
+/* Hide icons and show burger menu on small screens */
+@media (max-width: 768px) {
+    .profile-cart-icons {
+        display: none !important;
+    }
+
+    .burger-menu {
+        display: block !important; /* Force visibility */
+        font-size: 30px; /* making it more visible */
+        cursor: pointer;
+        color: white;
+        padding: 10px; /* padding for better click area */
+    }
+}
+
+/* Hide burger menu on large screens */
+@media (min-width: 769px) {
+    .burger-menu {
+        display: none !important;
+    }
+}
+
+/* Burger Menu styles */
+.mobile-menu {
+    display: none;
+    position: absolute;
+    top: 60px; /* adjust this if needed */
+    right: 10px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    text-align: center;
+    width: 150px;
+}
+
+/* Show menu when toggled */
+.show-menu {
+    display: block !important;
+}
+
+/* Style links inside menu */
+.mobile-menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: var(--text-dark);
+}
+
+.mobile-menu a:hover {
+    background-color: var(--primary-green);
+    color: white;
+}
+
+
+
+/* Fixing that number and currency don't break into two lines on the product pages*/
+.price-box {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap; /* prevents breaking into two lines */
+    min-width: 80px; /* adjust width to ensure enough space */
+    justify-content: center;
+    padding: 5px 10px;
+}
