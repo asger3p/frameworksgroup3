@@ -91,6 +91,7 @@
                 dropdownMenu.innerHTML = "";
 
                 let selectedPrice = 0;
+                let selectedSize = null;
 
                 // Populate dropdown dynamically with sizes
                 product.sizes.forEach(sizeOption => {
@@ -135,7 +136,7 @@
                 });
 
                 // add item to cart when "ADD" button is clicked
-            document.querySelector(".btn-dark").addEventListener("click", function () {
+            document.querySelector(".btn-primary").addEventListener("click", function () {
                 if (!selectedSize) {
                     alert("Please select a size before adding to cart!");
                     return;

@@ -71,3 +71,44 @@
 #logoutButton:hover {
     color: #f4f4f4; /* Same hover effect as the other icons */
 }
+
+
+@media (max-width: 768px) {
+    .icon-links {
+        display: none !important;
+    }
+
+    .burger-menu {
+        display: block !important;
+        font-size: 30px;
+        cursor: pointer;
+        color: white;
+        padding: 10px;
+    }
+
+    .mobile-menu {
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: #99C087;
+        width: 200px;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .mobile-menu.show-menu {
+        display: block;
+    }
+
+    .mobile-menu a {
+        display: block;
+        padding: 10px;
+        color: white;
+        text-decoration: none;
+    }
+
+    .mobile-menu a:hover {
+        background-color: #88AB72;
+    }
+}

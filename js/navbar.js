@@ -42,8 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById('navbar-container').innerHTML = data;
     updateNavbar(); // Call the function to update navbar after loading
-  })
-  .catch(error => console.error('Error loading the navbar:', error));
+  }
 
 function updateNavbar() {
   const userName = localStorage.getItem("fname");
