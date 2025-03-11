@@ -65,7 +65,7 @@
       </div>
     </div>
 
-    <!-- Category selector () -->
+    <!-- Cuisine selector () -->
     <ul
       class="fw-bold nav nav-pills my-4 justify-content-center"
       id="myTab"
@@ -125,6 +125,20 @@
           aria-selected="false"
         >
           Asian
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="latin-american-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#latin-american-tab-pane"
+          type="button"
+          role="tab"
+          aria-controls="latin-american-tab-pane"
+          aria-selected="false"
+        >
+          Latin American
         </button>
       </li>
     </ul>
@@ -259,6 +273,49 @@
         </div>
       </div>
 
+      <!-- Latin American category content -->
+      <div
+        class="tab-pane fade"
+        id="latin-american-tab-pane"
+        role="tabpanel"
+        aria-labelledby="latin-american-tab"
+        tabindex="0"
+      >
+        <div class="container-fluid latinAmericanCarousel">
+          <div
+            id="latinAmericanCarousel"
+            class="carousel carousel-dark slide"
+            data-bs-ride="carousel"
+          >
+            <div class="carousel-inner"></div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#latinAmericanCarousel"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#latinAmericanCarousel"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
       <!-- Asian category content -->
       <div
         class="tab-pane fade"
@@ -289,7 +346,7 @@
             <button
               class="carousel-control-next"
               type="button"
-              data-bs-target="#indianCarousel"
+              data-bs-target="#asianCarousel"
               data-bs-slide="next"
             >
               <span
@@ -303,6 +360,245 @@
       </div>
     </div>
 
+    <!-- Type selector () -->
+    <ul
+      class="fw-bold nav nav-pills my-4 justify-content-center"
+      id="typeTab"
+      role="tablist"
+    >
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link active"
+          id="all-types-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#all-types-tab-pane"
+          type="button"
+          role="tab"
+          aria-controls="all-types-tab-pane"
+          aria-selected="true"
+        >
+          All
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="whole-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#whole-tab-pane"
+          type="button"
+          role="tab"
+          aria-controls="whole-tab-pane"
+          aria-selected="false"
+        >
+          Whole
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="ground-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#ground-tab-pane"
+          type="button"
+          role="tab"
+          aria-controls="ground-tab-pane"
+          aria-selected="false"
+        >
+          Ground
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="blend-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#blend-tab-pane"
+          type="button"
+          role="tab"
+          aria-controls="blend-tab-pane"
+          aria-selected="false"
+        >
+          Blend
+        </button>
+      </li>
+    </ul>
+
+    <!-- All category content -->
+    <div class="tab-content" id="myTabContent2">
+      <div
+        class="tab-pane fade show active"
+        id="all-types-tab-pane"
+        role="tabpanel"
+        aria-labelledby="all-types-tab"
+        tabindex="0"
+      >
+        <div class="container-fluid allTypesCarousel">
+          <div
+            id="allTypesCarousel"
+            class="carousel carousel-dark slide"
+            data-bs-ride="carousel"
+          >
+            <div class="carousel-inner"></div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#allTypesCarousel"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#allTypesCarousel"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Whole content -->
+      <div
+        class="tab-pane fade"
+        id="whole-tab-pane"
+        role="tabpanel"
+        aria-labelledby="whole-tab"
+        tabindex="0"
+      >
+        <div class="container-fluid wholeCarousel">
+          <div
+            id="wholeCarousel"
+            class="carousel carousel-dark slide"
+            data-bs-ride="carousel"
+          >
+            <div class="carousel-inner"></div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#wholeCarousel"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#wholeCarousel"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ground content -->
+      <div
+        class="tab-pane fade"
+        id="ground-tab-pane"
+        role="tabpanel"
+        aria-labelledby="ground-tab"
+        tabindex="0"
+      >
+        <div class="container-fluid groundCarousel">
+          <div
+            id="groundCarousel"
+            class="carousel carousel-dark slide"
+            data-bs-ride="carousel"
+          >
+            <div class="carousel-inner"></div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#groundCarousel"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#groundCarousel"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blend content -->
+      <div
+        class="tab-pane fade"
+        id="blend-tab-pane"
+        role="tabpanel"
+        aria-labelledby="blend-tab"
+        tabindex="0"
+      >
+        <div class="container-fluid blendCarousel">
+          <div
+            id="blendCarousel"
+            class="carousel carousel-dark slide"
+            data-bs-ride="carousel"
+          >
+            <div class="carousel-inner"></div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#blendCarousel"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#blendCarousel"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/js/products.js"></script>
     <script src="/js/carousels.js"></script>
     <script src="/js/welcomeMessage.js"></script>
     <script
