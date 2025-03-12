@@ -377,4 +377,14 @@ h1 {
     background-color: var(--primary-green);
 }
 
+/* Style checkboxes and radio buttons */
+.form-check-input {
+    accent-color: var(--primary-green) !important;
+    border: 1px solid var(--primary-green) !important;
+    background-color: white !important;
+}
 
+.form-check-input:checked {
+    background-color: var(--primary-orange) !important;
+    border-color: var(--primary-orange) !important;
+}
