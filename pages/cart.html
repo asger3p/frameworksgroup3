@@ -5,6 +5,12 @@
     <meta charset="UTF-8"> <!-- character encoding-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- ensures the page is responsive/ properly displayed on different devices -->
     
+    <link
+      rel="icon"
+      href="/images/spiceplanet-icon-black.png"
+      type="image/icon type"
+    />
+    
     <!-- Bootstrap CSS -->
     <link 
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
@@ -27,8 +33,8 @@
 
     <!-- Greeting message -->
     <div class="container mt-4"> <!-- "container" controls the width and alignment, "mt-4" adds margin-top -->
-        <h1 id="welcomeMessage"></h1>
-        <h2 id="message">See your cart here</h2> 
+        <h2 id="welcomeMessage"></h2>
+        <h4 id="message">See your cart here</h4> 
     </div>
 
 
@@ -52,13 +58,13 @@
 
 
     <div class="container mt-4">
-        <h3>Overview of Items:</h3>
+        <h5>Overview of Items:</h5>
         <div id="cartItems"></div>
     </div>
 
     <!-- Total price -->
     <div class="container mt-4 text-end"> <!-- text-end for right alignment-->
-        <h4 id="totalPrice">Total Price: <span>0</span> kr</h4> <!-- Display subtotal amount dynamically based on cart items -->
+        <h5 id="totalPrice">Total Price: <span>0</span> kr</h5> <!-- Display subtotal amount dynamically based on cart items -->
     </div>
 
     <!-- Clear all in cart button -->
