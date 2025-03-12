@@ -161,13 +161,13 @@ a:visited {
     color: white !important; 
 }
 
-/* Footer */
+/* Footer 
 footer {
     background-color: var(--primary-orange) !important;
     color: white;
     text-align: center;
     padding: 10px;
-}
+}*/
 
 /* Specific Product Page Styles */
 body {
@@ -268,6 +268,113 @@ h1 {
 #continueshopping,
 #checkout {
     border-radius: 8px !important;
+}
+/* Footer Styles */
+.footer {
+    background-color: #99C087;
+    color: white;
+    font-size: 0.7rem; 
+    line-height: 1.4; 
+    padding-top: 2rem; 
+    padding-bottom: 2rem; 
+}
+
+.footer h5 {
+    font-size: 1rem; 
+    font-weight: bold;
+    margin-bottom: 0.8rem; 
+}
+
+.footer-description,
+.footer-subtext {
+    font-size: 0.8rem; 
+    margin-bottom: 0.8rem; 
+}
+
+.newsletter-form .form-control {
+    max-width: 220px; 
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.4rem; 
+}
+
+.newsletter-form .btn-primary {
+    background-color: #FF640A;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.4rem 1rem; 
+    font-size: 0.8rem;
+}
+
+.social-icons i {
+    font-size: 1.2rem; 
+    color: white;
+    transition: color 0.3s;
+}
+
+.social-icons i:hover {
+    color: #f4f4f4;
+}
+
+/* Adjust layout on smaller screens */
+@media (max-width: 768px) {
+    #back-to-top {
+        bottom: 15px;
+        right: 15px;
+    }
+    .text-end,
+    .text-start {
+        text-align: center !important;
+    }
+
+    .newsletter-form {
+        justify-content: center;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+}
+
+/* About Spice Planet Section */
+.footer .col-md-6.text-start {
+    max-width: 350px; 
+    margin-right: auto; 
+    padding-right: 1.5rem; 
+}
+
+.footer-description {
+    font-size: 0.8rem; 
+    margin-bottom: 0.8rem; 
+    line-height: 1.4; 
+}
+/* Social Icons Hover Effect */
+.social-icons i {
+    font-size: 1.2rem;
+    color: white;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icons i:hover {
+    color: #FF640A; /* Change color */
+    transform: scale(1.2); /* Slightly enlarge the icon */
+}
+
+/* Back to Top Button */
+#back-to-top {
+    font-size: 1.5rem;
+    background-color: var(--primary-orange);
+    border: none;
+    border-radius: 50%;
+    padding: 10px 15px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 9999; /* Ensure it's on top */
+}
+
+#back-to-top:hover {
+    background-color: var(--primary-green);
 }
 
 
