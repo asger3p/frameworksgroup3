@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" >
     <link rel="stylesheet" href="/css/styles.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.6.2/js/bootstrap.min.js"></script>
+    <script src="/js/checkout.js"></script>
 </head>
 <body>
     <!-- Navbar -->
@@ -38,16 +39,18 @@
                     <div class="card-body">
                         <!-- Product listing, dynamic from cart -->
                          <div class="table-responsive">
-                            <thead>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Quantity</th>
-                                    <th class="text-end">Price</th>
-                                </tr>
-                            </thead>
-                            <tbody id="cart-items">
-                                <!-- Cart items from JavaScript -->
-                            </tbody>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Quantity</th>
+                                        <th class="text-end">Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="checkout-cart-items">
+                                    <!-- Cart items from JavaScript -->
+                                </tbody>
+                            </table>
                          </div>
                     </div>
                 </div>
@@ -59,25 +62,26 @@
                     </div>
 
                     <div class="card-body">
-                        <div class="row mb-3">
+                        <div class="row mb-4">
                             <div class="col-md-6">
                                 <label for="checkout-email" class="form-label text-uppercase small text-muted">EMAIL</label>
                                 <input type="email" class="form-control" id="checkout-email" placeholder="Email">
                             </div>
+                
                             <div class="col-md-6">
                                 <label for="phone" class="form-label text-uppercase small text-muted">PHONE NUMBER</label>
-                                <input type="tel" class="form-control" id="phone" placeholder="Phone number">
+                                <input type="tel" class="form-control" id="phone" placeholder="Phone Number">
                             </div>
                         </div>
 
-                            <h6 class="mb-3">Shipping address</h6>
+                            <h6 class="mb-3 fw-bold">Shipping Address</h6>
 
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <label for="firstName" class="form-label text-uppercase small text-muted">FIRST NAME</label>
                                     <input type="text" class="form-control" id="firstName" placeholder="First Name">
                                 </div>
-
+                            
                                 <div class="col-md-6">
                                     <label for="lastName" class="form-label text-uppercase small text-muted">LAST NAME</label>
                                     <input type="text" class="form-control" id="lastName" placeholder="Last Name">
@@ -85,14 +89,16 @@
                             </div>
 
                             <div class="row mb-3">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <label for="address" class="form-label text-uppercase small text-muted">STREET ADDRESS</label>
                                     <input type="text" class="form-control" id="address" placeholder="Street Address">
                                 </div>
+                            </div>
 
-                                <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-md-12">
                                     <label for="apt" class="form-label text-uppercase small text-muted">APT, SUITE, ETC.</label>
-                                    <input type="text" class="form-control" id="apt" placeholder="Apt, suite, etc.">
+                                    <input type="text" class="form-control" id="apt" placeholder="Apt, Suite, etc.">
                                 </div>
                             </div>
 
@@ -109,15 +115,17 @@
                             </div>
 
                             <div class="row mb-3">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <label for="state" class="form-label text-uppercase small text-muted">STATE/COUNTY</label>
                                     <input type="text" class="form-control" id="state" placeholder="State/County">
                                 </div>
+                            </div>
 
-                                <div class="col-md-6">
+                                <div class="row mb-3">
+                                <div class="col-md-12">
                                     <label for="country" class="form-label text-uppercase small text-muted">COUNTRY</label>
-                                    <select class="form-control" id="country">
-                                        <option selected>Choose a country</option>
+                                    <select class="form-control text-muted" id="country">
+                                        <option selected>Choose a Country</option>
                                         <!-- Other countries -->
                                     </select>
                                 </div>
@@ -128,26 +136,86 @@
                                 <input class="form-check-input" type="checkbox" id="differentBilling">
                                 <label class="form-check-label text-uppercase small text-muted" for="differentBilling">USE DIFFERENT BILLING ADDRESS</label>
                             </div>
+
+                            <!-- Billing address form (hidden if not checked) -->
+                             <div id="billingAddressForm" style="display: none; margin-top: 20px;">
+                                <h6 class="mb-3 fw-bold">Billing Address</h6>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="billingFirstName" class="form-label text-uppercase small text-muted">FIRST NAME</label>
+                                        <input type="text" class="form-control" id="billingFirstName" placeholder="First Name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="billingLastName" class="form-label text-uppercase small text-muted">LAST NAME</label>
+                                        <input type="text" class="form-control" id="billingLastName" placeholder="Last Name">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-12">
+                                        <label for="billingAddress" class="form-label text-uppercase small text-muted">STREET ADDRESS</label>
+                                        <input type="text" class="form-control" id="billingAddress" placeholder="Street Address">
+                                    </div>
+                                </div>
+    
+                                <div class="row mb-3">
+                                    <div class="col-md-12">
+                                        <label for="billingApt" class="form-label text-uppercase small text-muted">APT, SUITE, ETC.</label>
+                                        <input type="text" class="form-control" id="billingApt" placeholder="Apt, Suite, etc.">
+                                    </div>
+                                </div>
+    
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="billingZip" class="form-label text-uppercase small text-muted">ZIP/POSTAL CODE</label>
+                                        <input type="text" class="form-control" id="billingZip" placeholder="Zip/Postal Code">
+                                    </div>
+    
+                                    <div class="col-md-6">
+                                        <label for="billingCity" class="form-label text-uppercase small text-muted">CITY</label>
+                                        <input type="text" class="form-control" id="billingCity" placeholder="City">
+                                    </div>
+                                </div>
+    
+                                <div class="row mb-3">
+                                    <div class="col-md-12">
+                                        <label for="billingState" class="form-label text-uppercase small text-muted">STATE/COUNTY</label>
+                                        <input type="text" class="form-control" id="billingState" placeholder="State/County">
+                                    </div>
+                                </div>
+    
+                                    <div class="row mb-3">
+                                    <div class="col-md-12">
+                                        <label for="billingCountry" class="form-label text-uppercase small text-muted">COUNTRY</label>
+                                        <select class="form-control text-muted" id="billingCountry">
+                                            <option selected>Choose a Country</option>
+                                            <!-- Other countries -->
+                                        </select>
+                                    </div>
+                                        <!-- Link to JavaScript (to fetch countries) -->
+                                </div>
+                             </div>
                     </div>
                 </div>
 
                 <!-- 3. Shipping -->
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h5>4. Shipping</h5>
+                        <h5>3. Shipping</h5>
                     </div>
                     <div class="card-body">
                         <!-- Shipping options, radio buttons -->
                          <div class="form-check mb-3">
                          <input class="form-check-input" type="radio" name="shipping" id="standard" checked>
                          <label class="form-check-label small text-muted" for="standard">
-                            Standard Shipping (3-5 business days) - 39 DKK
+                            Standard Shipping (3-5 business days) - 39 kr
                          </label>
                          </div>
                          <div class="form-check mb-3">
-                            <input class="form-check-input" type="radio" name="shipping" id="express" checked>
+                            <input class="form-check-input" type="radio" name="shipping" id="express">
                             <label class="form-check-label small text-muted" for="express">
-                               Express Shipping (1-2 business days) - 89 DKK
+                               Express Shipping (1-2 business days) - 89 kr
                             </label>
                          </div>
                     </div>
@@ -156,7 +224,7 @@
                 <!-- 4. Payment -->
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h5>5. Payment</h5>
+                        <h5>4. Payment</h5>
                     </div>
 
                     <div class="card-body">
@@ -195,12 +263,12 @@
 
                           <!-- Other payment methods -->
                          <div class="form-check mb-3">
-                            <input class="form-check-input" type="radio" name="payment" id="mobilePay" checked>
+                            <input class="form-check-input" type="radio" name="payment" id="mobilePay">
                             <label class="form-check-label text-uppercase small text-muted" for="mobilePay">MobilePay</label>
                          </div>
 
                          <div class="form-check mb-3">
-                            <input class="form-check-input" type="radio" name="payment" id="applePay" checked>
+                            <input class="form-check-input" type="radio" name="payment" id="applePay">
                             <label class="form-check-label text-uppercase small text-muted" for="applePay">Apple Pay</label>
                          </div>
                          
@@ -211,8 +279,10 @@
                 <div class="w-100 mt-3">
                     <button type="submit" form="paymentForm" class="btn btn-primary btn-lg w-100">COMPLETE ORDER</button>
                 </div>
-                
+                <div class="w-100 mt-5"></div>
             </div>
+            
+            
 
             <!-- Right Column: Summary -->
             <div class="col-md-4">
@@ -225,15 +295,19 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between mb-2">
                             <span>Products</span>
-                            <span id="products-total">0,00 DKK</span> <!-- Products total, dynamically calculated -->
+                            <span id="products-total">0,00 kr</span> <!-- Products total, dynamically calculated -->
                         </div>
-                        <div class="d-flex justify-content-between mb-3">
+                        <div class="d-flex justify-content-between mb-2">
                             <span>VAT</span>
-                            <span id="vat-total">0,00 DKK</span> <!--VAT total, dynamically calculated-->
+                            <span id="vat-total">0,00 kr</span> <!--VAT total, dynamically calculated-->
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Shipping</span>
+                            <span id="shipping-cost">39,00 kr</span>
                         </div>
                         <div class="d-flex justify-content-between fw-bold">
                             <span>Total</span>
-                            <span id="order-total">0,00 DKK</span> <!-- Order total, dynamically calculated-->
+                            <span id="order-total">0,00 kr</span> <!-- Order total, dynamically calculated-->
                         </div>
                     </div>
                  </div>
