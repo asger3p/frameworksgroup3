@@ -22,12 +22,12 @@ document.getElementById('footer-container').innerHTML = `
                         <button type="submit" class="btn btn-primary">Subscribe</button>
                     </form>
 
-                    <!-- Social Media Icons -->
+                    <!-- Social Media Icons 
                     <div class="social-icons mt-3">
                         <a href="#" class="me-2"><i class="bi bi-facebook"></i></a>
                         <a href="#" class="me-2"><i class="bi bi-instagram"></i></a>
                         <a href="#"><i class="bi bi-twitter"></i></a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
