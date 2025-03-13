@@ -314,7 +314,7 @@ const products = [
             "<strong>Usage Tip:</strong> Stir Ras el Hanout into olive oil for a flavorful marinade or dressing.<br>"+
             "<strong>Pairs well with:</strong> Turmeric, cinnamon, bay leaves.",
         image: "/images/18-ras_el_hanout.jpg" ,
-        link: "/pages/product_description_generel.html?productId=product_rasEl",
+        link: "/pages/product_description_generel.html?productId=product_rasElHanout",
         cuisine: ["Mediteranean"],
         type: "Blend",
         sizes: [
