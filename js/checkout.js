@@ -127,20 +127,83 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }    
 
-    // Add event listener for the complete order button
-    const completeOrderButton = document.querySelector('button[type="submit"]');
-    if (completeOrderButton) {
-        completeOrderButton.addEventListener('click', function(event) {
-            event.preventDefault();
-
-            alert('Thank you for your order!\nYour order number is XXXXXX.\nYou will receive the order confirmation by email within a few minutes.');
-
-            // Clear the cart
-            localStorage.removeItem('cart');
-        
+    document.querySelectorAll('input, select').forEach(element => {
+        element.addEventListener('input', function() {
+            this.classList.remove('is-invalid');
         });
+    });
+
+        // Add event listener for the complete order button
+        const completeOrderButton = document.querySelector('button[type="submit"]');
+        if (completeOrderButton) {
+            completeOrderButton.addEventListener('click', function(event) {
+                event.preventDefault();
+    
+                if (validateCheckoutForm()) {
+                    alert('Thank you for your order!\nYour order number is XXXXXX.\nYou will receive the order confirmation by email within a few minutes.');
+    
+                    // Clear the cart
+                    localStorage.removeItem('cart');
+                }
+            });
+        }
+    });
+
+
+    // Required fields for placing order
+    function validateCheckoutForm() {
+        const requiredFields = [
+            {id: 'checkout-email', name: 'Email'},
+            {id: 'phone', name: 'Phone Number'},
+            {id: 'firstName', name: 'First Name'},
+            {id: 'lastName', name: 'Last Name'},
+            {id: 'address', name:'Street Address'},
+            {id: 'zip', name: 'Zip/Postal Code'},
+            {id: 'city', name: 'City'},
+            {id: 'country', name: 'Country'}
+        ];
+
+        // Required credit card fields
+        if (document.getElementById('creditCard') && document.getElementById('creditCard').checked) {
+            requiredFields.push(
+                {id: 'cardName', name: 'Name on Card'},
+                {id: 'cardNumber', name: 'Card Number'},
+                {id: 'expDate', name: 'Expiration Date'},
+                {id: 'cvv', name: 'CVV'}
+            );
+        }
+
+        // Different billing address
+        if (document.getElementById('differentBilling') && document.getElementById('differentBilling').checked) {
+            requiredFields.push(
+                {id: 'billingFirstName', name: 'First Name'},
+                {id: 'billingLastName', name: 'Last Name'},
+                {id: 'billingAddress', name:'Street Address'},
+                {id: 'billingZip', name: 'Zip/Postal Code'},
+                {id: 'billingCity', name: 'City'},
+                {id: 'billingCountry', name: 'Country'}
+            );
+        }
+
+        // Check if all required fields are filled
+        const emptyFiels = [];
+        requiredFields.forEach(field => {
+            const element = document.getElementById(field.id);
+            if (element && (element.value === '' || element.value === 'Choose a Country')) {
+                emptyFiels.push(field.name);
+                element.classList.add('is-invalid');
+            } else if (element) {
+                element.classList.remove('is-invalid');
+            }
+        });
+
+        // Show alert for empty fields
+        if (emptyFiels.length > 0) {
+            alert('Please fill in the following required fields: ' + emptyFiels.join(', '));
+            return false;
+        }
+        return true;
     }
-});
 
 // Function to fill country dropdown
 function populateCountryDropdown() {
@@ -189,4 +252,4 @@ function populateCountryDropdown() {
     // Fill both dropdowns
     populateDropdown(shippingCountrySelect);
     populateDropdown(billingCountrySelect);   
-}l
+}

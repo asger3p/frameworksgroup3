@@ -64,13 +64,13 @@
                     <div class="card-body">
                         <div class="row mb-4">
                             <div class="col-md-6">
-                                <label for="checkout-email" class="form-label text-uppercase small text-muted">EMAIL</label>
-                                <input type="email" class="form-control" id="checkout-email" placeholder="Email">
+                                <label for="checkout-email" class="form-label text-uppercase small text-muted">EMAIL *</label>
+                                <input type="email" class="form-control" id="checkout-email" placeholder="Email" required>
                             </div>
                 
                             <div class="col-md-6">
-                                <label for="phone" class="form-label text-uppercase small text-muted">PHONE NUMBER</label>
-                                <input type="tel" class="form-control" id="phone" placeholder="Phone Number">
+                                <label for="phone" class="form-label text-uppercase small text-muted">PHONE NUMBER *</label>
+                                <input type="tel" class="form-control" id="phone" placeholder="Phone Number" required>
                             </div>
                         </div>
 
@@ -78,20 +78,20 @@
 
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <label for="firstName" class="form-label text-uppercase small text-muted">FIRST NAME</label>
-                                    <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                                    <label for="firstName" class="form-label text-uppercase small text-muted">FIRST NAME *</label>
+                                    <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
                                 </div>
                             
                                 <div class="col-md-6">
-                                    <label for="lastName" class="form-label text-uppercase small text-muted">LAST NAME</label>
-                                    <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                                    <label for="lastName" class="form-label text-uppercase small text-muted">LAST NAME *</label>
+                                    <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
                                 </div>
                             </div>
 
                             <div class="row mb-3">
                                 <div class="col-md-12">
-                                    <label for="address" class="form-label text-uppercase small text-muted">STREET ADDRESS</label>
-                                    <input type="text" class="form-control" id="address" placeholder="Street Address">
+                                    <label for="address" class="form-label text-uppercase small text-muted">STREET ADDRESS *</label>
+                                    <input type="text" class="form-control" id="address" placeholder="Street Address" required>
                                 </div>
                             </div>
 
@@ -104,13 +104,13 @@
 
                             <div class="row mb-3">
                                 <div class="col-md-6">
-                                    <label for="zip" class="form-label text-uppercase small text-muted">ZIP/POSTAL CODE</label>
-                                    <input type="text" class="form-control" id="zip" placeholder="Zip/Postal Code">
+                                    <label for="zip" class="form-label text-uppercase small text-muted">ZIP/POSTAL CODE *</label>
+                                    <input type="text" class="form-control" id="zip" placeholder="Zip/Postal Code" required>
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="city" class="form-label text-uppercase small text-muted">CITY</label>
-                                    <input type="text" class="form-control" id="city" placeholder="City">
+                                    <label for="city" class="form-label text-uppercase small text-muted">CITY *</label>
+                                    <input type="text" class="form-control" id="city" placeholder="City" required>
                                 </div>
                             </div>
 
@@ -123,8 +123,8 @@
 
                                 <div class="row mb-3">
                                 <div class="col-md-12">
-                                    <label for="country" class="form-label text-uppercase small text-muted">COUNTRY</label>
-                                    <select class="form-control text-muted" id="country">
+                                    <label for="country" class="form-label text-uppercase small text-muted">COUNTRY *</label>
+                                    <select class="form-control text-muted" id="country" required>
                                         <option selected>Choose a Country</option>
                                         <!-- Other countries -->
                                     </select>
@@ -143,19 +143,19 @@
 
                                 <div class="row mb-3">
                                     <div class="col-md-6">
-                                        <label for="billingFirstName" class="form-label text-uppercase small text-muted">FIRST NAME</label>
-                                        <input type="text" class="form-control" id="billingFirstName" placeholder="First Name">
+                                        <label for="billingFirstName" class="form-label text-uppercase small text-muted">FIRST NAME *</label>
+                                        <input type="text" class="form-control" id="billingFirstName" placeholder="First Name" required>
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="billingLastName" class="form-label text-uppercase small text-muted">LAST NAME</label>
-                                        <input type="text" class="form-control" id="billingLastName" placeholder="Last Name">
+                                        <label for="billingLastName" class="form-label text-uppercase small text-muted">LAST NAME *</label>
+                                        <input type="text" class="form-control" id="billingLastName" placeholder="Last Name" required>
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
                                     <div class="col-md-12">
-                                        <label for="billingAddress" class="form-label text-uppercase small text-muted">STREET ADDRESS</label>
-                                        <input type="text" class="form-control" id="billingAddress" placeholder="Street Address">
+                                        <label for="billingAddress" class="form-label text-uppercase small text-muted">STREET ADDRESS *</label>
+                                        <input type="text" class="form-control" id="billingAddress" placeholder="Street Address" required>
                                     </div>
                                 </div>
     
@@ -168,13 +168,13 @@
     
                                 <div class="row mb-3">
                                     <div class="col-md-6">
-                                        <label for="billingZip" class="form-label text-uppercase small text-muted">ZIP/POSTAL CODE</label>
-                                        <input type="text" class="form-control" id="billingZip" placeholder="Zip/Postal Code">
+                                        <label for="billingZip" class="form-label text-uppercase small text-muted">ZIP/POSTAL CODE *</label>
+                                        <input type="text" class="form-control" id="billingZip" placeholder="Zip/Postal Code" required>
                                     </div>
     
                                     <div class="col-md-6">
-                                        <label for="billingCity" class="form-label text-uppercase small text-muted">CITY</label>
-                                        <input type="text" class="form-control" id="billingCity" placeholder="City">
+                                        <label for="billingCity" class="form-label text-uppercase small text-muted">CITY *</label>
+                                        <input type="text" class="form-control" id="billingCity" placeholder="City" required>
                                     </div>
                                 </div>
     
@@ -187,8 +187,8 @@
     
                                     <div class="row mb-3">
                                     <div class="col-md-12">
-                                        <label for="billingCountry" class="form-label text-uppercase small text-muted">COUNTRY</label>
-                                        <select class="form-control text-muted" id="billingCountry">
+                                        <label for="billingCountry" class="form-label text-uppercase small text-muted">COUNTRY *</label>
+                                        <select class="form-control text-muted" id="billingCountry" required>
                                             <option selected>Choose a Country</option>
                                             <!-- Other countries -->
                                         </select>
@@ -238,25 +238,25 @@
                           <div id="ccForm" class="ms-4 mb-3">
                             <div class="row mb-3">
                                 <div class="col-12">
-                                    <label for="cardName" class="form-label text-uppercase small text-muted">NAME ON CARD</label>
-                                    <input type="text" class="form-control" id="cardName">
+                                    <label for="cardName" class="form-label text-uppercase small text-muted">NAME ON CARD *</label>
+                                    <input type="text" class="form-control" id="cardName" required>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-12">
-                                    <label for="cardNumber" class="form-label text-uppercase small text-muted">CARD NUMBER</label>
-                                    <input type="text" class="form-control" id="cardNumber">
+                                    <label for="cardNumber" class="form-label text-uppercase small text-muted">CARD NUMBER *</label>
+                                    <input type="text" class="form-control" id="cardNumber" required>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="expDate" class="form-label text-uppercase small text-muted">EXPIRATION DATE</label>
-                                    <input type="text" class="form-control" id="expDate" placeholder="MM/YY">
+                                    <label for="expDate" class="form-label text-uppercase small text-muted">EXPIRATION DATE *</label>
+                                    <input type="text" class="form-control" id="expDate" placeholder="MM/YY" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="cvv" class="form-label text-uppercase small text-muted">CVV</label>
-                                    <input type="text" class="form-control" id="cvv">
+                                    <label for="cvv" class="form-label text-uppercase small text-muted">CVV *</label>
+                                    <input type="text" class="form-control" id="cvv" required>
                                 </div>
                             </div>
                           </div>
