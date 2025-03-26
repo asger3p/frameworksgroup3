@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Page</title>
 
+    <link
+      rel="icon"
+      href="/images/spiceplanet-icon-black.png"
+      type="image/icon type"
+    />
+
     <!-- Bootstrap framework -->
     <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -32,7 +38,7 @@
 
             <!-- Right Column with Text & Dropdown -->
             <div class="col-6">
-                <h1 id="productName" class="text-left">Loading...</h1>
+                <h2 id="productName" class="text-left">Loading...</h2>
                 <h5 id="productSubheading" class="text-muted">Loading...</h5>
                 <p id="productDescription">Loading product details...</p>
 
@@ -68,6 +74,8 @@
             </div> <!-- Closes Right Column -->
         </div> <!-- Closes Row -->
     </div> <!-- Closes Container -->
+    <!-- Footer Placeholder -->
+    <div id="footer-container"></div>
 
     <!-- Script to Load Product Data Dynamically -->
     <script>
@@ -176,6 +184,8 @@
             }
         });
     </script>
+    <!-- Load Footer -->
+    <script src="../js/footer.js"></script>
 
 </body>
 </html>

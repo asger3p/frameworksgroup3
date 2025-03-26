@@ -82,6 +82,33 @@ body {
     color: white !important;
 }
 
+/* Carousel Controls */
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: var(--primary-green);
+    border-radius: 50%;
+}
+
+/* Carousel Controls Hover state */
+.carousel-control-prev:hover, .carousel-control-next:hover {
+  background-color: var(--primary-orange); 
+  opacity: 1;
+}
+
+/* Carousel Nav Pills */
+.nav-pills .nav-link {
+    color: var(--text-dark);
+}
+
+.nav-pills .nav-link.active {
+    background-color: var(--primary-orange) !important;
+    color: white;
+}
+
+.nav-pills .nav-link:hover {
+    background-color: var(--primary-green) !important;
+    color: white;
+}
+
 /* Specific Cart and Checkout Buttons */
 #continueshopping,
 #checkout,
@@ -134,13 +161,13 @@ a:visited {
     color: white !important; 
 }
 
-/* Footer */
+/* Footer 
 footer {
     background-color: var(--primary-orange) !important;
     color: white;
     text-align: center;
     padding: 10px;
-}
+}*/
 
 /* Specific Product Page Styles */
 body {
@@ -206,6 +233,7 @@ h1 {
     padding: 10px;
     text-align: center;
     width: 150px;
+    z-index: 9999; /* Ensure it appears above everything */
 }
 
 /* Show menu when toggled */
@@ -236,4 +264,136 @@ h1 {
     min-width: 80px; /* adjust width to ensure enough space */
     justify-content: center;
     padding: 5px 10px;
+}
+#continueshopping,
+#checkout {
+    border-radius: 8px !important;
+}
+/* Footer Styles */
+.footer {
+    background-color: #99C087;
+    color: white;
+    font-size: 0.7rem; 
+    line-height: 1.4; 
+    padding-top: 2rem; 
+    padding-bottom: 2rem; 
+}
+
+.footer h5 {
+    font-size: 1rem; 
+    font-weight: bold;
+    margin-bottom: 0.8rem; 
+}
+
+.footer-description,
+.footer-subtext {
+    font-size: 0.8rem; 
+    margin-bottom: 0.8rem; 
+}
+
+.newsletter-form .form-control {
+    max-width: 220px; 
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.4rem; 
+}
+
+.newsletter-form .btn-primary {
+    background-color: #FF640A;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.4rem 1rem; 
+    font-size: 0.8rem;
+}
+
+.social-icons i {
+    font-size: 1.2rem; 
+    color: white;
+    transition: color 0.3s;
+}
+
+.social-icons i:hover {
+    color: #f4f4f4;
+}
+
+/* Adjust layout on smaller screens */
+@media (max-width: 768px) {
+    #back-to-top {
+        bottom: 15px;
+        right: 15px;
+    }
+    .text-end,
+    .text-start {
+        text-align: center !important;
+    }
+
+    .newsletter-form {
+        justify-content: center;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+}
+
+/* About Spice Planet Section */
+.footer .col-md-6.text-start {
+    max-width: 350px; 
+    margin-right: auto; 
+    padding-right: 1.5rem; 
+}
+
+.footer-description {
+    font-size: 0.8rem; 
+    margin-bottom: 0.8rem; 
+    line-height: 1.4; 
+}
+/* Social Icons Hover Effect */
+.social-icons i {
+    font-size: 1.2rem;
+    color: white;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icons i:hover {
+    color: #FF640A; /* Change color */
+    transform: scale(1.2); /* Slightly enlarge the icon */
+}
+
+/* Back to Top Button */
+#back-to-top {
+    font-size: 1.5rem;
+    background-color: var(--primary-orange);
+    border: none;
+    border-radius: 50%;
+    padding: 10px 15px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 9999; /* Ensure it's on top */
+}
+
+#back-to-top:hover {
+    background-color: var(--primary-green);
+}
+
+/* Style checkboxes and radio buttons */
+.form-check-input {
+    accent-color: var(--primary-green) !important;
+    border: 1px solid var(--primary-green) !important;
+    background-color: white !important;
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-orange) !important;
+    border-color: var(--primary-orange) !important;
+}
+
+/* Required fields at checkout */
+.is-invalid {
+    border-color: #dc3545 !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
 }
