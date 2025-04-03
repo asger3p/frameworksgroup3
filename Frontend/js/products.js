@@ -7,8 +7,8 @@ const products = [
             "<strong>Dishes:</strong> Indian dal, Mexican chili, roasted carrots.<br>" +
             "<strong>Usage Tip:</strong> Bloom cumin seeds in hot oil before adding other ingredients — it intensifies their flavor!<br>" +
             "<strong>Pairs well with:</strong> Coriander seeds, turmeric, paprika.",
-        image: "/images/1-cumin_seeds.jpg" ,
-        link: "/pages/product_description_generel.html?productId=product_cuminSeeds",
+        image: "/Frontend/images/1-cumin_seeds.jpg" ,
+        link: "/Frontend/pages/product_description_generel.html?productId=product_cuminSeeds",
         cuisine: ["Indian", "Mediteranean", "Latin American"],
         type: "Whole",
         sizes: [
@@ -25,8 +25,8 @@ const products = [
             "<strong>Dishes:</strong> Pickled vegetables, Moroccan tagine, spiced rubs for meat.<br>"+
             "<strong>Usage Tip:</strong> Lightly crush coriander seeds to release their oils and boost their aroma.<br>"+
             "<strong>Pairs well with:</strong> Cumin seeds, cinnamon, bay leaves.",
-        image: "/images/2-coriander_seeds.jpg" ,
-        link: "/pages/product_description_generel.html?productId=product_corianderSeeds",
+        image: "/Frontend/images/2-coriander_seeds.jpg" ,
+        link: "/Frontend/pages/product_description_generel.html?productId=product_corianderSeeds",
         cuisine: ["Indian", "Mediterranean", "Latin American"],
         type: "Whole",
         sizes: [
@@ -43,8 +43,8 @@ const products = [
             "<strong>Dishes:</strong> Basmati rice, masala chai, cardamom buns.<br>"+
             "<strong>Usage Tip:</strong> Gently crack open the pods to release the tiny black seeds — that’s where the magic lives!<br>"+
             "<strong>Pairs well with:</strong> Cinnamon, cloves, star anise.",
-        image: "/images/3-cardamom_pods.jpg" ,
-        link: "/pages/product_description_generel.html?productId=product_cardamonPods",
+        image: "/Frontend/images/3-cardamom_pods.jpg" ,
+        link: "/Frontend/pages/product_description_generel.html?productId=product_cardamonPods",
         cuisine: ["Indian"],
         type: "Whole",
         sizes: [
@@ -61,8 +61,8 @@ const products = [
             "<strong>Dishes:</strong> Pho broth, Chinese braised pork, spiced mulled wine.<br>"+
             "<strong>Usage Tip:</strong> Add whole star anise to slow-cooked dishes and remove before serving — a little goes a long way!<br>"+
             "<strong>Pairs well with:</strong> Cardamom pods, cloves, cinnamon.",
-        image: "/images/4-star_anise.jpg" ,
-        link: "/pages/product_description_generel.html?productId=product_starAnis",
+        image: "/Frontend/images/4-star_anise.jpg" ,
+        link: "/Frontend/pages/product_description_generel.html?productId=product_starAnis",
         cuisine: ["Asian"],
         type: "Whole",
         sizes: [
@@ -79,8 +79,8 @@ const products = [
             "<strong>Dishes:</strong> Biryani, baked ham, Arroz con Leche<br>"+
             "<strong>Usage Tip:</strong> Stud an onion with cloves and simmer in broths or sauces for subtle, spicy undertones.<br>"+
             "<strong>Pairs well with:</strong> Cinnamon, star anise, cardamom pods.",
-        image: "/images/5-cloves.jpg" ,
-        link: "/pages/product_description_generel.html?productId=product_cloves",
+        image: "/Frontend/images/5-cloves.jpg" ,
+        link: "/Frontend/pages/product_description_generel.html?productId=product_cloves",
         cuisine: ["Indian", "Mediterranean", "Latin American"],
         type: "Whole",
         sizes: [
@@ -97,8 +97,8 @@ const products = [
             "<strong>Dishes:</strong> Beef stew, tomato sauce, lentil soup.<br>"+
             "<strong>Usage Tip:</strong> Add bay leaves early in cooking and remove before serving — they flavor the dish without overpowering it.<br>"+
             "<strong>Pairs well with:</strong> Thyme, coriander seeds, cloves.",
-        image: "/images/6-bay_leaves.jpg" ,
-        link: "/pages/product_description_generel.html?productId=product_bayLeaves",
+        image: "/Frontend/images/6-bay_leaves.jpg" ,
+        link: "/Frontend/pages/product_description_generel.html?productId=product_bayLeaves",
         cuisine: ["Indian", "Mediteranean", "Latin American"],
         type: "Whole",
         sizes: [
@@ -115,8 +115,8 @@ const products = [
             "<strong>Dishes:</strong> Golden milk, Indian curries, roasted cauliflower.<br>"+
             "<strong>Usage Tip:</strong> Pair turmeric with black pepper — it boosts curcumin absorption, unlocking its health benefits!<br>"+
             "<strong>Pairs well with:</strong> Cumin seeds, ginger, curry powder.",
-        image: "/images/7-turmeric.jpg" ,
-        link: "/pages/product_description_generel.html?productId=product_turmeric",
+        image: "/Frontend/images/7-turmeric.jpg" ,
+        link: "/Frontend/pages/product_description_generel.html?productId=product_turmeric",
         cuisine: ["Indian"],
         type: "Ground",
         sizes: [
@@ -133,8 +133,8 @@ const products = [
             "<strong>Dishes:</strong> Spanish paella, Hungarian goulash, BBQ rubs.<br>"+
             "<strong>Usage Tip:</strong> Mix paprika with olive oil to create a smoky marinade for grilled meats.<br>"+
             "<strong>Pairs well with:</strong> Cumin seeds, oregano, chili powder.",
-        image: "/images/8-paprika.jpg" ,
-        link: "/pages/product_description_generel.html?productId=product_paprika",
+        image: "/Frontend/images/8-paprika.jpg" ,
+        link: "/Frontend/pages/product_description_generel.html?productId=product_paprika",
         cuisine: ["Mediterranean", "Indian", "Latin American"],
         type: "Ground",
         sizes: [
@@ -151,9 +151,9 @@ const products = [
             "<strong>Dishes:</strong> Moroccan tagine, cinnamon rolls, pumpkin soup.<br>"+
             "<strong>Usage Tip:</strong> Sprinkle cinnamon into coffee or hot chocolate for a subtle, spiced kick.<br>"+
             "<strong>Pairs well with:</strong> Cardamom, cloves, ginger powder.",
-        image: "/images/9-cinnamon.jpg" ,
+        image: "/Frontend/images/9-cinnamon.jpg" ,
         cuisine: ["Mediterranean", "Indian", "Latin American"],
-        link: "/pages/product_description_generel.html?productId=product_cinnamon",
+        link: "/Frontend/pages/product_description_generel.html?productId=product_cinnamon",
         type: "Ground",
         sizes: [
             { size: "50 g", price: 50 },
@@ -169,8 +169,8 @@ const products = [
             "<strong>Dishes:</strong> Ginger cookies, carrot soup, spiced marinades.<br>"+
             "<strong>Usage Tip:</strong> Combine with garlic and soy sauce for an easy, flavor-packed stir-fry sauce.<br>"+
             "<strong>Pairs well with:</strong> Turmeric, cinnamon, chili powder.",
-        image: "/images/10-ginger.jpg" ,
-        link: "/pages/product_description_generel.html?productId=product_ginger",
+        image: "/Frontend/images/10-ginger.jpg" ,
+        link: "/Frontend/pages/product_description_generel.html?productId=product_ginger",
         cuisine: ["Indian", "Asian"],
         type: "Ground",
         sizes: [
@@ -187,8 +187,8 @@ const products = [
             "<strong>Dishes:</strong> Tacos, chili con carne, spicy pasta sauce.<br>"+
             "<strong>Usage Tip:</strong> Add chili powder early in cooking for a subtle heat or sprinkle it at the end for a spicy punch.<br>"+
             "<strong>Pairs well with:</strong> Paprika, cumin seeds, oregano.",
-        image: "/images/11-chili.jpg" ,
-        link: "/pages/product_description_generel.html?productId=product_chili",
+        image: "/Frontend/images/11-chili.jpg" ,
+        link: "/Frontend/pages/product_description_generel.html?productId=product_chili",
         cuisine: ["Latin American"],
         type: "Ground",
         sizes: [
@@ -205,8 +205,8 @@ const products = [
             "<strong>Dishes:</strong> Greek salad, tomato sauce, roast lamb.<br>"+
             "<strong>Usage Tip:</strong> Crush dried oregano between your fingers before using — it releases the essential oils for more aroma!<br>"+
             "<strong>Pairs well with:</strong> Paprika, garlic powder, bay leaves.",
-        image: "/images/12-oregano.jpg" ,
-        link: "/pages/product_description_generel.html?productId=product_oregano",
+        image: "/Frontend/images/12-oregano.jpg" ,
+        link: "/Frontend/pages/product_description_generel.html?productId=product_oregano", 
         cuisine: ["Mediterranean"],
         type: "Ground",
         sizes: [
@@ -223,8 +223,8 @@ const products = [
             "<strong>Dishes:</strong> Butter chicken, lentil curry, roasted vegetables.<br>"+
             "<strong>Usage Tip:</strong> Add garam masala at the end of cooking for a fragrant finish — it’s all about capturing those bold aromas!<br>"+
             "<strong>Pairs well with:</strong> Turmeric, ginger powder, bay leaves.",
-        image: "/images/13-garammasala.jpg",
-        link: "/pages/product_description_generel.html?productId=product_garamMasala",
+        image: "/Frontend/images/13-garammasala.jpg",
+        link: "/Frontend/pages/product_description_generel.html?productId=product_garamMasala",
         cuisine: "Indian",
         type: "Blend",
         sizes: [
@@ -241,8 +241,8 @@ const products = [
             "<strong>Dishes:</strong> Chicken curry, curried cauliflower, spiced soups.<br>"+
             "<strong>Usage Tip:</strong> Sauté curry powder in oil or butter to unlock its full flavor before adding other ingredients.<br>"+
             "<strong>Pairs well with:</strong> Bay leaves, cinnamon, ginger powder.",
-        image: "/images/14-curry.jpg" ,
-        link: "/pages/product_description_generel.html?productId=product_curry",
+        image: "/Frontend/images/14-curry.jpg" ,
+        link: "/Frontend/pages/product_description_generel.html?productId=product_curry",
         cuisine: ["Indian", "Asian"],
         type: "Blend",
         sizes: [
@@ -259,8 +259,8 @@ const products = [
             "<strong>Dishes:</strong> Beef tacos, fajitas, Mexican rice.<br>"+
             "<strong>Usage Tip:</strong> Mix taco seasoning with a splash of lime juice for a quick and flavorful marinade.<br>"+
             "<strong>Pairs well with:</strong> Coriander seeds, paprika, oregano.",
-        image: "/images/15-taco.jpg" ,
-        link: "/pages/product_description_generel.html?productId=product_taco",
+        image: "/Frontend/images/15-taco.jpg" ,
+        link: "/Frontend/pages/product_description_generel.html?productId=product_taco",
         cuisine: ["Latin American"],
         type: "Blend",
         sizes: [
@@ -277,8 +277,8 @@ const products = [
             "<strong>Dishes:</strong> Manakish (za’atar flatbread), roasted eggplant, hummus drizzle.<br>"+
             "<strong>Usage Tip:</strong> Mix za’atar with olive oil and brush it over pita bread for an easy, delicious snack.<br>"+
             "<strong>Pairs well with:</strong> Oregano, paprika, coriander seeds.",
-        image: "/images/16-zaatar.jpg" ,
-        link: "/pages/product_description_generel.html?productId=product_zaatar",
+        image: "/Frontend/images/16-zaatar.jpg" ,
+        link: "/Frontend/pages/product_description_generel.html?productId=product_zaatar",
         cuisine: ["Mediteranean"],
         type: "Blend",
         sizes: [
@@ -295,8 +295,8 @@ const products = [
             "<strong>Dishes:</strong> Peking duck, spiced pork ribs, vegetable stir-fry.<br>"+
             "<strong>Usage Tip:</strong> Rub five-spice powder onto meat before roasting for a sweet-savory crust.<br>"+
             "<strong>Pairs well with:</strong> Ginger powder, bay leaves, chili powder.",
-        image: "/images/17-chinese_five_spice.jpg",
-        link: "/pages/product_description_generel.html?productId=product_chineseFiveSpice",
+        image: "/Frontend/images/17-chinese_five_spice.jpg",
+        link: "/Frontend/pages/product_description_generel.html?productId=product_chineseFiveSpice",
         cuisine: ["Asian"],
         type: "Blend",
         sizes: [
@@ -313,8 +313,8 @@ const products = [
             "<strong>Dishes:</strong> Moroccan lamb tagine, roasted carrots, spiced couscous.<br>"+
             "<strong>Usage Tip:</strong> Stir Ras el Hanout into olive oil for a flavorful marinade or dressing.<br>"+
             "<strong>Pairs well with:</strong> Turmeric, cinnamon, bay leaves.",
-        image: "/images/18-ras_el_hanout.jpg" ,
-        link: "/pages/product_description_generel.html?productId=product_rasElHanout",
+        image: "/Frontend/images/18-ras_el_hanout.jpg" ,
+        link: "/Frontend/pages/product_description_generel.html?productId=product_rasElHanout",
         cuisine: ["Mediteranean"],
         type: "Blend",
         sizes: [
