@@ -74,6 +74,7 @@ router.delete("/baskets/:userId/products/:productId", async (req, res) => {
     }
 });
 
+/*
 // PUT - Update product quantity in basket
 router.post("/baskets/:userId/products/:productId", async (req, res) => {
   const { userId, productId } = req.params;
@@ -96,7 +97,7 @@ router.post("/baskets/:userId/products/:productId", async (req, res) => {
     console.error(error);
     res.status(500).json({ error: "Failed to update product quantity" });
   }  
-});
+});*/
 
 module.exports = router;
 
