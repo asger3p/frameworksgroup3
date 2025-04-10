@@ -1,32 +1,32 @@
 // Import built-in Node.js modules
-const fs = require("fs");           // 'fs' lets read/write files (file system)
-const path = require("path");       // 'path' helps build safe file paths
+import { readFileSync, writeFileSync } from "fs";           // 'fs' lets read/write files (file system)
+import { join, dirname } from "path";
 
 class BasketModel {
     constructor() {
-      this.dbPath = path.join(__dirname, "../db/data.json"); //Saves the path to data.json in the model
+      this.dbPath = join(dirname( "../DB/database.json")); //Saves the path to data.json in the model
     }
   
     async getBasket(userId) {
         //Converts the file string into an object
-      const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
+      const db = JSON.parse(readFileSync(this.dbPath, "utf-8"));
       return db.baskets.find(basket => basket.userId === userId); //Looks for the basket that matches the user ID
     }
 
     deleteBasket(userId) {
-        const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
+        const db = JSON.parse(readFileSync(this.dbPath, "utf-8"));
         const basketIndex = db.baskets.findIndex(b => b.userId === userId);
       
         if (basketIndex === -1) return null;
       
         const deletedBasket = db.baskets.splice(basketIndex, 1)[0];
       
-        fs.writeFileSync(this.dbPath, JSON.stringify(db, null, 2));
+        writeFileSync(this.dbPath, JSON.stringify(db, null, 2));
         return deletedBasket;
       }
 
     addProductToBasket(userId, productId, quantity) {
-        const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
+        const db = JSON.parse(readFileSync(this.dbPath, "utf-8"));
         //find the user's basket
         const basket = db.baskets.find(b => b.userId === userId);
 
@@ -43,13 +43,13 @@ class BasketModel {
             basket.items.push({ productId, quantity });
         }
 
-        fs.writeFileSync(this.dbPath, JSON.stringify(db, null, 2));
+        writeFileSync(this.dbPath, JSON.stringify(db, null, 2));
         return basket;
 
       }
       
     removeProductFromBasket(userId, productId, quantity) {
-        const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
+        const db = JSON.parse(readFileSync(this.dbPath, "utf-8"));
         const basket = db.baskets.find(b => b.userId === userId);
 
         if (!basket) return null;
@@ -68,9 +68,9 @@ class BasketModel {
             basket.items.splice(existingItemIndex, 1); // remove item completely
           }
         
-          fs.writeFileSync(this.dbPath, JSON.stringify(db, null, 2));
+          writeFileSync(this.dbPath, JSON.stringify(db, null, 2));
           return basket;
         }
   }
 
-  module.exports = BasketModel;
+  export default BasketModel;

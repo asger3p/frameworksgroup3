@@ -1,9 +1,9 @@
 
-const express = require('express');
-const ProductModel = require("../model/productModel.js");
+import { Router } from 'express';
+import ProductModel from "../model/productModel.js";
 const model = new ProductModel();
 
-const router = express.Router();
+const router = Router();
 
 
 // POST /products – create a new product
@@ -72,4 +72,4 @@ router.delete('/:id', async (req, res) => {
     }
   });
 
-module.exports = router;
+export default router;

@@ -1,8 +1,8 @@
-const express = require('express');
-const basketModel = require("../models/basketModel"); // imports model file so that the controller can use the functions defined in basketModel.js
+import { Router } from 'express';
+import basketModel from "../model/basketModel.js"; // imports model file so that the controller can use the functions defined in basketModel.js
 const model = new basketModel()
 
-const router = express.Router();
+const router = Router();
 
 // GET a user's basket
 router.get("/baskets/:userId", async (req, res) => {
@@ -99,7 +99,7 @@ router.post("/baskets/:userId/products/:productId", async (req, res) => {
   }  
 });*/
 
-module.exports = router;
+export default router;
 
   
 

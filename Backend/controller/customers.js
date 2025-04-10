@@ -1,8 +1,8 @@
-const express = require('express');
-const CustomerModel = require("../model/customerModel.js");
+import { Router } from 'express';
+import CustomerModel from "../model/customerModel.js";
 const model = new CustomerModel();
 
-const router = express.Router();
+const router = Router();
 
 // POST (create) a new customer (/customers)
 router.post('/', async (req, res) => {
@@ -69,4 +69,4 @@ router.delete('/:id', async (req, res) => {
     }
   });
 
-module.exports = router;
+export default router;

@@ -147,6 +147,7 @@ createProduct(body) {
 
 
 }
-module.export = {ProductModel}
+
+export {ProductModel}; 
 
 
