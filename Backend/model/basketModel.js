@@ -9,7 +9,7 @@ class BasketModel {
   
     getBasket(customerId) {
         //Converts the file string into an object
-      const db = JSON.parse(readFileSync(this.dbPath, "utf-8"));
+      const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
       return db.baskets.find(basket => basket.customer_id === customerId); //Looks for the basket that matches the user ID
     }
 
