@@ -7,7 +7,7 @@ class BasketModel {
       this.dbPath = join(dirname( "../DB/database.json")); //Saves the path to data.json in the model
     }
   
-    async getBasket(userId) {
+    async getBasket(customerId) {
         //Converts the file string into an object
       const db = JSON.parse(readFileSync(this.dbPath, "utf-8"));
       return db.baskets.find(basket => basket.customer_id === customerId); //Looks for the basket that matches the user ID
