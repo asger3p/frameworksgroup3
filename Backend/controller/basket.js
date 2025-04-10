@@ -5,7 +5,7 @@ const model = new basketModel()
 const router = Router();
 
 // GET a user's basket
-router.get("/baskets/:customerId", async (req, res) => {
+router.get("/basket/:customerId", async (req, res) => {
   const customerId = req.params.customerId;
   try {
     const basket = await model.getBasket(customerId);
@@ -22,7 +22,7 @@ router.get("/baskets/:customerId", async (req, res) => {
 });
 
 // PUT: update quantities or remove products (if quantity = 0)
-router.put("/baskets/:customerId", async (req, res) => {
+router.put("/basket/:customerId", async (req, res) => {
   const customerId = req.params.customerId;
   const { items } = req.body;
 
@@ -41,7 +41,7 @@ router.put("/baskets/:customerId", async (req, res) => {
 });
 
 // DELETE: remove a specific product, productId comes from body
-router.delete("/baskets/:customerId", async (req, res) => {
+router.delete("/basket/:customerId", async (req, res) => {
   const customerId = req.params.customerId;
   const { productId } = req.body;
 
