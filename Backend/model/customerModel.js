@@ -42,12 +42,13 @@ export default class CustomerModel {
         //Create an empty basket for the customer
         if (!db.baskets) {
             db.baskets = [];
-        }
-        const newBasket = {
-            customerId: newCustomerId,
+          }
+        
+          db.baskets.push({
+            customer_id: newCustomerId,
             items: []
-        };
-        db.baskets.push(newBasket);
+          });
+        
     
         fs.writeFileSync(this.dbPath, JSON.stringify(db, null, 2));
         return newCustomer;
