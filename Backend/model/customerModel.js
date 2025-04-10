@@ -38,8 +38,21 @@ export default class CustomerModel {
         const newCustomerId = `customer_${db.customers.length + 1}`;   // generate new customer ID
         const newCustomer = { customer_id: newCustomerId, ...customerData };
         db.customers.push(newCustomer);
+        
+        //Create an empty basket for the customer
+        if (!db.baskets) {
+            db.baskets = [];
+        }
+        const newBasket = {
+            customerId: newCustomerId,
+            items: []
+        };
+        db.baskets.push(newBasket);
+    
         fs.writeFileSync(this.dbPath, JSON.stringify(db, null, 2));
         return newCustomer;
+
+        
     }
 
     // UPDATE customer details
