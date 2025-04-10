@@ -67,7 +67,7 @@ export default class ProductModel {
     // Push new product into memory
     db.products.push(newProduct);
     // Write to the file
-    fs.writeFileSync(dbPath, JSON.stringify(db, null, 2));
+    fs.writeFileSync(this.dbPath, JSON.stringify(db, null, 2));
 
     return newProduct;
   }
