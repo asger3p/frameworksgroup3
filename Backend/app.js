@@ -4,8 +4,11 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
-import indexRouter from './routes/index.js';
-import usersRouter from './routes/users.js';
+import indexRouter from './controller/index.js';
+import usersRouter from './controller/users.js';
+import productRouter from './controller/products.js';
+import basketRouter from './controller/basket.js';
+
 
 const app = express();
 
@@ -21,6 +24,8 @@ app.use(express.static(path.join(process.cwd(), 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/products', productRouter);
+app.use('/basket', basketRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
