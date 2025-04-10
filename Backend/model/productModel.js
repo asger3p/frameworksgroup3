@@ -159,7 +159,7 @@ export default class ProductModel {
     return true;
   }
 
-  deleteproduct(id) {
+  deleteProduct(id) {
     if (!id) {
       throw new Error("Missing required fields or invalid format");
     }
