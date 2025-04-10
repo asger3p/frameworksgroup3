@@ -1,13 +1,13 @@
 import { Router } from 'express';
-import ProductModel from "../model/categoryModel.js";
-const model = new ProductModel();
+import categoryModel from '../model/categoryModel.js';
+const model = new categoryModel();
 
 const router = Router();
 
 router.get('/', async (req, res) => {
     try {
-      const categories = await model.getAllCategories();
-      if (categories && categories.length > 0) {
+        const categories = await model.getAllCategories();
+        if (categories && (categories.types.length > 0 || categories.cuisines.length > 0)) {
         res.status(200).json({ categories });
       } else {
         res.status(404).json({ error: 'No categories found' });
@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
     }
   });
 
-  router.get(':categoryName', async (req, res) => {
+  router.get('/:categoryName', async (req, res) => {
     const { categoryName } = req.params;
     try {
       const products = await model.getProductsByCategory(categoryName);

@@ -9,7 +9,7 @@
       "link": "/Frontend/pages/product_description_generel.html?productId=product_cuminSeeds",
       "cuisine": [
         "Indian",
-        "Mediteranean",
+        "Mediterranean",
         "Latin American"
       ],
       "type": "Whole",
@@ -145,7 +145,7 @@
       "link": "/Frontend/pages/product_description_generel.html?productId=product_bayLeaves",
       "cuisine": [
         "Indian",
-        "Mediteranean",
+        "Mediterranean",
         "Latin American"
       ],
       "type": "Whole",
@@ -332,7 +332,7 @@
       "description": "A classic Indian blend of roasted spices — cumin, cinnamon, and cardamom — adding bold, layered flavor to curries, soups, and roasted dishes.<br><br><strong>Dishes:</strong> Butter chicken, lentil curry, roasted vegetables.<br><strong>Usage Tip:</strong> Add garam masala at the end of cooking for a fragrant finish — it’s all about capturing those bold aromas!<br><strong>Pairs well with:</strong> Turmeric, ginger powder, bay leaves.",
       "image": "/Frontend/images/13-garammasala.jpg",
       "link": "/Frontend/pages/product_description_generel.html?productId=product_garamMasala",
-      "cuisine": "Indian",
+      "cuisine": ["Indian"],
       "type": "Blend",
       "sizes": [
         {
@@ -410,7 +410,7 @@
       "image": "/Frontend/images/16-zaatar.jpg",
       "link": "/Frontend/pages/product_description_generel.html?productId=product_zaatar",
       "cuisine": [
-        "Mediteranean"
+        "Mediterranean"
       ],
       "type": "Blend",
       "sizes": [
@@ -462,7 +462,7 @@
       "image": "/Frontend/images/18-ras_el_hanout.jpg",
       "link": "/Frontend/pages/product_description_generel.html?productId=product_rasElHanout",
       "cuisine": [
-        "Mediteranean"
+        "Mediterranean"
       ],
       "type": "Blend",
       "sizes": [
@@ -489,10 +489,9 @@
       "link": "/Frontend/pages/product_description_generel.html?productId=product_saffron",
       "cuisine": [
         "Mediterranean",
-        "Middle Eastern",
         "Indian"
       ],
-      "type": "Threads",
+      "type": "Whole",
       "sizes": [
         {
           "size": "0.5 g",
