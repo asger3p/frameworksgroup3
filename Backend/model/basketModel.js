@@ -10,13 +10,13 @@ class BasketModel {
     async getBasket(userId) {
         //Converts the file string into an object
       const db = JSON.parse(readFileSync(this.dbPath, "utf-8"));
-      return db.baskets.find(basket => basket.userId === userId); //Looks for the basket that matches the user ID
+      return db.baskets.find(basket => basket.customer_id === customerId); //Looks for the basket that matches the user ID
     }
 
   // Update basket quantities or remove products (if quantity = 0)
   updateBasket(customerId, items) {
     const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
-    const basket = db.baskets.find(b => b.customerId === customerId);
+    const basket = db.baskets.find(b => b.customer_id === customerId);
 
     if (!basket) return null;
 
@@ -46,7 +46,7 @@ class BasketModel {
   // Remove a specific product from the customer's basket (reduce by 1 or remove if quantity is 1)
   removeProductFromBasket(customerId, productId) {
     const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
-    const basket = db.baskets.find(b => b.customerId === customerId);
+    const basket = db.baskets.find(b => b.customer_id === customerId);
 
     if (!basket) return null;
 
@@ -68,7 +68,7 @@ class BasketModel {
   // (Optional) Add a product to a customer's basket — unused in updated routes
   addProductToBasket(customerId, productId, quantity) {
     const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
-    const basket = db.baskets.find(b => b.customerId === customerId);
+    const basket = db.baskets.find(b => b.customer_id === customerId);
 
     if (!basket) return null;
 
