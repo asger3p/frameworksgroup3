@@ -1,9 +1,11 @@
-var express = require('express');
-var router = express.Router();
+import { Router } from 'express';
+var router = Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.send({ title: 'Express' });
+  const {x} = req.body;
+  console.log("Hello world!");
+  res.json({ title: x });
 });
 
-module.exports = router;
+export default router;

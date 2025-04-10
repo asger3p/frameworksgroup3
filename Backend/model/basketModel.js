@@ -1,16 +1,17 @@
-const fs = require("fs");
-const path = require("path");
+// Import built-in Node.js modules
+import { readFileSync, writeFileSync } from "fs";           // 'fs' lets read/write files (file system)
+import { join, dirname } from "path";
 
 class BasketModel {
-  constructor() {
-    this.dbPath = join(dirname( "../DB/databse.json")); // path to the database JSON file
-  }
-
-  // Get a customer's basket
-  getBasket(customerId) {
-    const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
-    return db.baskets.find(basket => basket.customerId === customerId);
-  }
+    constructor() {
+      this.dbPath = join(dirname( "../DB/database.json")); //Saves the path to data.json in the model
+    }
+  
+    async getBasket(userId) {
+        //Converts the file string into an object
+      const db = JSON.parse(readFileSync(this.dbPath, "utf-8"));
+      return db.baskets.find(basket => basket.userId === userId); //Looks for the basket that matches the user ID
+    }
 
   // Update basket quantities or remove products (if quantity = 0)
   updateBasket(customerId, items) {
@@ -84,4 +85,4 @@ class BasketModel {
   }
 }
 
-module.exports = BasketModel;
+  export default BasketModel;
