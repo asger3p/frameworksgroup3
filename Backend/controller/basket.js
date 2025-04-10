@@ -24,7 +24,7 @@ router.get("/:customerId", async (req, res) => {
 // PUT: update quantities or remove products (if quantity = 0)
 router.put("/:customerId", async (req, res) => {
   const customerId = req.params.customerId;
-  const { items } = req.body;
+  const items = req.body.items;
 
   try {
     const updatedBasket = await model.updateBasket(customerId, items); 

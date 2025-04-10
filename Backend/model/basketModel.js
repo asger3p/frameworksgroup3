@@ -1,10 +1,10 @@
 // Import built-in Node.js modules
-import { readFileSync, writeFileSync } from "fs";           // 'fs' lets read/write files (file system)
-import { join, dirname } from "path";
+import fs from "fs";        // 'fs' lets read/write files (file system)
+import path from "path";
 
 class BasketModel {
-    constructor() {
-      this.dbPath = join(dirname( "../DB/database.json")); //Saves the path to data.json in the model
+  constructor() {
+        this.dbPath = path.join(process.cwd(), "DB/database.json");  // save path to data.json
     }
   
     getBasket(customerId) {
@@ -83,6 +83,8 @@ class BasketModel {
     fs.writeFileSync(this.dbPath, JSON.stringify(db, null, 2));
     return basket;
   }
+
+
 }
 
   export default BasketModel;
