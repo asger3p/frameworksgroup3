@@ -8,6 +8,7 @@ import indexRouter from './controller/index.js';
 import customersRouter from './controller/customers.js';
 import productRouter from './controller/products.js';
 import basketRouter from './controller/basket.js';
+import categoryRouter from './controller/categories.js';
 
 
 const app = express();
@@ -26,6 +27,7 @@ app.use('/', indexRouter);
 app.use('/customers', customersRouter);
 app.use('/products', productRouter);
 app.use('/basket', basketRouter);
+app.use('/categories', categoryRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

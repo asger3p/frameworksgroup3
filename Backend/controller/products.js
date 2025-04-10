@@ -72,32 +72,6 @@ router.delete('/:id', async (req, res) => {
     }
   });
 
-  router.get('/categories', async (req, res) => {
-    try {
-      const categories = await model.getAllCategories();
-      if (categories && categories.length > 0) {
-        res.status(200).json({ categories });
-      } else {
-        res.status(404).json({ error: 'No categories found' });
-      }
-    } catch (error) {
-      res.status(500).json({ error: `Failed to retrieve categories: ${error.message}` });
-    }
-  });
-
-  router.get('/categories/:categoryName', async (req, res) => {
-    const { categoryName } = req.params;
-    try {
-      const products = await model.getProductsByCategory(categoryName);
-      if (products.length > 0) {
-        res.status(200).json({ products });
-      } else {
-        res.status(404).json({ error: `No products found in category "${categoryName}"` });
-      }
-    } catch (error) {
-      res.status(500).json({ error: `Failed to retrieve products: ${error.message}` });
-    }
-  });
   
 
 export default router;
