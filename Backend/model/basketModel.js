@@ -7,21 +7,21 @@ class BasketModel {
       this.dbPath = join(dirname( "../DB/database.json")); //Saves the path to data.json in the model
     }
   
-    async getBasket(userId) {
+    getBasket(customerId) {
         //Converts the file string into an object
       const db = JSON.parse(readFileSync(this.dbPath, "utf-8"));
-      return db.baskets.find(basket => basket.userId === userId); //Looks for the basket that matches the user ID
+      return db.baskets.find(basket => basket.customer_id === customerId); //Looks for the basket that matches the user ID
     }
 
   // Update basket quantities or remove products (if quantity = 0)
   updateBasket(customerId, items) {
     const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
-    const basket = db.baskets.find(b => b.customerId === customerId);
+    const basket = db.baskets.find(b => b.customer_id === customerId);
 
     if (!basket) return null;
 
     items.forEach(update => {
-      const existingItemIndex = basket.items.findIndex(item => item.productId === update.productId);
+      const existingItemIndex = basket.items.findIndex(item => item.product_id === update.productId);
 
       if (update.quantity === 0) {
         // Remove the product completely
@@ -46,11 +46,11 @@ class BasketModel {
   // Remove a specific product from the customer's basket (reduce by 1 or remove if quantity is 1)
   removeProductFromBasket(customerId, productId) {
     const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
-    const basket = db.baskets.find(b => b.customerId === customerId);
+    const basket = db.baskets.find(b => b.customer_id === customerId);
 
     if (!basket) return null;
 
-    const existingItemIndex = basket.items.findIndex(item => item.productId === productId);
+    const existingItemIndex = basket.items.findIndex(item => item.product_id === productId);
     if (existingItemIndex === -1) return null;
 
     const existingItem = basket.items[existingItemIndex];
@@ -68,11 +68,11 @@ class BasketModel {
   // (Optional) Add a product to a customer's basket — unused in updated routes
   addProductToBasket(customerId, productId, quantity) {
     const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
-    const basket = db.baskets.find(b => b.customerId === customerId);
+    const basket = db.baskets.find(b => b.customer_id === customerId);
 
     if (!basket) return null;
 
-    const existingItem = basket.items.find(item => item.productId === productId);
+    const existingItem = basket.items.find(item => item.product_id === productId);
 
     if (existingItem) {
       existingItem.quantity += quantity;
