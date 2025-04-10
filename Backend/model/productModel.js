@@ -1,8 +1,12 @@
 import fs from "fs";
 
 export default class ProductModel {
+  constructor() {
+    this.dbPath = path.join(process.cwd(), "DB/database.json");  // save path to data.json
+}
+
   getAllProducts() {
-    const db = JSON.parse(fs.readFileSync("database", "utf-8"));
+    const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
     return db["products"];
   }
 
@@ -44,7 +48,7 @@ export default class ProductModel {
     const link = `/Frontend/pages/product_description_generel.html?productId=${product_id}`;
 
     //creating a db variable
-    const db = JSON.parse(fs.readFileSync("database", "utf-8"));
+    const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
 
     //creating a new product
     const newProduct = {
@@ -73,7 +77,7 @@ export default class ProductModel {
     }
 
     // Creating a db variable and reading the JSON file
-    const db = JSON.parse(fs.readFileSync("database", "utf-8"));
+    const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
 
     // Find the product with the matching id
     const product = db.products.find((product) => product.product_id === Id);
@@ -118,7 +122,7 @@ export default class ProductModel {
     const link = `/Frontend/pages/product_description_generel.html?productId=${id}`;
 
     //creating a db variable
-    const db = JSON.parse(fs.readFileSync("database", "utf-8"));
+    const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
 
     // Find the product with the matching id
     const product = db.products.find((product) => product.product_id === id);
@@ -149,7 +153,7 @@ export default class ProductModel {
     db.products[productIndex] = updatedProduct;
 
     // Save the updated database
-    fs.writeFileSync("database", JSON.stringify(db, null, 2), "utf-8");
+    fs.writeFileSync(this.dbPath, JSON.stringify(db, null, 2), "utf-8");
 
     return true;
   }
@@ -160,7 +164,7 @@ export default class ProductModel {
     }
 
     //creating a db variable
-    const db = JSON.parse(fs.readFileSync("database", "utf-8"));
+    const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
 
     // Find the index of the product to delete
     const productIndex = db.products.findIndex(
@@ -174,7 +178,7 @@ export default class ProductModel {
     db.products.splice(productIndex, 1); //removes exactly 1 the product at productindex
 
     // Write back to the file
-    fs.writeFileSync("database", JSON.stringify(db, null, 2), "utf-8");
+    fs.writeFileSync(this.dbPath, JSON.stringify(db, null, 2), "utf-8");
 
     return true;
   }
