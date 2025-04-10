@@ -1,105 +1,62 @@
 const express = require('express');
-const basketModel = require("../models/basketModel"); // imports model file so that the controller can use the functions defined in basketModel.js
-const model = new basketModel()
+const basketModel = require("../model/basketModel");
+const model = new basketModel();
 
 const router = express.Router();
 
 // GET a user's basket
-router.get("/baskets/:userId", async (req, res) => {
-  const userId = req.params.userId;
+router.get("/baskets/:customerId", async (req, res) => {
+  const customerId = req.params.customerId;
   try {
-    const basket = await model.getBasket(userId)
+    const basket = await model.getBasket(customerId);
 
     if (!basket) {
-      return res.status(404).json({ error: `Basket not found for user ID ${userId}` });
+      return res.status(404).json({ error: `Basket not found for customer ID ${customerId}` });
     }
 
-    res.status(200).json(basket);
+    res.status(200).json(basket); 
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Failed to retrieve basket" });
   }  
 });
 
-// DELETE entire basket
-router.delete("/baskets/:userId", async (req, res) => {
-  const userId = req.params.userId;
-  try {
-    const deletedBasket = await model.deleteBasket(userId)
-
-    if (!deletedBasket) {
-      return res.status(404).json({ error: `Basket not found for user ID ${userId}` });
-    }
-
-    res.status(200).json(deletedBasket);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Failed to delete basket" });
-  }  
-});
-
-// POST - Add product to basket
-router.post("/baskets/:userId/products/:productId", async (req, res) => {
-  const { userId, productId } = req.params;
-  const { quantity = 1 } = req.body;
+// PUT: update quantities or remove products (if quantity = 0)
+router.put("/baskets/:customerId", async (req, res) => {
+  const customerId = req.params.customerId;
+  const { items } = req.body;
 
   try {
-    const updatedBasket = await model.addProductToBasket(userId, productId, quantity);
+    const updatedBasket = await model.updateBasket(customerId, items); 
 
     if (!updatedBasket) {
-      return res.status(404).json({ error: `Could not add product ${productId} to basket for user ${userId}` });
+      return res.status(404).json({ error: `Could not update basket for customer ${customerId}` });
     }
 
-    res.status(200).json(updatedBasket);
+    res.status(200).json(updatedBasket); 
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Failed to delete basket" });
+    res.status(500).json({ error: "Failed to update basket" });
   }  
 });
 
-// DELETE - Remove product from basket
-router.delete("/baskets/:userId/products/:productId", async (req, res) => {
-  const { userId, productId } = req.params;
+// DELETE: remove a specific product, productId comes from body
+router.delete("/baskets/:customerId", async (req, res) => {
+  const customerId = req.params.customerId;
+  const { productId } = req.body;
 
   try {
-    const updatedBasket = await model.removeProductFromBasket(userId, productId);
+    const updatedBasket = await model.removeProductFromBasket(customerId, productId);
 
-    if(!updatedBasket) {
-      return res.status(404).json({ error: `Product not found in basket for user ${userId}`});
+    if (!updatedBasket) {
+      return res.status(404).json({ error: `Product not found in basket for user ${customerId}`});
     } 
-    res.status(200).json(updatedBasket);
+
+    res.status(200).json(updatedBasket); 
   } catch(error) {
-      console.error(error);
-      res.status(500).json({ error: "Failed to remove product from basket" });
-    }
-});
-
-/*
-// PUT - Update product quantity in basket
-router.post("/baskets/:userId/products/:productId", async (req, res) => {
-  const { userId, productId } = req.params;
-  const { quantity } = req.body;
-
-  if (typeof quantity !== "number" || quantity < 0) {
-    return res.status(400).json({ error: `Quantity must be a non-negative number` });
-  }
-
-  try {
-    const updatedBasket = await model.updateProductQuantity(userId, productId, quantity)
-
-    if (!updatedBasket) {
-      // If successful, return the updated basket
-      return res.status(404).json({ error: "Product not found in basket" });
-    }
-
-    res.status(200).json(updatedBasket);
-  } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Failed to update product quantity" });
-  }  
-});*/
+    res.status(500).json({ error: "Failed to remove product from basket" });
+  }
+});
 
 module.exports = router;
-
-  
-

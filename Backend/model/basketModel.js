@@ -1,76 +1,87 @@
-// Import built-in Node.js modules
-const fs = require("fs");           // 'fs' lets read/write files (file system)
-const path = require("path");       // 'path' helps build safe file paths
+const fs = require("fs");
+const path = require("path");
 
 class BasketModel {
-    constructor() {
-      this.dbPath = path.join(__dirname, "../db/data.json"); //Saves the path to data.json in the model
-    }
-  
-    async getBasket(userId) {
-        //Converts the file string into an object
-      const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
-      return db.baskets.find(basket => basket.userId === userId); //Looks for the basket that matches the user ID
-    }
-
-    deleteBasket(userId) {
-        const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
-        const basketIndex = db.baskets.findIndex(b => b.userId === userId);
-      
-        if (basketIndex === -1) return null;
-      
-        const deletedBasket = db.baskets.splice(basketIndex, 1)[0];
-      
-        fs.writeFileSync(this.dbPath, JSON.stringify(db, null, 2));
-        return deletedBasket;
-      }
-
-    addProductToBasket(userId, productId, quantity) {
-        const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
-        //find the user's basket
-        const basket = db.baskets.find(b => b.userId === userId);
-
-        if (!basket) return null; // If basket doesn't exist, return null
-
-         //check if product already exists in basket
-        const existingItem = basket.items.find(item => item.productId === productId);
-
-        if(existingItem) {
-            //if product is already in the basket, increase the quantity
-            existingItem.quantity += quantity;
-        } else {
-            //if it is a new product, add it to the basket
-            basket.items.push({ productId, quantity });
-        }
-
-        fs.writeFileSync(this.dbPath, JSON.stringify(db, null, 2));
-        return basket;
-
-      }
-      
-    removeProductFromBasket(userId, productId, quantity) {
-        const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
-        const basket = db.baskets.find(b => b.userId === userId);
-
-        if (!basket) return null;
-
-        const existingItemIndex = basket.items.findIndex(item => item.productId === productId);
-
-        if (existingItemIndex === -1) {
-            return null; // product not found in the basket
-          }
-          
-          const existingItem = basket.items[existingItemIndex];
-
-        if (existingItem.quantity > 1) {
-            existingItem.quantity -= 1; // decrease by 1
-          } else {
-            basket.items.splice(existingItemIndex, 1); // remove item completely
-          }
-        
-          fs.writeFileSync(this.dbPath, JSON.stringify(db, null, 2));
-          return basket;
-        }
+  constructor() {
+    this.dbPath = join(dirname( "../DB/databse.json")); // path to the database JSON file
   }
 
-  module.exports = BasketModel;
+  // Get a customer's basket
+  getBasket(customerId) {
+    const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
+    return db.baskets.find(basket => basket.customerId === customerId);
+  }
+
+  // Update basket quantities or remove products (if quantity = 0)
+  updateBasket(customerId, items) {
+    const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
+    const basket = db.baskets.find(b => b.customerId === customerId);
+
+    if (!basket) return null;
+
+    items.forEach(update => {
+      const existingItemIndex = basket.items.findIndex(item => item.productId === update.productId);
+
+      if (update.quantity === 0) {
+        // Remove the product completely
+        if (existingItemIndex !== -1) {
+          basket.items.splice(existingItemIndex, 1);
+        }
+      } else {
+        if (existingItemIndex !== -1) {
+          // Update quantity
+          basket.items[existingItemIndex].quantity = update.quantity;
+        } else {
+          // Add new product
+          basket.items.push({ productId: update.productId, quantity: update.quantity });
+        }
+      }
+    });
+
+    fs.writeFileSync(this.dbPath, JSON.stringify(db, null, 2));
+    return basket;
+  }
+
+  // Remove a specific product from the customer's basket (reduce by 1 or remove if quantity is 1)
+  removeProductFromBasket(customerId, productId) {
+    const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
+    const basket = db.baskets.find(b => b.customerId === customerId);
+
+    if (!basket) return null;
+
+    const existingItemIndex = basket.items.findIndex(item => item.productId === productId);
+    if (existingItemIndex === -1) return null;
+
+    const existingItem = basket.items[existingItemIndex];
+
+    if (existingItem.quantity > 1) {
+      existingItem.quantity -= 1;
+    } else {
+      basket.items.splice(existingItemIndex, 1);
+    }
+
+    fs.writeFileSync(this.dbPath, JSON.stringify(db, null, 2));
+    return basket;
+  }
+
+  // (Optional) Add a product to a customer's basket — unused in updated routes
+  addProductToBasket(customerId, productId, quantity) {
+    const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
+    const basket = db.baskets.find(b => b.customerId === customerId);
+
+    if (!basket) return null;
+
+    const existingItem = basket.items.find(item => item.productId === productId);
+
+    if (existingItem) {
+      existingItem.quantity += quantity;
+    } else {
+      basket.items.push({ productId, quantity });
+    }
+
+    fs.writeFileSync(this.dbPath, JSON.stringify(db, null, 2));
+    return basket;
+  }
+}
+
+module.exports = BasketModel;
