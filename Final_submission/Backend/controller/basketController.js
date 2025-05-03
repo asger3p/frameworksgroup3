@@ -1,11 +1,8 @@
-import { Router } from 'express';
 import basketModel from "../model/basketModel.js"; // imports model file so that the controller can use the functions defined in basketModel.js
 const model = new basketModel()
 
-const router = Router();
-
 // GET a user's basket
-router.get("/:customerId", async (req, res) => {
+export async function getBasket(req, res){
   const customerId = req.params.customerId;
   try {
     const basket = model.getBasket(customerId);
@@ -19,10 +16,10 @@ router.get("/:customerId", async (req, res) => {
     console.error(error);
     res.status(500).json({ error: "Failed to retrieve basket" });
   }  
-});
+}
 
 // PUT: update quantities or remove products (if quantity = 0)
-router.put("/:customerId", async (req, res) => {
+export async function updateBasket(req, res){
   const customerId = req.params.customerId;
   const items = req.body.items;
 
@@ -38,10 +35,10 @@ router.put("/:customerId", async (req, res) => {
     console.error(error);
     res.status(500).json({ error: "Failed to update basket" });
   }  
-});
+}
 
 // DELETE: remove a specific product, productId comes from body
-router.delete("/:customerId", async (req, res) => {
+export async function removeProductFromBasket(req, res){
   const customerId = req.params.customerId;
   const { productId } = req.body;
 
@@ -57,9 +54,7 @@ router.delete("/:customerId", async (req, res) => {
     console.error(error);
     res.status(500).json({ error: "Failed to remove product from basket" });
   }
-});
-
-export default router;
+}
 
   
 

@@ -1,31 +1,31 @@
-import { Router } from 'express';
 import CustomerModel from "../model/customerModel.js";
 const model = new CustomerModel();
 
-const router = Router();
 
 // POST (create) a new customer (/customers)
-router.post('/', async (req, res) => {
+export async function createCustomer(req, res) {
     try {
       const newCustomer = await model.createCustomer(req.body);
       res.status(201).json({ message: 'Customer created successfully', customer: newCustomer });
     } catch (error) {
       res.status(400).json({ error: `Invalid customer data: ${error.message}` });
     }
-  });
+  }
+
 
 // GET all customers (/customers)
-router.get("/", async (req, res) => {
+export async function getAllCustomers(req, res){
     try{
         const customers = await model.getAllCustomers();
         res.status(200).json(customers);
     } catch (error){
         res.status(500).json({ error: `Failed to retrieve customers: ${error.message}` });
     }
-});
+}
+
 
 // GET a specific customer by ID (/customers/id)
-router.get('/:id', async (req, res) => {
+export async function getCustomerById(req, res) {
     const customerId = req.params.id;
     try {
       const customer = await model.getCustomerById(customerId);
@@ -37,10 +37,11 @@ router.get('/:id', async (req, res) => {
     } catch (error) {   // if something goes wrong, respond with a 500 internal server error
       res.status(500).json({ error: `Failed to retrieve customer: ${error.message}` });
     }
-  });
+  }
+
 
 // PUT (update) a specific customer
-router.put('/:id', async (req, res) => {
+export async function updateCustomer(req, res) {
     const customerId = req.params.id;
     try {
       const updatedCustomer = await model.updateCustomer(customerId, req.body); 
@@ -52,10 +53,11 @@ router.put('/:id', async (req, res) => {
     } catch (error) {   // if something goes wrong, respond with a 500 internal server error
       res.status(500).json({ error: `Failed to update customer: ${error.message}` });
     }
-  });
+  }
+
 
 // DELETE a specific customer
-router.delete('/:id', async (req, res) => {
+export async function deleteCustomer(req, res){
     const customerId = req.params.id;
     try {
       const deletedCustomer = await model.deleteCustomer(customerId);
@@ -67,6 +69,5 @@ router.delete('/:id', async (req, res) => {
     } catch (error) { // if something goes wrong, respond with a 500 internal server error
       res.status(500).json({ error: `Failed to delete customer: ${error.message}` });
     }
-  });
+  }
 
-export default router;
