@@ -29,6 +29,7 @@ app.use('/products', productRouter);
 app.use('/basket', basketRouter);
 app.use('/categories', categoryRouter);
 
+
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   next(createError(404));
