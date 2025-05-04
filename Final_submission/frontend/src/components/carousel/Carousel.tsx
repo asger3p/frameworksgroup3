@@ -40,7 +40,7 @@ interface CarouselProps {
         <div className="carousel-inner">
           {slides.map((slide, index) => (
             <div className={`carousel-item ${index === 0 ? "active" : ""}`} key={index}>
-              <div className="d-flex justify-content-center flex-wrap gap-4">
+              <div className="d-flex justify-content-center gap-4">
                 {slide.map((product) => (
                   <ProductCard key={product.product_id} product={product} />
                 ))}

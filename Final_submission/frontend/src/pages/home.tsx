@@ -12,13 +12,40 @@ const HomePage: React.FC = () => {
   }, []);
 
   const Deals = products.filter((p) =>
-    ["product_cuminSeeds", "product_cardamonPods", "product_rasElHanout"].includes(p.product_id)
+    [
+      "product_cuminSeeds",
+      "product_cardamonPods",
+      "product_rasElHanout",
+      "product_bayLeaves",
+      "product_chineseFiveSpice",
+      "product_taco"
+    ].includes(p.product_id)
   );
 
   return (
-    <div className="container mt-4">
-      <h2>Deals</h2>
-      <Carousel id="featuredCarousel" products={Deals} />
+    <div>
+      <div className="container-fluid p-0 position-relative">
+        <img
+          src="http://localhost:3000/images/welcome-banner.jpg"
+          alt="Welcome to Spice Planet"
+          className="img-fluid w-100"
+          style={{ height: "300px", objectFit: "cover" }}
+        />
+        <div className="position-absolute top-50 start-50 translate-middle d-flex justify-content-center align-items-center bg-dark bg-opacity-50 text-white p-4 rounded">
+          <img
+            src="http://localhost:3000/images/logos/spiceplanet-icon-white.png"
+            className="me-2"
+            style={{ height: "3em", width: "auto" }}
+            alt="Spice Planet Icon"
+          />
+          <h2 className="fw-bold mb-0">Welcome to Spice Planet</h2>
+        </div>
+      </div>
+
+      <div className="container mt-4">
+        <h2 className="text-center">Deals</h2>
+        <Carousel id="featuredCarousel" products={Deals} />
+      </div>
     </div>
   );
 };

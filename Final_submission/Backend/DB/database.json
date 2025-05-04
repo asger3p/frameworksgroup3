@@ -479,33 +479,6 @@
           "price": 650
         }
       ]
-    },
-    {
-      "product_id": "product_saffron",
-      "name": "Saffron",
-      "subheading": "Rich and Aromatic",
-      "description": "Saffron threads are hand-harvested from the delicate crocus flower, offering an earthy, floral aroma and golden hue to dishes. Known for its luxurious flavor, it’s perfect for risottos, paellas, and desserts. A pinch is enough to elevate the flavor profile of any dish.<br><br><strong>Dishes:</strong> Paella, risotto, saffron-infused ice cream.<br><strong>Usage Tip:</strong> Soak saffron threads in warm water or milk before adding them to dishes for maximum flavor release.<br><strong>Pairs well with:</strong> Cardamom, cinnamon, almonds, and rosewater.",
-      "image": "/images/products/3-saffron.jpg",
-      "link": "/Frontend/pages/product_description_generel.html?productId=product_saffron",
-      "cuisine": [
-        "Mediterranean",
-        "Indian"
-      ],
-      "type": "Whole",
-      "sizes": [
-        {
-          "size": "0.5 g",
-          "price": 150
-        },
-        {
-          "size": "1 g",
-          "price": 280
-        },
-        {
-          "size": "5 g",
-          "price": 1200
-        }
-      ]
     }
   ],
   "customers": [
