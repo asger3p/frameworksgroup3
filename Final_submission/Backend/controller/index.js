@@ -4,7 +4,7 @@ var router = Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
   const {x} = req.body;
-  console.log("Hello world!");
+  console.log("the server is online");
   res.json({ title: x });
 });
 
