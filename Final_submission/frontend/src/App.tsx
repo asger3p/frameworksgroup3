@@ -1,19 +1,22 @@
 // This is the main layout and routing hub for our webshop.
 import { Routes, Route } from "react-router-dom";
 
-/*import Home from './pages/home';
-import Products from './pages/products';
-import ProductDetail from './pages/productDetail';
-import Cart from './pages/cart';
-import Checkout from './pages/checkout';
-import Register from './pages/register';
-import Login from './pages/login';*/
+//import Home from './pages/home';
+//import Products from './pages/products';
+//import ProductDetail from './pages/productDetail';
+//import Cart from './pages/cart';
+//import Checkout from './pages/checkout';
+//import Register from './pages/register';
+import Login from './pages/login';
+import Navbar from './components/navbar';
 
 function App() {
   return (
     <div>
       <h1>Spice Planet</h1>
       <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/navbar" element={<Navbar />} />
       </Routes>
     </div>
   );
