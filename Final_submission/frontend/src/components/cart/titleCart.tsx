@@ -2,11 +2,11 @@
 
 import React, { useState, useEffect } from 'react'; // importing React, useState for username state, useEffect for on-mount side effect
 
-const WelcomeMessage: React.FC = () => {
+const TitleCart: React.FC = () => {
   const [userName, setUserName] = useState<string | null>(null); // holds the user's first name, if any
 
-  useEffect(() => {
-    const stored = localStorage.getItem('fname'); // on component mount, read 'fname' from localStorage
+  useEffect(() => { // on mount (i.e. when the component first renders and is inserted into the DOM), read 'fname' from localStorage. Only need to load localStorage once—there’s no need to re-run this every time the component updates.
+    const stored = localStorage.getItem('fname');
     if (stored) setUserName(stored);
   }, []);
 
@@ -18,4 +18,4 @@ const WelcomeMessage: React.FC = () => {
   );
 };
 
-export default WelcomeMessage;
+export default TitleCart;

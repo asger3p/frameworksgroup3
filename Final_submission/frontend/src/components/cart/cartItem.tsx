@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';  // React Router hook for client-side navigation
 
-interface CartSummaryProps {
+interface CartSummaryProps { // props are inputs you pass into a component
   total: number; // computed sum of all item subtotals
   onClear: () => void; // callback to clear all items in the cart
 }
