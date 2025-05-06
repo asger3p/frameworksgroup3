@@ -1,4 +1,4 @@
-import basketModel from "../model/basketModel.js"; // imports model file so that the controller can use the functions defined in basketModel.js
+import basketModel from "../model/basketModel.js";
 const model = new basketModel()
 
 // GET a user's basket
