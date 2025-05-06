@@ -1,60 +1,47 @@
 // Description: Renders one item row in the cart, with imageUrl, name, quantity controls, price, and remove button.
 
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';  // React Router hook for client-side navigation
+import React from 'react';
+import { CartItem as CartItemType } from '../../types/cart'; // Type for individual cart item data
 
-interface CartSummaryProps { // props are inputs you pass into a component
-  total: number; // computed sum of all item subtotals
-  onClear: () => void; // callback to clear all items in the cart
+interface CartItemProps { 
+  item: CartItemType; // The cart item object with properties 
+  index: number; // Index of this item in the cart array, used in callbacks
+  onIncrease: (index: number) => void; // Callback to increase quantity by one
+  onDecrease: (index: number) => void; // Callback to decrease quantity by one (or remove if zero)
+  onRemove: (index: number) => void; // Callback to remove this item from the cart entirely
 }
 
-const CartSummary: React.FC<CartSummaryProps> = ({ total, onClear }) => {
-  const [agreed, setAgreed] = useState(false);   // tracks whether user has ticked the terms-and-conditions box
-  const navigate = useNavigate();      // React Router navigate function (requires BrowserRouter)
+const CartItem: React.FC<CartItemProps> = ({ item, index, onIncrease, onDecrease, onRemove }) => ( // add some pseudocode here
+  <div className="row align-items-center border-bottom py-2">
+    <div className="col-2">
+      <img
+        src={item.imageUrl ?? ''} // fallback if no image URL provided
+        alt={item.name}
+        className="img-fluid"
+        style={{ maxWidth: 50 }}
+      />
+    </div>
+    <div className="col-4">{item.name}</div>
+    <div className="col-3 d-flex align-items-center">
+      <button className="decrease btn btn-sm btn-outline-secondary px-2 py-1"
+              onClick={() => onDecrease(index)}>–</button>
+      <input
+        type="number"
+        className="quantity-input mx-1 text-center w-25 fs-6"
+        value={item.quantity}
+        readOnly // quantity is controlled via buttons
+      />
+      <button className="increase btn btn-sm btn-outline-secondary px-2 py-1"
+              onClick={() => onIncrease(index)}>+</button>
+    </div>
+    <div className="col-2 price" data-price={item.price}>
+      {item.price * item.quantity} kr {/* computed subtotal for this item */}
+    </div>
+    <div className="col-1">
+      <button className="btn btn-sm btn-outline-danger remove"
+              onClick={() => onRemove(index)}>×</button>
+    </div>
+  </div>
+);
 
-  const handleContinue = () => {
-    navigate('/'); // navigate back to home page
-  };
-
-  const handleCheckout = () => {
-    if (agreed) navigate('/checkout');  // only proceed if user agreed to terms
-  };
-
-  return (
-    <>
-      <div className="container mt-4 text-end">
-        <h5 id="totalPrice">Total Price: <span>{total}</span> kr</h5>
-      </div>
-      <div className="container mt-4 text-end">
-        <button className="btn btn-outline-danger" onClick={onClear}>
-          Clear Cart
-        </button>
-      </div>
-      <div className="container mt-4 text-end">
-        <label>
-          <input
-            type="checkbox"
-            id="terms"
-            checked={agreed}
-            onChange={e => setAgreed(e.target.checked)}  // toggle 'agreed'
-          />{' '}
-          I agree with the <a href="#">terms and conditions</a>
-        </label>
-      </div>
-      <div className="container mt-4 text-end">
-        <button className="btn btn-secondary me-2" onClick={handleContinue}>
-          Continue Shopping
-        </button>
-        <button
-          className="btn btn-primary"
-          disabled={!agreed}  // disable until agreed
-          onClick={handleCheckout}
-        >
-          CHECKOUT
-        </button>
-      </div>
-    </>
-  );
-};
-
-export default CartSummary;
+export default CartItem;

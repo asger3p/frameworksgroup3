@@ -16,7 +16,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({ total, onClear }) => {
     navigate('/'); // navigate back to home page
   };
 
-  const handleCheckout = () => { // SAME AS?= const handleCheckout = () => agreed && navigate('/checkout');
+  const handleCheckout = () => { 
     if (agreed) navigate('/checkout');  // only proceed if user agreed to terms
   };
 
