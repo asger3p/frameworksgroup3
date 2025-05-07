@@ -1,10 +1,8 @@
-import { Router } from 'express';
 import categoryModel from '../model/categoryModel.js';
 const model = new categoryModel();
 
-const router = Router();
-
-router.get('/', async (req, res) => {
+// GET all categories
+export async function getAllCategories(req, res){
     try {
         const categories = await model.getAllCategories();
         if (categories && (categories.types.length > 0 || categories.cuisines.length > 0)) {
@@ -15,9 +13,10 @@ router.get('/', async (req, res) => {
     } catch (error) {
       res.status(500).json({ error: `Failed to retrieve categories: ${error.message}` });
     }
-  });
+  }
 
-  router.get('/:categoryName', async (req, res) => {
+// GET products by specific category
+export async function getProductsByCategory(req, res){
     const { categoryName } = req.params;
     try {
       const products = await model.getProductsByCategory(categoryName);
@@ -29,6 +28,5 @@ router.get('/', async (req, res) => {
     } catch (error) {
       res.status(500).json({ error: `Failed to retrieve products: ${error.message}` });
     }
-  });
+  }
   
-  export default router;

@@ -1,148 +1,72 @@
-import React from 'react';
-import { useCart } from '../context/cartContext';
+// Description: Main cart page that composes TitleCart, maps CartItem list, and shows CartSummary.
+import React, { useState, useEffect } from 'react';
+import TitleCart from '../components/cart/titleCart'; // Header section with greeting and subtitle
+import CartItem from '../components/cart/cartItem'; // Individual cart row component
+import CartSummary from '../components/cart/cartSummary'; // Summary section with total, clear, and navigation buttons
+import { CartItem as CartItemType } from '../types/cart'; // Type definition for cart items
 
-const CartPage: React.FC = () => {
-  // Pull cart state and actions from context
-  const { items, removeItem, updateQty, clearCart } = useCart();
+const CartPage: React.FC = () => { // Functional component for the entire cart page
+  const [cart, setCart] = useState<CartItemType[]>([]); // Local state: list of items currently in the cart
 
-  // If cart is empty, show a friendly message
-  if (items.length === 0) {
-    return (
-      <div className="container mt-4"> {/* Bootstrap container + margin-top */}
-        <h2>Your Cart is Empty</h2>
-      </div>
+  useEffect(() => { // On mount: load cart array from localStorage
+    const stored = localStorage.getItem('cart');
+    if (stored) setCart(JSON.parse(stored));
+  }, []);
+
+  useEffect(() => { // On cart change: save updated cart back to localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
+
+  const handleIncrease = (index: number) => { // Handler: increase quantity of a specific item by index
+    setCart(prev =>
+      prev.map((item, i) =>
+        i === index ? { ...item, quantity: item.quantity + 1 } : item
+      )
     );
-  }
+  };
+
+  const handleDecrease = (index: number) => { // Handler: decrease (or remove if quantity becomes 0) specific item
+    setCart(prev =>
+      prev
+        .map((item, i) =>
+          i === index ? { ...item, quantity: item.quantity - 1 } : item
+        )
+        .filter(item => item.quantity > 0)
+    );
+  };
+
+  const handleRemove = (index: number) => { // Handler: remove an item entirely
+    setCart(prev => prev.filter((_, i) => i !== index));
+  };
+
+  const handleClear = () => setCart([]); // Handler: clear the entire cart
+
+  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0); // Compute total price across all items
 
   return (
-    <div className="container mt-4"> {/* Main wrapper with spacing */}
-      <h2>Overview of Items:</h2>
-
-      {items.map(item => (
-        <div
-          key={item.productId}
-          className="row align-items-center border-bottom py-2" 
-          /* 
-            row: Bootstrap flex row 
-            align-items-center: vertically center 
-            border-bottom: separator line 
-            py-2: vertical padding 
-          */
-        >
-          {/* Product image */}
-          <div className="col-2">
-            <img
-              src={item.imageUrl}
-              alt={item.name}
-              className="img-fluid" 
-              style={{ maxWidth: '50px' }} // limit size
-            />
-          </div>
-
-          {/* Product name */}
-          <div className="col-4">
-            {item.name}
-          </div>
-
-          {/* Quantity controls */}
-          <div className="col-3 d-flex align-items-center">
-            <button
-              className="decrease btn btn-sm btn-outline-secondary px-2 py-1"
-              onClick={() =>
-                updateQty(item.productId, Math.max(1, item.quantity - 1))
-              }
-            >
-              – {/* decrease quantity */}
-            </button>
-            <input
-              type="text"
-              readOnly
-              value={item.quantity}
-              className="quantity-input mx-1 text-center w-25 fs-6"
-              /* 
-                mx-1: horizontal margin 
-                text-center: center text 
-                w-25: width 25% 
-                fs-6: font-size level 6
-              */
-            />
-            <button
-              className="increase btn btn-sm btn-outline-secondary px-2 py-1"
-              onClick={() =>
-                updateQty(item.productId, item.quantity + 1)
-              }
-            >
-              + {/* increase quantity */}
-            </button>
-          </div>
-
-          {/* Line total */}
-          <div
-            className="col-2 price"
-            data-price={item.price} // storing unit price in case you need it
-          >
-            {(item.price * item.quantity).toFixed(2)} kr
-          </div>
-
-          {/* Remove item */}
-          <div className="col-1">
-            <button
-              className="btn-sm btn-outline-danger remove"
-              onClick={() => removeItem(item.productId)} // remove from cart
-            >
-              ×
-            </button>
-          </div>
-        </div>
-      ))}
-
-      {/* Total Price row */}
-      <div className="row mt-4">
-        <div className="col text-end"> {/* right-align text */}
-          <h5>
-            Total Price:{' '}
-            <span>
-              {items
-                .reduce((sum, i) => sum + i.price * i.quantity, 0)
-                .toFixed(2)}{' '}
-              kr
-            </span>
-          </h5>
+    <>
+      <TitleCart />
+      <div className="container mt-4">
+        <h5>Overview of Items:</h5>
+        <div id="cartItems"> {/* Container for all CartItem rows */}
+          {cart.length === 0 ? (
+            <p>Your cart is empty.</p>
+          ) : (
+            cart.map((item, idx) => (
+              <CartItem
+                key={item.productId}    // Unique key for React list diffing
+                item={item}
+                index={idx}
+                onIncrease={handleIncrease}
+                onDecrease={handleDecrease}
+                onRemove={handleRemove}
+              />
+            ))
+          )}
         </div>
       </div>
-
-      {/* Action buttons: Clear, Continue, Checkout */}
-      <div className="row mt-3">
-        <div className="col text-end">
-          <button
-            id="clearCart"
-            className="btn btn-outline-danger me-2" 
-            // me-2 adds right margin between buttons
-            onClick={clearCart} 
-          >
-            Clear Cart
-          </button>
-
-          <button
-            id="continueShopping"
-            className="btn btn-primary me-2"
-            onClick={() => window.location.assign('/')}
-            /* Navigate back to home */
-          >
-            Continue Shopping
-          </button>
-
-          <button  
-            id="checkout"
-            className="btn btn-success"
-            onClick={() => window.location.assign('/checkout')}
-            /* Navigate to checkout page */
-          >
-            Checkout
-          </button>
-        </div>
-      </div>
-    </div>
+      <CartSummary total={total} onClear={handleClear} />
+    </>
   );
 };
 
