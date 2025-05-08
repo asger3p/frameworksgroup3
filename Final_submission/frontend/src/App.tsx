@@ -7,6 +7,7 @@ import CartPage from './pages/cart';
 import CheckoutPage from './pages/checkout';
 import Login from './pages/login';
 import Register from './pages/register';
+import Footer from './components/footer';
 
 
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
