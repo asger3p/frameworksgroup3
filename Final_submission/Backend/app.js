@@ -4,11 +4,11 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
-import indexRouter from './controller/index.js';
-import customersRouter from './controller/customers.js';
-import productRouter from './controller/products.js';
-import basketRouter from './controller/basket.js';
-import categoryRouter from './controller/categories.js';
+import indexRouter from './router/indexRouter.js';
+import customersRouter from './router/customersRouter.js';
+import productRouter from './router/productsRouter.js';
+import basketRouter from './router/basketRouter.js';
+import categoryRouter from './router/categoriesRouter.js';
 
 
 const app = express();
