@@ -56,6 +56,7 @@ function Navbar() {
               <i className="bi bi-box-arrow-right"></i>
             </button>
           )}
+          <Link to="/checkout"><i className="bi bi-credit-card"></i></Link> {/* NEW */}
           <Link to="/cart"><i className="bi bi-cart"></i></Link>
         </div>
       </div>
