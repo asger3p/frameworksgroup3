@@ -2,24 +2,50 @@
 
 //this page consists of a navbar, a 
 //1. you need to fix the prop for the produc and connect to database
-//2. insert navbar
-//3. insert footer
 
-import { ProductImage, ProductImageProps } from "../components/ProductImage";
-import { ProductInfo } from "../components/ProductInfo";
+//state
+//useEffect
+//event handlers and custom functions
 
-export function ProductDetail({src} : ProductImageProps) {
+
+import { QuantitySelector } from "../components/QuantitySelector";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { Product } from "../types/product"; 
+
+
+export function ProductDetail() {
+  const { productId } = useParams<{ productId: string }>();
+  const [product, setProduct] = useState<Product | null>(null);
+
+  useEffect(() => {
+    fetch(`/api/products/${productId}`)
+      .then(res => res.json())
+      .then(data => setProduct(data));
+  }, [productId]);
+
+
         return ( 
           <div className="container mt-5">
             <div className="row">
               {/* Left Column */}
               <div className="col-6 text-center">
-                <ProductImage src={src} />
+                <div className="image-container">
+                    <img 
+                    id="productImage" 
+                    src={product?.image}
+                    className="img-fluid" 
+                    style={{ maxWidth: "80%", height: "auto" }}
+                    />
+            </div>
               </div>
       
               {/* Right Column */}
               <div className="col-6">
-                <ProductInfo/>
+              <h2 className="text-left">{product?.name}</h2>
+                <h5 className="text-muted">{product?.subheading}</h5>
+                <p> {product?.description}</p>
+                <QuantitySelector sizes={product?.sizes || []}/>
               </div>
             </div>
           </div>
