@@ -34,7 +34,7 @@ function Navbar() {
       <div className="container d-flex justify-content-between align-items-center">
         <Link to="/" className="navbar-brand">
           <img 
-            src="/backend/public/images/logos/logo-white.png" 
+            src="http://localhost:3000/images/logos/logo-white.png" 
             alt="Spice Planet" 
             style={{ height: '3rem', width: 'auto' }} />
   
