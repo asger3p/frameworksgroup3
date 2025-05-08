@@ -13,23 +13,64 @@ body {
     font-family: Verdana, sans-serif !important;
 }
 
+
 /* Navbar (can be changed) */
 .navbar {
     background-color: var(--primary-green) !important; /* Light green navbar */
 }
 
 .navbar-brand {
-    color: white;
     font-weight: bold;
+    font-size: 1.8rem;
+    color: white;
+}
+
+.navbar-brand img {
+    max-height: 3rem;
+    width: auto;
 }
 
 .navbar a {
     color: white;
+    text-decoration: none;
+
 }
 
 .navbar a:hover {
     color: var(--primary-orange);
     text-decoration: none;
+}
+
+.icon-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.icon-links i {
+    color: white;
+    font-size: 2rem;
+}
+
+.icon-links i:hover {
+    color: #f4f4f4;
+}
+
+#logoutButton {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+#logoutButton i {
+    margin-right: 5px;
+}
+
+#logoutButton:hover {
+    color: #f4f4f4;
 }
 
 /* General Button Styles */
