@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCart } from '../context/cartContext';      // Import to get cart items
-import CheckoutForm from '../components/checkout/checkoutForm';
+import CheckoutForm from '../components/checkout/checkoutForm';     // Import checkout form
+import '../styles.css';
 
 const CheckoutPage: React.FC = () => {
     const { items } = useCart();
@@ -14,7 +15,7 @@ const CheckoutPage: React.FC = () => {
         );
     }
 
-    // Calculate totals
+    // Calculate totals for summary
     const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
     const vat = subtotal * 0.25;
     const shipping = 39;
@@ -31,7 +32,7 @@ const CheckoutPage: React.FC = () => {
                         <div className='card-header'><h5>1. Your products</h5></div>
                         <div className='card-body'>
                             {items.map((item) => (
-                                <div className='d-flex justify-content-between-border-bottom py-2' key={item.productId}>
+                                <div className='d-flex justify-content-between border-bottom py-2' key={item.productId}>
                                     <div>{item.name} x {item.quantity}</div>
                                     <div>{(item.price * item.quantity).toFixed(2)} kr </div>
                                     </div>
