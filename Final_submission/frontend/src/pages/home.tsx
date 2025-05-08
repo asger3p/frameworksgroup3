@@ -2,15 +2,18 @@ import React, { useEffect, useState } from "react";
 import Carousel from "../components/carousel/Carousel";
 import { Product } from "../types/product";
 
+// Define the props for the HomePage component
 const HomePage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
+  // Fetch products from the API
   useEffect(() => {
     fetch("http://localhost:3000/products")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
 
+  // Filter products for the Deals section
   const Deals = products.filter((p) =>
     [
       "product_cuminSeeds",
@@ -24,6 +27,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div>
+      {/* Welcome Banner */}
       <div className="container-fluid p-0 position-relative">
         <img
           src="http://localhost:3000/images/welcome-banner.jpg"
@@ -42,9 +46,10 @@ const HomePage: React.FC = () => {
         </div>
       </div>
 
+      {/* Deals Carousel */}
       <div className="container mt-4">
         <h2 className="text-center">Deals</h2>
-        <Carousel id="featuredCarousel" products={Deals} />
+        <Carousel id="dealsCarousel" products={Deals} />
       </div>
     </div>
   );
