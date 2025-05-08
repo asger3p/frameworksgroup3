@@ -44,9 +44,26 @@ function Navbar() {
 
         {/* Desktop Links */}
         <div className="icon-links d-flex align-items-center gap-3">
-          <Link to="/products" className="btn btn-outline-light btn-sm">
-          Products
-          </Link>
+        <div className="dropdown">
+          <button className="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown">
+            <i className="bi bi-grid me-1"></i> Products
+          </button>
+        <ul className="dropdown-menu dropdown-menu-end">
+        <li><Link className="dropdown-item" to="/products">All Products</Link></li>
+        <li><hr className="dropdown-divider" /></li>
+        <li><strong className="dropdown-header">By Type</strong></li>
+        <li><Link className="dropdown-item" to="/products/type/whole">Whole</Link></li>
+        <li><Link className="dropdown-item" to="/products/type/ground">Ground</Link></li>
+        <li><Link className="dropdown-item" to="/products/type/blends">Blends</Link></li>
+        <li><hr className="dropdown-divider" /></li>
+        <li><strong className="dropdown-header">By Cuisine</strong></li>
+        <li><Link className="dropdown-item" to="/products/cuisine/indian">Indian</Link></li>
+        <li><Link className="dropdown-item" to="/products/cuisine/mediterranean">Mediterranean</Link></li>
+        <li><Link className="dropdown-item" to="/products/cuisine/asian">Asian</Link></li>
+        <li><Link className="dropdown-item" to="/products/cuisine/latin-american">Latin American</Link></li>
+        </ul>
+        </div>
+
         
         <div className="icon-links d-flex align-items-center gap-3">
           {userName && <span id="welcomeMessage">Welcome, {userName}!</span>}
