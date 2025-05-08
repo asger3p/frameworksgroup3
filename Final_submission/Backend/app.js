@@ -3,6 +3,7 @@ import createError from 'http-errors';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
+import cors from 'cors';
 
 import indexRouter from './router/indexRouter.js';
 import customersRouter from './router/customersRouter.js';
@@ -12,6 +13,7 @@ import categoryRouter from './router/categoriesRouter.js';
 
 
 const app = express();
+app.use(cors());
 
 // view engine setup
 app.set('views', path.join(process.cwd(), 'views')); 
