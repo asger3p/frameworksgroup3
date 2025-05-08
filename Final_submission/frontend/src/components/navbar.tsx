@@ -33,12 +33,22 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg navbar-light">
       <div className="container d-flex justify-content-between align-items-center">
         <Link to="/" className="navbar-brand">
-          <img src="/backend/public/images/logos/logo-white.png" alt="Spice Planet" />
-          <span style={{ marginLeft: '10px' }}>Spice Planet</span>
+          <img 
+            src="/images/logos/logo-white.png" 
+            alt="Spice Planet" 
+            style={{ height: '3rem', width: 'auto' }} />
+  
         </Link>
 
+        
+
         {/* Desktop Links */}
-        <div className="icon-links">
+        <div className="icon-links d-flex align-items-center gap-3">
+          <Link to="/products" className="btn btn-outline-light btn-sm">
+          Products
+          </Link>
+        
+        <div className="icon-links d-flex align-items-center gap-3">
           {userName && <span id="welcomeMessage">Welcome, {userName}!</span>}
           {!userName && <Link to="/login"><i className="bi bi-person-circle"></i></Link>}
           {userName && (
@@ -48,6 +58,7 @@ function Navbar() {
           )}
           <Link to="/cart"><i className="bi bi-cart"></i></Link>
         </div>
+      </div>
 
         {/* Burger menu icon */}
         <div className="burger-menu" onClick={toggleMobileMenu}>
