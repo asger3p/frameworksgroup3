@@ -3,6 +3,7 @@ import Carousel from "../components/carousel/Carousel";
 import { Product } from "../types/product";
 
 const HomePage: React.FC = () => {
+  
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
