@@ -33,7 +33,7 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg navbar-light">
       <div className="container d-flex justify-content-between align-items-center">
         <Link to="/" className="navbar-brand">
-          <img src="/images/logo.png" alt="Spice Planet" />
+          <img src="/backend/public/images/logos/logo-white.png" alt="Spice Planet" />
           <span style={{ marginLeft: '10px' }}>Spice Planet</span>
         </Link>
 

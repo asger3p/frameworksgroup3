@@ -13,9 +13,6 @@ body {
     font-family: Verdana, sans-serif !important;
 }
 
-h1 {
-    color: var(--text-dark) !important;
-}
 
 /* Navbar (can be changed) */
 .navbar {
