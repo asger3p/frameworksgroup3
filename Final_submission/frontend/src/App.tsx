@@ -8,6 +8,7 @@ import CheckoutPage from './pages/checkout';
 import Login from './pages/login';
 import Register from './pages/register';
 import Footer from './components/footer';
+import {ProductDetail}  from './pages/productDetail';
 
 
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/products/:productId" element={<ProductDetail />} />
       </Routes>
       <Footer />
     </div>

@@ -19,7 +19,7 @@ export function ProductDetail() {
   const [product, setProduct] = useState<Product | null>(null);
 
   useEffect(() => {
-    fetch(`/api/products/${productId}`)
+    fetch(`http://localhost:3000/products/${productId}`)
       .then(res => res.json())
       .then(data => setProduct(data));
   }, [productId]);
@@ -33,7 +33,7 @@ export function ProductDetail() {
                 <div className="image-container">
                     <img 
                     id="productImage" 
-                    src={product?.image}
+                    src={`http://localhost:3000${product?.image}`}
                     className="img-fluid" 
                     style={{ maxWidth: "80%", height: "auto" }}
                     />
