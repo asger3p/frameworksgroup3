@@ -58,10 +58,6 @@ export function QuantitySelector({sizes}: QuantitySelectorProps) {
               <strong>Total:</strong> {totalPrice} kr
             </div>
       
-            <div className="w-100 mt-3">
-              {/*add to cart button*/}
-              <button className="btn btn-primary px-4 py-2">ADD TO CART</button>
-            </div>
           </div>
         </>
       );
