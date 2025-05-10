@@ -13,64 +13,23 @@ body {
     font-family: Verdana, sans-serif !important;
 }
 
-
 /* Navbar (can be changed) */
 .navbar {
     background-color: var(--primary-green) !important; /* Light green navbar */
 }
 
 .navbar-brand {
-    font-weight: bold;
-    font-size: 1.8rem;
     color: white;
-}
-
-.navbar-brand img {
-    max-height: 3rem;
-    width: auto;
+    font-weight: bold;
 }
 
 .navbar a {
     color: white;
-    text-decoration: none;
-
 }
 
 .navbar a:hover {
     color: var(--primary-orange);
     text-decoration: none;
-}
-
-.icon-links {
-    display: flex;
-    gap: 1rem;
-}
-
-.icon-links i {
-    color: white;
-    font-size: 2rem;
-}
-
-.icon-links i:hover {
-    color: #f4f4f4;
-}
-
-#logoutButton {
-    background-color: transparent;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-}
-
-#logoutButton i {
-    margin-right: 5px;
-}
-
-#logoutButton:hover {
-    color: #f4f4f4;
 }
 
 /* General Button Styles */
@@ -133,7 +92,21 @@ body {
 .carousel-control-prev:hover, .carousel-control-next:hover {
   background-color: var(--primary-orange); 
   opacity: 1;
-  width: 100px;
+}
+
+/* Carousel Nav Pills */
+.nav-pills .nav-link {
+    color: var(--text-dark);
+}
+
+.nav-pills .nav-link.active {
+    background-color: var(--primary-orange) !important;
+    color: white;
+}
+
+.nav-pills .nav-link:hover {
+    background-color: var(--primary-green) !important;
+    color: white;
 }
 
 /* Specific Cart and Checkout Buttons */
