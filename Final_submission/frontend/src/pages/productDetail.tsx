@@ -12,7 +12,7 @@ import { QuantitySelector } from "../components/QuantitySelector";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Product } from "../types/product"; 
-
+import AddToCartButton from "../components/addToCartButton";
 
 export function ProductDetail() {
   const { productId } = useParams<{ productId: string }>();
@@ -24,6 +24,10 @@ export function ProductDetail() {
       .then(data => setProduct(data));
   }, [productId]);
 
+  // don’t render until product is loaded
+  if (!product) {
+    return <div>Loading…</div>;
+  }
 
         return ( 
           <div className="container mt-5">
@@ -46,6 +50,7 @@ export function ProductDetail() {
                 <h5 className="text-muted">{product?.subheading}</h5>
                 <p> {product?.description}</p>
                 <QuantitySelector sizes={product?.sizes || []}/>
+                <AddToCartButton product={product} selectedSize={product.sizes[0]} />
               </div>
             </div>
           </div>

@@ -1,71 +1,45 @@
-// Description: Main cart page that composes TitleCart, maps CartItem list, and shows CartSummary.
-import React, { useState, useEffect } from 'react';
-import TitleCart from '../components/cart/titleCart'; // Header section with greeting and subtitle
-import CartItem from '../components/cart/cartItem'; // Individual cart row component
-import CartSummary from '../components/cart/cartSummary'; // Summary section with total, clear, and navigation buttons
-import { CartItem as CartItemType } from '../types/cart'; // Type definition for cart items
+// pages/cart.tsx
+import React from 'react';
+import { useCart } from '../context/cartContext';
+import TitleCart from '../components/cart/titleCart';
+import CartItem from '../components/cart/cartItem';
+import CartSummary from '../components/cart/cartSummary';
 
-const CartPage: React.FC = () => { // Functional component for the entire cart page
-  const [cart, setCart] = useState<CartItemType[]>([]); // Local state: list of items currently in the cart
+const CartPage: React.FC = () => {
+  const { items, updateQty, removeItem, clearCart } = useCart(); // Pull all items from cartContext
 
-  useEffect(() => { // On mount: load cart array from localStorage
-    const stored = localStorage.getItem('cart');
-    if (stored) setCart(JSON.parse(stored));
-  }, []);
-
-  useEffect(() => { // On cart change: save updated cart back to localStorage
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }, [cart]);
-
-  const handleIncrease = (index: number) => { // Handler: increase quantity of a specific item by index
-    setCart(prev =>
-      prev.map((item, i) =>
-        i === index ? { ...item, quantity: item.quantity + 1 } : item
-      )
-    );
-  };
-
-  const handleDecrease = (index: number) => { // Handler: decrease (or remove if quantity becomes 0) specific item
-    setCart(prev =>
-      prev
-        .map((item, i) =>
-          i === index ? { ...item, quantity: item.quantity - 1 } : item
-        )
-        .filter(item => item.quantity > 0)
-    );
-  };
-
-  const handleRemove = (index: number) => { // Handler: remove an item entirely
-    setCart(prev => prev.filter((_, i) => i !== index));
-  };
-
-  const handleClear = () => setCart([]); // Handler: clear the entire cart
-
-  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0); // Compute total price across all items
+  const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0); // Compute total price from context items
 
   return (
     <>
       <TitleCart />
+
       <div className="container mt-4">
         <h5>Overview of Items:</h5>
-        <div id="cartItems"> {/* Container for all CartItem rows */}
-          {cart.length === 0 ? (
+        <div id="cartItems">
+          {items.length === 0 ? (
             <p>Your cart is empty.</p>
           ) : (
-            cart.map((item, idx) => (
+            items.map((item, idx) => (
               <CartItem
-                key={item.productId}    // Unique key for React list diffing
-                item={item}
-                index={idx}
-                onIncrease={handleIncrease}
-                onDecrease={handleDecrease}
-                onRemove={handleRemove}
+                key={item.productId} // Unique React key: lets React track this item across renders
+                index={idx}   // position in the list (used internally by CartItem)
+                item={item}  // the CartItem object (id, name, price, qty, etc. from prop)
+                onIncrease={() => updateQty(item.productId, item.quantity + 1)} // bump this item’s quantity by 1
+                onDecrease={() =>
+                  item.quantity > 1
+                    ? updateQty(item.productId, item.quantity - 1)
+                    : removeItem(item.productId) // decrement qty or remove if it hits zero
+                }
+                onRemove={() => removeItem(item.productId)} // remove this item entirely
               />
             ))
           )}
         </div>
       </div>
-      <CartSummary total={total} onClear={handleClear} />
+
+      {/* Pass the computed total and clearCart action into the summary */}
+      <CartSummary total={total} onClear={clearCart} />
     </>
   );
 };
