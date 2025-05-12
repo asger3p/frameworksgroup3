@@ -11,8 +11,8 @@ import {
   interface CartContextType {
     items: CartItem[]; // array holding current cart items
     addItem: (item: CartItem) => void; // function to add new items or increase quantity
-    removeItem: (productId: string) => void;  // function to remove an item completely
-    updateQty: (productId: string, qty: number) => void; // function to set exact quantity
+    removeItem: (index: number) => void;  // function to remove an item completely
+    updateQty: (index: number, qty: number) => void; // function to set exact quantity
     clearCart: () => void;  // function to empty the cart
   }
   
@@ -26,12 +26,12 @@ import {
     // adds an item to the cart OR increments quantity if it already exists
     const addItem = (item: CartItem) => {
       setItems((prev) => {
-        // check if the item is already in cart
-        const exists = prev.find((i) => i.productId === item.productId);
+        // check if the item is already in cart (same product + same size)
+        const exists = prev.find(i => i.productId === item.productId  && i.size === item.size)
         if (exists) {  // if it exists, map over items and update the matching one's quantity
 
           return prev.map((i) =>
-            i.productId === item.productId
+            i.productId === item.productId && i.size === item.size
               ? { ...i, quantity: i.quantity + item.quantity }
               : i
           );
@@ -41,16 +41,16 @@ import {
       });
     };
   
-    // removes an item entirely based on its productId
-    const removeItem = (productId: string) => {
-      setItems((prev) => prev.filter((i) => i.productId !== productId));
+    // removes an item entirely based on its array index
+    const removeItem = (index: number) => {
+      setItems(prev => prev.filter((_item, i) => i !== index)); // Filter out (remove) the cartItem at the specified index
     };
   
-    // updates the quantity of a specific cart item
-    const updateQty = (productId: string, qty: number) => {
-      setItems((prev) =>
-        prev.map((i) =>
-          i.productId === productId ? { ...i, quantity: qty } : i
+    // updates the quantity of the item at the given index
+    const updateQty = (index: number, qty: number) => {
+      setItems(prev =>
+        prev.map((_item, i) =>
+          i === index ? { ..._item, quantity: qty } : _item
         )
       );
     };

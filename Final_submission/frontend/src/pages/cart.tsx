@@ -22,16 +22,16 @@ const CartPage: React.FC = () => {
           ) : (
             items.map((item, idx) => (
               <CartItem
-                key={item.productId} // Unique React key: lets React track this item across renders
+                key={`${item.productId}-${item.size}`} // Unique React key (per size and product): lets React track this item across renders
                 index={idx}   // position in the list (used internally by CartItem)
                 item={item}  // the CartItem object (id, name, price, qty, etc. from prop)
-                onIncrease={() => updateQty(item.productId, item.quantity + 1)} // bump this item’s quantity by 1
+                onIncrease={() => updateQty(idx, item.quantity + 1)} // bump this item’s quantity by 1
                 onDecrease={() =>
                   item.quantity > 1
-                    ? updateQty(item.productId, item.quantity - 1)
-                    : removeItem(item.productId) // decrement qty or remove if it hits zero
+                    ? updateQty(idx, item.quantity - 1)
+                    : removeItem(idx) // decrement qty or remove if it hits zero
                 }
-                onRemove={() => removeItem(item.productId)} // remove this item entirely
+                onRemove={() => removeItem(idx)} // remove this item entirely
               />
             ))
           )}
