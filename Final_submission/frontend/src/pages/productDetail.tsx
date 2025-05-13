@@ -10,9 +10,11 @@
 
 import { QuantitySelector } from "../components/QuantitySelector";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Product, Size } from "../types/product"; 
 import AddToCartButton from "../components/addToCartButton";
+
+
 
 export function ProductDetail() {
   const { productId } = useParams<{ productId: string }>();
@@ -20,6 +22,7 @@ export function ProductDetail() {
 
 const [selectedSize, setSelectedSize] = useState<Size | null>(null);
 const [quantity,     setQuantity]     = useState<number>(1);
+const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`http://localhost:3000/products/${productId}`)
@@ -32,6 +35,62 @@ const [quantity,     setQuantity]     = useState<number>(1);
         }
       });
   }, [productId]);
+
+const parseDescription = (description: string) => {
+  const result: React.ReactNode[] = []; // Array to hold the parsed parts
+
+  let currentText = ''; // Temporary variable to hold text as we loop
+  let insideStrong = false; // Flag to track if we're inside a <strong> tag
+
+  // Loop through each character in the string
+  for (let i = 0; i < description.length; i++) {
+    const char = description[i];
+
+    // Check if we encounter a <br> tag
+    if (char === '<' && description.substring(i, i + 4) === '<br>') {
+      // If we encounter <br>, we push the current text and add the line break
+      if (currentText.trim() !== '') {
+        result.push(currentText);
+      }
+      result.push(<br key={i} />);
+      currentText = ''; // Reset the currentText
+      i += 3; // Skip <br>
+    } 
+    // Check if we encounter a <strong> tag
+    else if (char === '<' && description.substring(i, i + 8) === '<strong>') {
+      // If we encounter <strong>, we handle starting the strong tag
+      if (currentText.trim() !== '') {
+        result.push(currentText);
+      }
+      insideStrong = true;
+      currentText = ''; // Reset the currentText for the strong content
+      i += 7; // Skip the <strong> tag
+    } 
+    // Check if we encounter a </strong> tag
+    else if (char === '<' && description.substring(i, i + 9) === '</strong>') {
+      // If we encounter </strong>, we handle ending the strong tag
+      result.push(<strong key={i}>{currentText}</strong>);
+      currentText = ''; // Reset the currentText after the strong tag
+      insideStrong = false;
+      i += 8; // Skip the </strong> tag
+    } 
+    else {
+      currentText += char;
+    }
+  }
+
+  // Push any remaining text after the loop ends
+  if (currentText.trim() !== '') {
+    if (insideStrong) {
+      result.push(<strong key={description.length}>{currentText}</strong>);
+    } else {
+      result.push(currentText);
+    }
+  }
+
+  return result;
+};
+
 
   // don’t render until product is loaded
   if (!product) {
@@ -57,7 +116,7 @@ const [quantity,     setQuantity]     = useState<number>(1);
               <div className="col-6">
               <h2 className="text-left">{product?.name}</h2>
                 <h5 className="text-muted">{product?.subheading}</h5>
-                <p> {product?.description}</p>
+                <div>{parseDescription(product?.description || '')}</div>
 
                 {/* supply available sizes and callbacks to update selectedSize & quantity */}
                 {/* onSelectSize: callback so that when the selector chooses a new size, we update our `selectedSize` state here*/}
@@ -68,11 +127,21 @@ const [quantity,     setQuantity]     = useState<number>(1);
                   onSelectQuantity={(q: number) => setQuantity(q)} 
                 />
                 {/* pass product, chosen size, and quantity for adding to cart */}
-                <AddToCartButton     
-                  product={product} 
-                  selectedSize={selectedSize!}
-                  quantity={quantity} 
-                  />
+               <div className="d-flex mt-3">
+            {/* Add to Cart button */}
+            <AddToCartButton
+              product={product}
+              selectedSize={selectedSize!}
+              quantity={quantity}
+            />
+            {/* Back button */}
+            <button
+              className="btn-primary ml-2 ms-2"
+              onClick={() => navigate('/')}
+            >
+              Back
+            </button>
+          </div>
               </div>
             </div>
           </div>
