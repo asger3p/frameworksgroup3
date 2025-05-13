@@ -9,12 +9,6 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { user, logout } = useAuth();
 
-  // Toggle mobile menu
-  const toggleMobileMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
-
-
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
       <div className="container d-flex justify-content-between align-items-center">
@@ -29,7 +23,7 @@ function Navbar() {
         
 
         {/* Desktop Links */}
-        <div className="icon-links desktop-menu d-flex align-items-center gap-3">
+        <div className="icon-links d-none d-md-flex align-items-center gap-3">
         {/* All products */}
         <Link to="/products" className="nav-link text-white">
           All products
@@ -48,12 +42,15 @@ function Navbar() {
   )}
           <Link to="/checkout"><i className="bi bi-credit-card"></i></Link> {/* NEW */}
           <Link to="/cart"><i className="bi bi-cart"></i></Link>
-        </div>
       </div>
 
         {/* Burger menu icon */}
-        <div className="burger-menu" onClick={toggleMobileMenu}>
+        <div className="burger-menu d-flex d-md-none"
+          onClick={() => setMenuOpen(o => !o)}
+          style={{ fontSize: '1.8rem', cursor: 'pointer', color: 'white' }}
+        >
           ☰
+        </div>
         </div>
 
         {/* Mobile Menu */}
