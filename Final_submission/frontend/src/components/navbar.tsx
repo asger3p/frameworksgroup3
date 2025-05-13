@@ -54,7 +54,6 @@ function Navbar() {
         <div className="icon-links d-flex align-items-center gap-3">
         {user ? (
           <>
-          <span className="text-white">Welcome, {user.fname}!</span>
           <button onClick={logout} className="btn btn-sm btn-outline-light">
             <i className="bi bi-box-arrow-right me-1"></i> 
           </button>

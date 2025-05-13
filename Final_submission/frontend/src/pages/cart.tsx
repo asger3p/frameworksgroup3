@@ -1,6 +1,6 @@
 // Description: Main cart page that composes TitleCart, maps CartItem list, and shows CartSummary.
 import React, { useState, useEffect } from 'react';
-import TitleCart from '../components/cart/titleCart'; // Header section with greeting and subtitle
+import Greeting from '../components/greeting'; // Header section with greeting and subtitle
 import CartItem from '../components/cart/cartItem'; // Individual cart row component
 import CartSummary from '../components/cart/cartSummary'; // Summary section with total, clear, and navigation buttons
 import { CartItem as CartItemType } from '../types/cart'; // Type definition for cart items
@@ -45,8 +45,9 @@ const CartPage: React.FC = () => { // Functional component for the entire cart p
 
   return (
     <>
-      <TitleCart />
+      <Greeting />
       <div className="container mt-4">
+      <h4 className="text-left">See your cart here</h4>
         <h5>Overview of Items:</h5>
         <div id="cartItems"> {/* Container for all CartItem rows */}
           {cart.length === 0 ? (
