@@ -29,29 +29,12 @@ function Navbar() {
         
 
         {/* Desktop Links */}
-        <div className="icon-links d-flex align-items-center gap-3">
-        <div className="dropdown">
-          <button className="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown">
-            <i className="bi bi-grid me-1"></i> Products
-          </button>
-        <ul className="dropdown-menu dropdown-menu-end">
-        <li><Link className="dropdown-item" to="/products">All Products</Link></li>
-        <li><hr className="dropdown-divider" /></li>
-        <li><strong className="dropdown-header">By Type</strong></li>
-        <li><Link className="dropdown-item" to="/products/type/whole">Whole</Link></li>
-        <li><Link className="dropdown-item" to="/products/type/ground">Ground</Link></li>
-        <li><Link className="dropdown-item" to="/products/type/blends">Blends</Link></li>
-        <li><hr className="dropdown-divider" /></li>
-        <li><strong className="dropdown-header">By Cuisine</strong></li>
-        <li><Link className="dropdown-item" to="/products/cuisine/indian">Indian</Link></li>
-        <li><Link className="dropdown-item" to="/products/cuisine/mediterranean">Mediterranean</Link></li>
-        <li><Link className="dropdown-item" to="/products/cuisine/asian">Asian</Link></li>
-        <li><Link className="dropdown-item" to="/products/cuisine/latin-american">Latin American</Link></li>
-        </ul>
-        </div>
+        <div className="icon-links desktop-menu d-flex align-items-center gap-3">
+        {/* All products */}
+        <Link to="/products" className="nav-link text-white">
+          All products
+        </Link>
 
-        
-        <div className="icon-links d-flex align-items-center gap-3">
         {user ? (
           <>
           <button onClick={logout} className="btn btn-sm btn-outline-light">
@@ -75,9 +58,11 @@ function Navbar() {
 
         {/* Mobile Menu */}
         <div className={`mobile-menu ${menuOpen ? 'show-menu' : ''}`}>
+          <Link to="/products">All products</Link>
+          <Link to="/login">Login/profile</Link>
+          <Link to="/cart">Checkout</Link>
           <Link to="/cart">Cart</Link>
         </div>
-      </div>
     </nav>
   );
 }
