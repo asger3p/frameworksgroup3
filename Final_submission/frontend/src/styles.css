@@ -133,21 +133,7 @@ body {
 .carousel-control-prev:hover, .carousel-control-next:hover {
   background-color: var(--primary-orange); 
   opacity: 1;
-}
-
-/* Carousel Nav Pills */
-.nav-pills .nav-link {
-    color: var(--text-dark);
-}
-
-.nav-pills .nav-link.active {
-    background-color: var(--primary-orange) !important;
-    color: white;
-}
-
-.nav-pills .nav-link:hover {
-    background-color: var(--primary-green) !important;
-    color: white;
+  width: 100px;
 }
 
 /* Specific Cart and Checkout Buttons */

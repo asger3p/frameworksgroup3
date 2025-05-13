@@ -8,27 +8,50 @@ import { Size } from "../types/product"; // assuming Size is defined like: { siz
 
 type QuantitySelectorProps = {
     sizes: Size[];
+
+    // Callback props that let the parent know when the user picks a new size or qty.
+    onSelectSize?:      (size: Size)   => void; 
+    onSelectQuantity?:  (qty: number)  => void;
   };
 
 
-export function QuantitySelector({sizes}: QuantitySelectorProps) {
+export function QuantitySelector({
+  sizes,
+  onSelectSize,
+  onSelectQuantity,
+}: QuantitySelectorProps) {
 
     const [selectedSize, setSelectedSize] = useState<Size | null>(sizes[0] || null);
     const [quantity, setQuantity] = useState<number>(1); //the initial value is 1
+
+
+    // notify parent whenever selectedSize changes (after render). Prevents React’s “setState during render” error.
+    useEffect(() => {
+      if (selectedSize) {
+        onSelectSize?.(selectedSize);
+      }
+    }, [selectedSize]);
+
+     // similarly, let the parent know whenever the quantity changes.
+    useEffect(() => {
+      onSelectQuantity?.(quantity);
+    }, [quantity]);
 
     const totalPrice = selectedSize ? selectedSize.price * quantity : 0;
     
     const handleSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const size = sizes.find(s => s.size === e.target.value);
-        if (size) setSelectedSize(size);
+        if (size) {
+          setSelectedSize(size);
+        }
       };
 
     function increaseQuantity() {
-        setQuantity((prevQuantity) => prevQuantity + 1); //You’re not defining prevQuantity — React injects it for you.
+        setQuantity(prev => prev + 1); //You’re not defining prevQuantity — React injects it for you.
     }
 
     function decreaseQuantity() {
-        setQuantity((prevQuantity) => prevQuantity > 1 ? prevQuantity - 1 : prevQuantity); //checks if quantity > 1
+        setQuantity(prev => (prev > 1 ? prev - 1 : 1)); //checks if quantity > 1
     }
 
 
@@ -58,10 +81,6 @@ export function QuantitySelector({sizes}: QuantitySelectorProps) {
               <strong>Total:</strong> {totalPrice} kr
             </div>
       
-            <div className="w-100 mt-3">
-              {/*add to cart button*/}
-              <button className="btn btn-primary px-4 py-2">ADD TO CART</button>
-            </div>
           </div>
         </>
       );

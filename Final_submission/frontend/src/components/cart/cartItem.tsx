@@ -15,13 +15,19 @@ const CartItem: React.FC<CartItemProps> = ({ item, index, onIncrease, onDecrease
   <div className="row align-items-center border-bottom py-2">
     <div className="col-2">
       <img
-        src={item.imageUrl ?? ''} // fallback if no image URL provided
+        src={item.imageUrl ? `http://localhost:3000${item.imageUrl}` : ''} // fallback if no image URL provided
         alt={item.name}
         className="img-fluid"
         style={{ maxWidth: 50 }}
       />
     </div>
-    <div className="col-4">{item.name}</div>
+    <div className="col-4">
+      {/* Product name in bold, with size as muted text */}
+      <div>
+        <strong>{item.name}</strong>
+      <small className="text-muted ms-2">{item.size}</small>
+      </div>
+    </div>
     <div className="col-3 d-flex align-items-center">
       <button className="decrease btn btn-sm btn-outline-secondary px-2 py-1"
               onClick={() => onDecrease(index)}>–</button>

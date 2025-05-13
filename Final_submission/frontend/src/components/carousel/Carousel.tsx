@@ -2,21 +2,25 @@ import React, { useEffect, useState } from "react";
 import ProductCard from "../productcard/ProductCard";
 import { Product } from "../../types/product";
 
+// Define the props for the Carousel component
 interface CarouselProps {
     id: string;
     products: Product[];
   }
   
+  // Carousel component displays products in a responsive Bootstrap carousel
   const Carousel: React.FC<CarouselProps> = ({ id, products }) => {
     const [slides, setSlides] = useState<Product[][]>([]);
   
     useEffect(() => {
+       // Determine number of product cards per slide based on window width
       const getCardsPerSlide = () => {
         if (window.innerWidth >= 1200) return 5;
         if (window.innerWidth >= 768) return 4;
         return 3;
       };
-  
+
+      // Group products into slides depending on cardsPerSlide
       const getSlides = (cards: Product[]) => {
         const cardsPerSlide = getCardsPerSlide();
         const result: Product[][] = [];
@@ -25,7 +29,8 @@ interface CarouselProps {
         }
         return result;
       };
-  
+
+      // Update slides whenever the window is resized or products change
       const updateSlides = () => {
         setSlides(getSlides(products));
       };
