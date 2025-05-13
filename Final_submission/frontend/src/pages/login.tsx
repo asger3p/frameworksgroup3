@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/authContext';
 
 function Login() {
   // React state for email and password input fields
@@ -15,18 +16,21 @@ function Login() {
   // React Router hook to navigate to other pages
   const navigate = useNavigate();
 
+  const { login } = useAuth();//login from context
+
+
   // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault(); // Prevent form from reloading the page
 
-    // Get registered credentials from localStorage
     const storedEmail = localStorage.getItem('email');
     const storedPassword = localStorage.getItem('password');
+    const storedFname = localStorage.getItem('fname');
 
     // Compare user input to stored values
     if (email === storedEmail && password === storedPassword) {
       // Mark user as logged in
-      localStorage.setItem('isLoggedIn', 'true');
+      login({ fname: storedFname || 'Guest', email }); //authContext login
 
       // Redirect to homepage
       navigate('/');
