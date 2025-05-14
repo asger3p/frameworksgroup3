@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ProductFilter from "../components/allproducts/ProductFilter.tsx";
+import ProductFilter from "../components/allproducts/productFilter";
 import ProductGrid from "../components/allproducts/productGrid";
 import { Product, CuisineType, ProductTypeCategory } from "../types/product";
 
