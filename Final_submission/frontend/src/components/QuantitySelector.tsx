@@ -1,8 +1,3 @@
-
-//this component let the user choose an amount
-//1. fix price update and rerender
-//2. add button from Ida.
-
 import React, { useState, useEffect } from 'react';
 import { Size } from "../types/product"; // assuming Size is defined like: { size: string; price: number }
 
@@ -12,8 +7,7 @@ type QuantitySelectorProps = {
     // Callback props that let the parent know when the user picks a new size or qty.
     onSelectSize?:      (size: Size)   => void; 
     onSelectQuantity?:  (qty: number)  => void;
-  };
-
+};
 
 export function QuantitySelector({
   sizes,
@@ -21,18 +15,17 @@ export function QuantitySelector({
   onSelectQuantity,
 }: QuantitySelectorProps) {
 
-    const [selectedSize, setSelectedSize] = useState<Size | null>(sizes[0] || null);
-    const [quantity, setQuantity] = useState<number>(1); //the initial value is 1
+    const [selectedSize, setSelectedSize] = useState<Size | null>(sizes.length > 0 ? sizes[0] : null); // Fixed initialization
+    const [quantity, setQuantity] = useState<number>(1); // Initial value is 1
 
-
-    // notify parent whenever selectedSize changes (after render). Prevents React’s “setState during render” error.
+    // Notify parent whenever selectedSize changes (after render)
     useEffect(() => {
       if (selectedSize) {
         onSelectSize?.(selectedSize);
       }
     }, [selectedSize]);
 
-     // similarly, let the parent know whenever the quantity changes.
+    // Similarly, let the parent know whenever the quantity changes.
     useEffect(() => {
       onSelectQuantity?.(quantity);
     }, [quantity]);
@@ -44,16 +37,15 @@ export function QuantitySelector({
         if (size) {
           setSelectedSize(size);
         }
-      };
+    };
 
     function increaseQuantity() {
-        setQuantity(prev => prev + 1); //You’re not defining prevQuantity — React injects it for you.
+        setQuantity(prev => prev + 1);
     }
 
     function decreaseQuantity() {
-        setQuantity(prev => (prev > 1 ? prev - 1 : 1)); //checks if quantity > 1
+        setQuantity(prev => (prev > 1 ? prev - 1 : 1)); // Ensures quantity doesn't go below 1
     }
-
 
     return (
         <>
@@ -61,7 +53,7 @@ export function QuantitySelector({
           <div className="quantity-selector mt-4">
             {/* Size dropdown */}
             <label className="form-label">Size</label>
-            <select className="form-select" onChange={handleSizeChange} value={selectedSize?.size}>
+            <select className="form-select" onChange={handleSizeChange} value={selectedSize?.size || ''}>
               {sizes.map((size) => (
                 <option key={size.size} value={size.size}>
                   {size.size} — {size.price} kr
@@ -83,5 +75,5 @@ export function QuantitySelector({
       
           </div>
         </>
-      );
+    );
 }
