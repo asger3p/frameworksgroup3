@@ -4,7 +4,7 @@
       "product_id": "product_cuminSeeds",
       "name": "Cumin Seeds",
       "subheading": "Earthy, Bold, Essential",
-      "description": "A cornerstone of countless cuisines, these aromatic seeds bring a nutty warmth to curries, stews, and roasted veggies. Toast them lightly to unlock their smoky magic.<br><br><strong>Dishes:</strong> Indian dal, Mexican chili, roasted carrots.<br><strong>Usage Tip:</strong> Bloom cumin seeds in hot oil before adding other ingredients — it intensifies their flavor!<br><strong>Pairs well with:</strong> Coriander seeds, turmeric, paprika.",
+      "description": "A cornerstone of countless cuisines, these aromatic seeds bring a nutty warmth to curries, stews, and roasted veggies. Toast them lightly to unlock their smoky magic. Used in Indian dal, Mexican chili, roasted carrots. Bloom cumin seeds in hot oil before adding other ingredients — it intensifies their flavor!It Pairs well with Coriander seeds, turmeric, paprika.",
       "image": "/images/products/1-cumin_seeds.jpg",
       "cuisine": [
         "Indian",
@@ -31,7 +31,7 @@
       "product_id": "product_corianderSeeds",
       "name": "Coriander Seeds",
       "subheading": "Citrusy and Subtle",
-      "description": "With delicate lemony notes, coriander seeds add a bright, floral touch to spice blends, pickles, and slow-cooked dishes. Crush them fresh for a fragrant burst of flavor.<br><br><strong>Dishes:</strong> Pickled vegetables, Moroccan tagine, spiced rubs for meat.<br><strong>Usage Tip:</strong> Lightly crush coriander seeds to release their oils and boost their aroma.<br><strong>Pairs well with:</strong> Cumin seeds, cinnamon, bay leaves.",
+      "description": "With delicate lemony notes, coriander seeds add a bright, floral touch to spice blends, pickles, and slow-cooked dishes. Crush them fresh for a fragrant burst of flavor.Used in Dishes like Pickled vegetables, Moroccan tagine, spiced rubs for meat.Usage Tip: Lightly crush coriander seeds to release their oils and boost their aroma.It Pairs well with: Cumin seeds, cinnamon, bay leaves.",
       "image": "/images/products/2-coriander_seeds.jpg",
       "cuisine": [
         "Indian",
@@ -83,7 +83,7 @@
       "product_id": "product_starAnis",
       "name": "Star Anise",
       "subheading": "A Star of Bold Flavors",
-      "description": "Intensely aromatic and slightly sweet, star anise adds depth to broths, braises, and spice blends. Perfect for crafting rich curries or Asian-inspired dishes.<br><br><strong>Dishes:</strong> Pho broth, Chinese braised pork, spiced mulled wine.<br><strong>Usage Tip:</strong> Add whole star anise to slow-cooked dishes and remove before serving — a little goes a long way!<br><strong>Pairs well with:</strong> Cardamom pods, cloves, cinnamon.",
+      "description": "Intensely aromatic and slightly sweet, star anise adds depth to broths, braises, and spice blends. Perfect for crafting rich curries or Asian-inspired dishes.Used in Dishes like Pho broth, Chinese braised pork, spiced mulled wine. Usage Tip: Add whole star anise to slow-cooked dishes and remove before serving — a little goes a long way! It pairs well with Cardamom pods, cloves, cinnamon.",
       "image": "/images/products/4-star_anise.jpg",
       "cuisine": [
         "Asian"
@@ -108,7 +108,7 @@
       "product_id": "product_cloves",
       "name": "Cloves",
       "subheading": "Sweet Heat in a Bud",
-      "description": "Pungent and warm, these handpicked cloves bring bold spice to marinades, baked goods, and mulled drinks. Add a pinch to unlock their powerful aroma.<br><br><strong>Dishes:</strong> Biryani, baked ham, Arroz con Leche<br><strong>Usage Tip:</strong> Stud an onion with cloves and simmer in broths or sauces for subtle, spicy undertones.<br><strong>Pairs well with:</strong> Cinnamon, star anise, cardamom pods.",
+      "description": "Pungent and warm, these handpicked cloves bring bold spice to marinades, baked goods, and mulled drinks. Add a pinch to unlock their powerful aroma.Used in dishes like Biryani, baked ham, Arroz con Leche. Usage Tip: Stud an onion with cloves and simmer in broths or sauces for subtle, spicy undertones. It Pairs well with cinnamon, star anise, cardamom pods.",
       "image": "/images/products/5-cloves.jpg",
       "cuisine": [
         "Indian",
@@ -135,7 +135,7 @@
       "product_id": "product_bayLeaves",
       "name": "Bay Leaves",
       "subheading": "The Quiet Hero",
-      "description": "Subtle but essential, bay leaves add a herbal, slightly floral undertone to soups, stews, and sauces. Simmer gently and let their fragrance shine.<br><br><strong>Dishes:</strong> Beef stew, tomato sauce, lentil soup.<br><strong>Usage Tip:</strong> Add bay leaves early in cooking and remove before serving — they flavor the dish without overpowering it.<br><strong>Pairs well with:</strong> Thyme, coriander seeds, cloves.",
+      "description": "Subtle but essential, bay leaves add a herbal, slightly floral undertone to soups, stews, and sauces. Simmer gently and let their fragrance shine. Used in dishes like Beef stew, tomato sauce, lentil soup.Usage Tip: Add bay leaves early in cooking and remove before serving — they flavor the dish without overpowering it. It Pairs well with: thyme, coriander seeds, cloves.",
       "image": "/images/products/6-bay_leaves.jpg",
       "cuisine": [
         "Indian",
@@ -162,7 +162,7 @@
       "product_id": "product_turmeric",
       "name": "Turmeric Powder",
       "subheading": "Golden and Glorious",
-      "description": "Earthy, peppery, and bold — turmeric brings a vibrant yellow hue and warm flavor to curries, soups, and golden lattes. A must-have for every spice rack.<br><br><strong>Dishes:</strong> Golden milk, Indian curries, roasted cauliflower.<br><strong>Usage Tip:</strong> Pair turmeric with black pepper — it boosts curcumin absorption, unlocking its health benefits!<br><strong>Pairs well with:</strong> Cumin seeds, ginger, curry powder.",
+      "description": "Earthy, peppery, and bold — turmeric brings a vibrant yellow hue and warm flavor to curries, soups, and golden lattes. A must-have for every spice rack. Used in dishes like Golden milk, Indian curries, roasted cauliflower. Usage Tip: Pair turmeric with black pepper — it boosts curcumin absorption, unlocking its health benefits! It pairs well with cumin seeds, ginger, curry powder.",
       "image": "/images/products/7-turmeric.jpg",
       "cuisine": [
         "Indian"
@@ -187,7 +187,7 @@
       "product_id": "product_paprika",
       "name": "Paprika",
       "subheading": "Smoky or Sweet, Always Bold",
-      "description": "A splash of rich color and a touch of heat — this paprika adds smoky depth to roasted veggies, stews, or even popcorn. A sprinkle goes a long way!<br><br><strong>Dishes:</strong> Spanish paella, Hungarian goulash, BBQ rubs.<br><strong>Usage Tip:</strong> Mix paprika with olive oil to create a smoky marinade for grilled meats.<br><strong>Pairs well with:</strong> Cumin seeds, oregano, chili powder.",
+      "description": "A splash of rich color and a touch of heat — this paprika adds smoky depth to roasted veggies, stews, or even popcorn. A sprinkle goes a long way! Used in dishes like spanish paella, Hungarian goulash, BBQ rubs. Usage Tip: Mix paprika with olive oil to create a smoky marinade for grilled meats.It pairs well with cumin seeds, oregano, chili powder.",
       "image": "/images/products/8-paprika.jpg",
       "cuisine": [
         "Mediterranean",
@@ -214,7 +214,7 @@
       "product_id": "product_cinnamon",
       "name": "Cinnamon Powder",
       "subheading": "Warm and Comforting",
-      "description": "Sweet yet spicy, our cinnamon powder brings cozy flavor to oatmeal, desserts, and even savory dishes. It is like a hug for your taste buds.<br><br><strong>Dishes:</strong> Moroccan tagine, cinnamon rolls, pumpkin soup.<br><strong>Usage Tip:</strong> Sprinkle cinnamon into coffee or hot chocolate for a subtle, spiced kick.<br><strong>Pairs well with:</strong> Cardamom, cloves, ginger powder.",
+      "description": "Sweet yet spicy, our cinnamon powder brings cozy flavor to oatmeal, desserts, and even savory dishes. It is like a hug for your taste buds. Used in dishes like moroccan tagine, cinnamon rolls, pumpkin soup. Usage Tip: Sprinkle cinnamon into coffee or hot chocolate for a subtle, spiced kick. It Pairs well with cardamom, cloves, ginger powder.",
       "image": "/images/products/9-cinnamon.jpg",
       "cuisine": [
         "Mediterranean",
@@ -241,7 +241,7 @@
       "product_id": "product_ginger",
       "name": "Ginger Powder",
       "subheading": "Zesty and Bright",
-      "description": "Spicy, sharp, and slightly sweet — this powder adds a fiery kick to curries, baked goods, and marinades. Perfect for both warmth and bite.<br><br><strong>Dishes:</strong> Ginger cookies, carrot soup, spiced marinades.<br><strong>Usage Tip:</strong> Combine with garlic and soy sauce for an easy, flavor-packed stir-fry sauce.<br><strong>Pairs well with:</strong> Turmeric, cinnamon, chili powder.",
+      "description": "Spicy, sharp, and slightly sweet — this powder adds a fiery kick to curries, baked goods, and marinades. Perfect for both warmth and bite. Used in dishes like ginger cookies, carrot soup, spiced marinades. Usage Tip: Combine with garlic and soy sauce for an easy, flavor-packed stir-fry sauce. It pairs well with turmeric, cinnamon, chili powder.",
       "image": "/images/products/10-ginger.jpg",
       "cuisine": [
         "Indian",
@@ -267,7 +267,7 @@
       "product_id": "product_chili",
       "name": "Chili Powder",
       "subheading": "A Fiery Essential",
-      "description": "Bold, smoky, and hot — this blend of dried chilies adds spice to tacos, curries, and rubs. Adjust the heat to your taste and turn up the flavor.<br><br><strong>Dishes:</strong> Tacos, chili con carne, spicy pasta sauce.<br><strong>Usage Tip:</strong> Add chili powder early in cooking for a subtle heat or sprinkle it at the end for a spicy punch.<br><strong>Pairs well with:</strong> Paprika, cumin seeds, oregano.",
+      "description": "Bold, smoky, and hot — this blend of dried chilies adds spice to tacos, curries, and rubs. Adjust the heat to your taste and turn up the flavor. Used in dishes like tacos, chili con carne, spicy pasta sauce. Usage Tip Add chili powder early in cooking for a subtle heat or sprinkle it at the end for a spicy punch. It pairs well with paprika, cumin seeds, oregano.",
       "image": "/images/products/11-chili.jpg",
       "cuisine": [
         "Latin American"
@@ -292,7 +292,7 @@
       "product_id": "product_oregano",
       "name": "Oregano",
       "subheading": "Herbal and Bold",
-      "description": "Fragrant and earthy, oregano adds a Mediterranean punch to sauces, roasted meats, and pizza. Sprinkle liberally and savor the boldness.<br><br><strong>Dishes:</strong> Greek salad, tomato sauce, roast lamb.<br><strong>Usage Tip:</strong> Crush dried oregano between your fingers before using — it releases the essential oils for more aroma!<br><strong>Pairs well with:</strong> Paprika, garlic powder, bay leaves.",
+      "description": "Fragrant and earthy, oregano adds a Mediterranean punch to sauces, roasted meats, and pizza. Sprinkle liberally and savor the boldness.Used in dishes like Greek salad, tomato sauce, roast lamb. Usage Tip: Crush dried oregano between your fingers before using — it releases the essential oils for more aroma! It pairs well with paprika, garlic powder, bay leaves.",
       "image": "/images/products/12-oregano.jpg",
       "cuisine": [
         "Mediterranean"
@@ -317,7 +317,7 @@
       "product_id": "product_garamMasala",
       "name": "Garam Masala",
       "subheading": "Warmth and Complexity",
-      "description": "A classic Indian blend of roasted spices — cumin, cinnamon, and cardamom — adding bold, layered flavor to curries, soups, and roasted dishes.<br><br><strong>Dishes:</strong> Butter chicken, lentil curry, roasted vegetables.<br><strong>Usage Tip:</strong> Add garam masala at the end of cooking for a fragrant finish — it’s all about capturing those bold aromas!<br><strong>Pairs well with:</strong> Turmeric, ginger powder, bay leaves.",
+      "description": "A classic Indian blend of roasted spices — cumin, cinnamon, and cardamom — adding bold, layered flavor to curries, soups, and roasted dishes. Used in dishes like butter chicken, lentil curry, roasted vegetables. Usage Tip: Add garam masala at the end of cooking for a fragrant finish — it’s all about capturing those bold aromas! It pairs well with turmeric, ginger powder, bay leaves.",
       "image": "/images/products/13-garammasala.jpg",
       "cuisine": ["Indian"],
       "type": "Blend",
@@ -340,7 +340,7 @@
       "product_id": "product_curry",
       "name": "Curry",
       "subheading": "Sunshine in a Jar",
-      "description": "A perfect balance of turmeric, coriander, and spices, this vibrant blend adds warmth and depth to curries, stews, and marinades.<br><br><strong>Dishes:</strong> Chicken curry, curried cauliflower, spiced soups.<br><strong>Usage Tip:</strong> Sauté curry powder in oil or butter to unlock its full flavor before adding other ingredients.<br><strong>Pairs well with:</strong> Bay leaves, cinnamon, ginger powder.",
+      "description": "A perfect balance of turmeric, coriander, and spices, this vibrant blend adds warmth and depth to curries, stews, and marinades.Used in dishes like Chicken curry, curried cauliflower, spiced soups.Usage Tip: Sauté curry powder in oil or butter to unlock its full flavor before adding other ingredients.It pairs well with bay leaves, cinnamon, ginger powder.",
       "image": "/images/products/14-curry.jpg",
       "cuisine": [
         "Indian",
@@ -366,7 +366,7 @@
       "product_id": "product_taco",
       "name": "Taco Seasoning",
       "subheading": "Fiesta in Every Bite",
-      "description": "Smoky paprika, garlic, cumin, and chili powder — this bold blend turns any dish into a Tex-Mex celebration. Tacos tonight? Yes, please!<br><br><strong>Dishes:</strong> Beef tacos, fajitas, Mexican rice.<br><strong>Usage Tip:</strong> Mix taco seasoning with a splash of lime juice for a quick and flavorful marinade.<br><strong>Pairs well with:</strong> Coriander seeds, paprika, oregano.",
+      "description": "Smoky paprika, garlic, cumin, and chili powder — this bold blend turns any dish into a Tex-Mex celebration. Tacos tonight? Yes, please! Used in dishes like Beef tacos, fajitas, Mexican rice. Usage Tip: Mix taco seasoning with a splash of lime juice for a quick and flavorful marinade. It Pairs well with coriander seeds, paprika, oregano.",
       "image": "/images/products/15-taco.jpg",
       "cuisine": [
         "Latin American"
@@ -391,7 +391,7 @@
       "product_id": "product_zaatar",
       "name": "Za’atar",
       "subheading": "Herbaceous and Tangy",
-      "description": "A Middle Eastern classic — thyme, sumac, and sesame seeds — adding a nutty, lemony twist to roasted veggies, flatbreads, and dips.<br><br><strong>Dishes:</strong> Manakish (za’atar flatbread), roasted eggplant, hummus drizzle.<br><strong>Usage Tip:</strong> Mix za’atar with olive oil and brush it over pita bread for an easy, delicious snack.<br><strong>Pairs well with:</strong> Oregano, paprika, coriander seeds.",
+      "description": "A Middle Eastern classic — thyme, sumac, and sesame seeds — adding a nutty, lemony twist to roasted veggies, flatbreads, and dips. Used in dishes like manakish (za’atar flatbread), roasted eggplant, hummus drizzle. Usage Tip: Mix za’atar with olive oil and brush it over pita bread for an easy, delicious snack. It pairs well with oregano, paprika, coriander seeds.",
       "image": "/images/products/16-zaatar.jpg",
       "cuisine": [
         "Mediterranean"
@@ -416,7 +416,7 @@
       "product_id": "product_chineseFiveSpice",
       "name": "Chinese Five-Spice",
       "subheading": "Bold and Balanced",
-      "description": "A punchy mix of star anise, cloves, and cinnamon — the perfect balance of sweet, savory, and spicy for your stir-fries, braises, and roasted meats.<br><br><strong>Dishes:</strong> Peking duck, spiced pork ribs, vegetable stir-fry.<br><strong>Usage Tip:</strong> Rub five-spice powder onto meat before roasting for a sweet-savory crust.<br><strong>Pairs well with:</strong> Ginger powder, bay leaves, chili powder.",
+      "description": "A punchy mix of star anise, cloves, and cinnamon — the perfect balance of sweet, savory, and spicy for your stir-fries, braises, and roasted meats. Used in dishes like Peking duck, spiced pork ribs, vegetable stir-fry. Usage Tip: Rub five-spice powder onto meat before roasting for a sweet-savory crust. It pairs well with: ginger powder, bay leaves, chili powder.",
       "image": "/images/products/17-chinese_five_spice.jpg",
       "cuisine": [
         "Asian"
@@ -441,7 +441,7 @@
       "product_id": "product_rasElHanout",
       "name": "Ras el Hanout",
       "subheading": "The King of Spice Blends",
-      "description": "A Moroccan masterpiece — a complex mix of warm spices like cumin, cinnamon, and paprika — adding rich depth to tagines, couscous, and grilled dishes.<br><br><strong>Dishes:</strong> Moroccan lamb tagine, roasted carrots, spiced couscous.<br><strong>Usage Tip:</strong> Stir Ras el Hanout into olive oil for a flavorful marinade or dressing.<br><strong>Pairs well with:</strong> Turmeric, cinnamon, bay leaves.",
+      "description": "A Moroccan masterpiece — a complex mix of warm spices like cumin, cinnamon, and paprika — adding rich depth to tagines, couscous, and grilled dishes. Used in dishes like moroccan lamb tagine, roasted carrots, spiced couscous. Usage Tip: Stir Ras el Hanout into olive oil for a flavorful marinade or dressing. It pairs well with turmeric, cinnamon, bay leaves.",
       "image": "/images/products/18-ras_el_hanout.jpg",
       "cuisine": [
         "Mediterranean"
