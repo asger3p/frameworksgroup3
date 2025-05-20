@@ -1,13 +1,26 @@
-import React from 'react';
-import '../styles.css'; // Ensure this includes your footer styles
+import React, { useState } from 'react';
+import '../styles.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const Footer: React.FC = () => {
+  // State to store the email input
+  const [email, setEmail] = useState('');
+
+  // State to store the success message
+  const [message, setMessage] = useState('');
+
+  // Handle form submission
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault(); // Prevent page reload
+    setMessage(`Thanks for subscribing!`); // Set a thank-you message
+    setEmail(''); // Clear the input field
+  };
+
   return (
     <footer className="footer mt-5 py-4">
       <div className="container">
         <div className="row">
-          {/* About Spice Planet */}
+          {/* About section */}
           <div className="col-md-6 text-start">
             <h5>About Spice Planet</h5>
             <p className="footer-description">
@@ -16,16 +29,30 @@ const Footer: React.FC = () => {
             </p>
           </div>
 
-          {/* Newsletter Signup */}
+          {/* Newsletter signup section */}
           <div className="col-md-6 text-end">
             <h5>Sign up for our newsletter</h5>
             <p className="footer-subtext">
               Get exclusive recipes, spice tips, and member-only discounts straight to your inbox.
             </p>
-            <form className="newsletter-form d-flex justify-content-end" onSubmit={(e) => e.preventDefault()}>
-              <input type="email" className="form-control me-2" placeholder="Enter your email" required />
+
+            {/* Newsletter form */}
+            <form className="newsletter-form d-flex justify-content-end" onSubmit={handleSubmit}>
+              {/* Email input field */}
+              <input
+                type="email"
+                className="form-control me-2"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)} // Update email state on change
+                required
+              />
+              {/* Submit button */}
               <button type="submit" className="btn btn-primary">Subscribe</button>
             </form>
+
+            {/* Success message */}
+            {message && <p className="text-success mt-2">{message}</p>}
           </div>
         </div>
 
