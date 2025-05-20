@@ -217,41 +217,6 @@ a:visited {
     color: var(--primary-orange) !important;
 }
 
-/* Quantity and Small Buttons */
-
-.btn-sm,
-.btn-outline-secondary,
-.btn-outline-primary {
-    background-color: transparent !important;
-    border-color: var(--primary-green) !important;
-    color: var(--primary-green) !important;
-}
-
-.btn-sm:hover,
-.btn-outline-secondary:hover,
-.btn-outline-primary:hover  {
-    background-color: var(--primary-green) !important;
-    border-color: var(--primary-green) !important;
-    color: white !important;
-}
-
-/* Remove Button */
-.btn-sm.btn-outline-danger {
-    border-color: var(--text-dark) !important;
-    color: var(--text-dark) !important;
-}
-
-.btn-sm.btn-outline-danger:hover {
-    background-color: var(--text-dark) !important;
-    color: white !important;
-}
-
-/* Icons */
-.bi-person-circle,
-.bi-cart {
-    color: white;
-}
-
 /* Footer */
 .footer {
     background-color: var(--primary-green);
