@@ -52,7 +52,7 @@ export function QuantitySelector({
           {/*Dropdown Box */}
           <div className="quantity-selector mt-4">
             {/* Size dropdown */}
-            <label className="form-label">Size</label>
+            <label className="form-label"><strong>Size</strong></label>
             <select className="form-select" onChange={handleSizeChange} value={selectedSize?.size || ''}>
               {sizes.map((size) => (
                 <option key={size.size} value={size.size}>
@@ -62,7 +62,7 @@ export function QuantitySelector({
             </select>
       
             {/*Quantity Selector*/}
-            <div id="quantitySelector" className="d-flex align-items-center gap-2">
+            <div id="quantitySelector" className="d-flex align-items-center gap-2 mt-3">
               <button className="btn btn-sm btn-outline-secondary px-3 py-2" onClick={decreaseQuantity}>-</button>
               <input id="quantity" className="mx-1 fs-5 text-center w-25" type="number" value={quantity} min="1" readOnly />
               <button id="increase" className="btn btn-sm btn-outline-secondary px-3 py-2" onClick={increaseQuantity}>+</button>
@@ -70,7 +70,8 @@ export function QuantitySelector({
       
             {/*Price*/}
             <div id="price-container" className="price-box">
-              <strong>Total:</strong> {totalPrice} kr
+              <strong>Total: </strong> 
+              <span className='ms-2'>{ totalPrice} kr</span>
             </div>
       
           </div>

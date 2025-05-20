@@ -136,7 +136,7 @@ const parseDescription = (description: string) => {
             />
             {/* Back button */}
             <button
-              className="btn-primary ml-2 ms-2"
+              className="btn-primary back-button ms-2"
               onClick={() => navigate('/')}
             >
               Back
