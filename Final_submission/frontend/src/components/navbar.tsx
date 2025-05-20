@@ -7,7 +7,7 @@ import { useAuth } from '../context/authContext';
 function Navbar() {
   
   const [menuOpen, setMenuOpen] = useState(false);
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
@@ -30,16 +30,16 @@ function Navbar() {
         </Link>
 
         {user ? (
-          <>
-          <button onClick={logout} className="btn btn-sm btn-outline-light">
-            <i className="bi bi-box-arrow-right me-1"></i> 
-          </button>
-          </>
+          /* If “user” is truthy (i.e. someone is logged in)… */
+          <Link to="/profile" className="nav-link text-white">
+            <i className="bi bi-person-circle"></i> 
+          </Link>
         ) : (
-    <Link to="/login" className="text-white">
-      <i className="bi bi-person-circle me-1"></i>
-    </Link>
-  )}
+          /* Otherwise (no user), show the “login” link */
+          <Link to="/login" className="nav-link text-white">
+            <i className="bi bi-person-circle me-1"></i>
+          </Link>
+         )}
           <Link to="/checkout"><i className="bi bi-credit-card"></i></Link> {/* NEW */}
           <Link to="/cart"><i className="bi bi-cart"></i></Link>
       </div>

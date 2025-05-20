@@ -9,6 +9,7 @@ interface AuthContextType {
 
 // Define the shape of a user (you can customize this)
 interface User {
+  customer_id: string; // to keep track of user data
   fname: string;
   email: string;
   // Add more fields if needed (e.g. role, token)
@@ -24,7 +25,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const saved = localStorage.getItem('user');
     return saved ? JSON.parse(saved) : null;
   });
-
+  
   // Login function — sets state and stores user
   const login = (userData: User) => {
     setUser(userData);
@@ -36,7 +37,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setUser(null);
     localStorage.removeItem('user');
   };
-
+  
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
       {children}

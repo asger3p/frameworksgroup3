@@ -28,15 +28,20 @@ export default class CustomerModel {
 
     // CREATE new customer
     createCustomer(customerData) {
-        const { name, email, password } = customerData; // required fields
+        const { name, mail, password } = customerData; // required fields
 
-        if (!name || !email || !password) {
+        if (!name || !mail || !password) { // Ensure name, mail, and password are provided
             throw new Error("Missing required fields");
         }
 
         const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
-        const newCustomerId = `customer_${db.customers.length + 1}`;   // generate new customer ID
-        const newCustomer = { customer_id: newCustomerId, ...customerData };
+
+        // generate new customer ID by finding the highest existing id number
+        const max = db.customers
+        .map(c => +c.customer_id.replace('customer_', '')) // extract numeric part of IDs
+        .reduce((a, b) => Math.max(a, b), 0); // take the maximum
+        const newCustomerId = `customer_${max + 1}`; // generating next ID
+        const newCustomer = { customer_id: newCustomerId, name, mail, password, };
         db.customers.push(newCustomer);
         
         //Create an empty basket for the customer
