@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from 'react-router-dom'; // retrieves a temporary notification ("flash message") sent via React Router’s navigation state, used to show success messages after actions like login or logout
 import Carousel from "../components/carousel/Carousel";
 import { Product } from "../types/product";
 import Greeting from "../components/greeting";
@@ -26,6 +27,17 @@ const HomePage: React.FC = () => {
       "product_taco"
     ].includes(p.product_id)
   );
+
+  const location = useLocation() // get React Router state
+  const state = (location.state as { flash?: string }) ?? {}  // type‑cast state
+  const [flash, setFlash] = useState<string | undefined>(state.flash) // initialize flash message
+  
+    // clear flash message after 2s
+  useEffect(() => {  
+    if (!flash) return  
+    const t = setTimeout(() => setFlash(undefined), 2000)
+    return () => clearTimeout(t)
+  }, [flash])
 
   return (
     <div>

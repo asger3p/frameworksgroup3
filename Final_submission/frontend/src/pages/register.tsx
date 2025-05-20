@@ -1,25 +1,70 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {useAuth} from '../context/authContext'; // AuthContext to set user after signup
 
 export default function Register() {
   const navigate = useNavigate();
+  const { login } = useAuth(); // so we can make sure the user is logged in automatically when creating account
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => { // async marks a function as “returns a promise”
     e.preventDefault();
 
-    // Save to localStorage
-    localStorage.setItem('fname', fname);
-    localStorage.setItem('lname', lname);
-    localStorage.setItem('email', email);
-    localStorage.setItem('password', password);
+    // Build the payload (the JSON data object) you’ll send to the server: contains the new user’s name, mail, and password
+    const payload = {
+      name:  `${fname} ${lname}`,
+      mail:  email,
+      password,
+    }
 
-    // Redirect to login page
-    navigate('/login');
-  };
+    try{
+      // send the POST request
+      const resp = await fetch('http://localhost:3000/customers', { // await waits for the promise to resolve
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(payload),
+      })
+
+      const data = await resp.json();  // Parse the JSON - read back whatever JSON the server sent
+
+      if (!resp.ok) {
+        alert('Registration failed');   // if it was an error show a message
+        return;
+      }
+
+      // AUTO LOGIN:
+      // otherwise it succeeded — data.customer is the new user record (data.customer is what the backend sent back)
+      const created = data.customer;
+      const firstName = created.name.split(' ')[0]; // Pull first name out of the full name
+      
+      // call `login(...)` from authContext to set the user in state & localStorage
+      login({
+        customer_id: created.customer_id,
+        fname:       firstName,
+        email:       created.mail,
+      });
+
+    // navigate to “/” (home page) with a flash message
+    navigate('/', { state: { flash: 'Welcome, ' + firstName + '!' } });
+    }
+    catch (err: any) {
+      // if something unexpected happens show that error
+    console.error(err);
+    alert('Registration failed: ' + err.message);
+  }
+
+    // TO BE DELETED - IS DONE IN AUTHCONTEXT NOW
+    // // Save to localStorage
+    // localStorage.setItem('fname', fname);
+    // localStorage.setItem('lname', lname);
+    // localStorage.setItem('email', email);
+    // localStorage.setItem('password', password);
+
+    
+};
 
   return (
     <div className="container d-flex justify-content-center align-items-center" style={{ height: '80vh' }}>

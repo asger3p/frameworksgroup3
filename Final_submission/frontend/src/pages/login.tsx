@@ -4,7 +4,7 @@ import { useAuth } from '../context/authContext';
 
 function Login() {
   // React state for email and password input fields
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(''); 
   const [password, setPassword] = useState('');
 
   // Toggle to show/hide password
@@ -20,24 +20,46 @@ function Login() {
 
 
   // Handle form submission
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => { // async marks a function as “returns a promise”
     e.preventDefault(); // Prevent form from reloading the page
 
-    const storedEmail = localStorage.getItem('email');
-    const storedPassword = localStorage.getItem('password');
-    const storedFname = localStorage.getItem('fname');
+    // fetch all customers from backend
+    const resp = await fetch('http://localhost:3000/customers')
+      if (!resp.ok) {
+        setError('Network error') // network check
+        return
+      }
 
-    // Compare user input to stored values
-    if (email === storedEmail && password === storedPassword) {
-      // Mark user as logged in
-      login({ fname: storedFname || 'Guest', email }); //authContext login
+    const all = await resp.json() as Array<{ // tell TypeScript "this JSON will match this array of objects" (type assertion)
+      customer_id: string, name: string, mail: string, password: string 
+    }>
 
-      // Redirect to homepage
-      navigate('/');
-    } else {
-      // Show error if login fails
-      setError('Invalid email or password.');
+    const found = all.find(c => c.mail === email && c.password === password) // find the user whose email/password match the inputs
+      if (!found) { // if no matching user found, display error
+        setError('Invalid email or password')
+      return
     }
+
+    const fname = found.name.split(' ')[0]// derive first name from full name for greeting
+    login({ customer_id: found.customer_id, fname, email })  // this call saves the user object in AuthContext + writes it to localStorage so the session persists across refreshes
+    navigate('/', { state: { flash: 'Welcome back!' }}) // redirect to home page with a flash message
+    
+    // TO BE DELETED (OLD LOCAL STORAGE):
+    // const storedEmail = localStorage.getItem('email');
+    // const storedPassword = localStorage.getItem('password');
+    // const storedFname = localStorage.getItem('fname');
+
+    // // Compare user input to stored values
+    // if (email === storedEmail && password === storedPassword) {
+    //   // Mark user as logged in
+    //   login({ fname: storedFname || 'Guest', email }); //authContext login
+
+    //   // Redirect to homepage
+    //   navigate('/');
+    // } else {
+    //   // Show error if login fails
+    //   setError('Invalid email or password.');
+    // }
   };
 
   return (
