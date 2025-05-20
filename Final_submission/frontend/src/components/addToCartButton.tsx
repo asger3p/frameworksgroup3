@@ -46,10 +46,10 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
   return ( // bootstrap-styled button that fires handleClick on user click
     <div>
       <button className="btn add-to-cart" onClick={handleClick}>  
-      ADD TO CART
+      Add To Cart
     </button>
     {justAdded && (
-      <div className="mt-1 text-success" style={{ fontSize: '0.9rem' }}>
+      <div className="mt-1 text-black" style={{ fontSize: '0.9rem' }}>
         Added to cart!
         </div>
       )}

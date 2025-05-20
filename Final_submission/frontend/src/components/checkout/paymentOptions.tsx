@@ -10,7 +10,7 @@ const PaymentOptions: React.FC<Props> = ({ formData, onChange }) => {
     return (
         <div className="card mb-4">
             <div className="card-header">
-                <h5>4. Payment</h5>
+                <h5>Payment</h5>
             </div>
             <div className="card-body">
                 <div className="form-check">
@@ -24,7 +24,7 @@ const PaymentOptions: React.FC<Props> = ({ formData, onChange }) => {
                         <input name="cardName" placeholder="Name on Card *" value={formData.cardName} onChange={onChange} className="form-control mb-2" />
                         <input name="cardNumber" placeholder="Card Number *" value={formData.cardNumber} onChange={onChange} className="form-control mb-2" />
                         <input name="expDate" placeholder="Expiration Date *" value={formData.expDate} onChange={onChange} className="form-control mb-2" />
-                        <input name="cvv" placeholder="CVV*" value={formData.cvv} onChange={onChange} className="form-control mb-2" />
+                        <input name="cvv" placeholder="CVV *" value={formData.cvv} onChange={onChange} className="form-control mb-2" />
                     </div>
                 )}
 
