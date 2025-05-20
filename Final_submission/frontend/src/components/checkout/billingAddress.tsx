@@ -42,8 +42,11 @@ const BillingAddressForm: React.FC<Props> = ({ formData, onChange }) => {
                         onChange={onChange} 
                         className="form-control" 
                         >
-                        <option value="">Choose a Country *</option>
+                        <option value="">Choose a Country</option>
                         <option value="Denmark">Denmark</option>
+                        <option value="Sweden">Finland</option>
+                        <option value="Denmark">Germany</option>
+                        <option value="Sweden">Norway</option>
                         <option value="Sweden">Sweden</option>
                     </select>
                 </div>

@@ -1,27 +1,25 @@
 import React from "react";
-import { OrderFormValues } from "../../types/order";
-
 interface Props {
-    formData: OrderFormValues;
+    shippingOption: "standard" | "express";
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const ShippingOptions: React.FC<Props> = ({ formData, onChange }) => {
+const ShippingOptions: React.FC<Props> = ({ shippingOption, onChange }) => {
     return (
         <div className="card mb-4">
             <div className="card-header">
-                <h5>3. Shipping</h5>
+                <h5>Shipping</h5>
             </div>
             <div className="card-body">
                 <div className="form-check">
                     <input type="radio" name="shippingOption" value="standard" 
-                    checked={formData.shippingOption === "standard"}    // Read current shippingOption
+                    checked={shippingOption === "standard"}    // Read current shippingOption
                     onChange={onChange} className="form-check-input" id="standard" /> 
                     <label htmlFor="standard" className="form-check-label">Standard Shipping (3–5 days) – 39 kr</label>
                 </div>
                 <div className="form-check">
                     <input type="radio" name="shippingOption" value="express" 
-                    checked={formData.shippingOption === "express"}     // Read current shippingOption
+                    checked={shippingOption === "express"}     // Read current shippingOption
                     onChange={onChange} className="form-check-input" id="express" />
                     <label htmlFor="express" className="form-check-label">Express Shipping (1–2 days) – 89 kr</label>
                 </div>
