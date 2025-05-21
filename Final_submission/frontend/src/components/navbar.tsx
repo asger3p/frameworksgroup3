@@ -40,8 +40,7 @@ function Navbar() {
             <i className="bi bi-person-circle me-1"></i>
           </Link>
          )}
-          <Link to="/checkout"><i className="bi bi-credit-card"></i></Link> {/* NEW */}
-          <Link to="/cart"><i className="bi bi-cart"></i></Link>
+          <Link to="/basket"><i className="bi bi-cart"></i></Link>
       </div>
 
         {/* Burger menu icon */}
@@ -57,8 +56,7 @@ function Navbar() {
         <div className={`mobile-menu ${menuOpen ? 'show-menu' : ''}`}>
           <Link to="/products">All products</Link>
           <Link to="/login">Login/profile</Link>
-          <Link to="/cart">Checkout</Link>
-          <Link to="/cart">Cart</Link>
+          <Link to="/basket">Basket</Link>
         </div>
     </nav>
   );

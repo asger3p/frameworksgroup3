@@ -1,7 +1,7 @@
 import React from "react";
 import { Product } from "../../types/product";
 import { Link } from "react-router-dom";
-import AddToCartButton from "../addToCartButton";
+import AddToBasketButton from "../addToBasketButton";
 
 // Define the props for the ProductCard component
 interface ProductCardProps {
@@ -32,10 +32,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
     </Link>
 
-    {/* Card footer holds our AddToCartButton */}
+    {/* Card footer holds our AddToBasketButton */}
       <div className="card-footer bg-transparent border-top-0 mt-auto">
         {/* defaults to 1×100 g behind the scenes */}
-        <AddToCartButton product={product} />
+        <AddToBasketButton product={product} />
       </div>
     </div>
   );

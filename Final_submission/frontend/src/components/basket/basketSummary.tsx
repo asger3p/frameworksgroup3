@@ -3,12 +3,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';  // React Router hook for client-side navigation
 
-interface CartSummaryProps { // props are inputs you pass into a component
+interface BasketSummaryProps { // props are inputs you pass into a component
   total: number; // computed sum of all item subtotals
   onClear: () => void; // callback to clear all items in the cart
 }
 
-const CartSummary: React.FC<CartSummaryProps> = ({ total, onClear }) => {
+const BasketSummary: React.FC<BasketSummaryProps> = ({ total, onClear }) => {
   const [agreed, setAgreed] = useState(false);   // tracks whether user has ticked the terms-and-conditions box
   const navigate = useNavigate();      // React Router navigate function
 
@@ -27,7 +27,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({ total, onClear }) => {
       </div>
       <div className="container mt-4 text-end">
         <button id="clearCart" className="btn btn-outline-danger" onClick={onClear}>
-          Clear Cart
+          Clear Basket
         </button>
       </div>
       <div className="container mt-4 text-end">
@@ -58,4 +58,4 @@ const CartSummary: React.FC<CartSummaryProps> = ({ total, onClear }) => {
   );
 };
 
-export default CartSummary;
+export default BasketSummary;

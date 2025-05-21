@@ -12,7 +12,7 @@ import { QuantitySelector } from "../components/QuantitySelector";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Product, Size } from "../types/product"; 
-import AddToCartButton from "../components/addToCartButton";
+import AddToBasketButton from "../components/addToBasketButton";
 
 
 
@@ -78,7 +78,7 @@ const navigate = useNavigate();
                <div className="d-flex mt-3 align-items-center gap-3">
             {/* Add to Cart button */}
             <div style={{ position: 'relative' }}>
-            <AddToCartButton
+            <AddToBasketButton
               product={product}
               selectedSize={selectedSize!}
               quantity={quantity}

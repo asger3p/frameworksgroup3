@@ -4,24 +4,33 @@ import path from "path";
 
 class BasketModel {
   constructor() {
-        this.dbPath = path.join(process.cwd(), "DB/database.json");  // save path to data.json
-    }
-  
-    getBasket(customerId) {
-        //Converts the file string into an object
-      const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
-      return db.baskets.find(basket => basket.customer_id === customerId); //Looks for the basket that matches the user ID
-    }
+    this.dbPath = path.join(process.cwd(), "DB/database.json");  // save path to data.json
+  }
+
+  getBasket(customerId) {
+    // Converts the file string into an object
+    const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
+    return db.baskets.find(basket => basket.customer_id === customerId); // Looks for the basket that matches the user ID
+  }
+
+  getAllBaskets() {
+    const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
+    return db.baskets;
+  }
 
   // Update basket quantities or remove products (if quantity = 0)
   updateBasket(customerId, items) {
     const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
-    const basket = db.baskets.find(b => b.customer_id === customerId);
+    let basket = db.baskets.find(b => b.customer_id === customerId);
 
-    if (!basket) return null;
+    if (!basket) {
+      const newBasket = { customer_id: customerId, items: [] };
+      db.baskets.push(newBasket);
+      basket = newBasket;
+    }
 
     items.forEach(update => {
-      const existingItemIndex = basket.items.findIndex(item => item.product_id === update.productId);
+      const existingItemIndex = basket.items.findIndex(item => item.product_id === update.product_id);
 
       if (update.quantity === 0) {
         // Remove the product completely
@@ -34,7 +43,7 @@ class BasketModel {
           basket.items[existingItemIndex].quantity = update.quantity;
         } else {
           // Add new product
-          basket.items.push({ productId: update.productId, quantity: update.quantity });
+          basket.items.push({ product_id: update.product_id, quantity: update.quantity });
         }
       }
     });
@@ -77,7 +86,7 @@ class BasketModel {
     if (existingItem) {
       existingItem.quantity += quantity;
     } else {
-      basket.items.push({ productId, quantity });
+      basket.items.push({ product_id: productId, quantity });
     }
 
     fs.writeFileSync(this.dbPath, JSON.stringify(db, null, 2));
@@ -85,6 +94,21 @@ class BasketModel {
   }
 
 
+  createEmptyBasket(customerId) {
+    const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
+
+    // Check if basket already exists for customerId
+    if (!db.baskets.find(basket => basket.customer_id === customerId)) {
+      db.baskets.push({
+        customer_id: customerId,
+        items: []
+      });
+
+      fs.writeFileSync(this.dbPath, JSON.stringify(db, null, 2));
+    }
+
+    return true;
+  }
 }
 
-  export default BasketModel;
+export default BasketModel;

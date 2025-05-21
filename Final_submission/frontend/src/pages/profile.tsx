@@ -8,8 +8,8 @@ export default function Profile() {
     
     // if user has logged out (or never logged in), send them to /login
     if (!user) {
-      return <Navigate to="/login" replace />
-    }
+      return <div className="text-center mt-5">Loading your profile...</div>;
+    }    
 
       // Local component state to hold the profile fields fetched from the backend
     const [profile, setProfile] = useState({ name: '', mail: '' }) 

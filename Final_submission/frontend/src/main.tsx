@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import { CartProvider } from './context/cartContext.tsx';
+import { BasketProvider } from './context/basketContext.tsx';
 import { AuthProvider } from './context/authContext';
 import './styles.css';
 import App from './App.tsx';
@@ -12,11 +12,11 @@ import 'bootstrap-icons/font/bootstrap-icons.css'; //icon support
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-    <AuthProvider>
-    <CartProvider>
-      <App />
-      </CartProvider>
-      </AuthProvider>
+      <BasketProvider>
+        <AuthProvider>
+          <App />
+        </AuthProvider>
+      </BasketProvider>
     </BrowserRouter>
   </StrictMode>
 );

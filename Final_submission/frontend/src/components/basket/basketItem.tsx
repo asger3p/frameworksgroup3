@@ -1,17 +1,17 @@
 // Description: Renders one item row in the cart, with imageUrl, name, quantity controls, price, and remove button.
 
 import React from 'react';
-import { CartItem as CartItemType } from '../../types/cart'; // Type for individual cart item data
+import { BasketItem as BasketItemType } from '../../types/basket'; // Type for individual cart item data
 
-interface CartItemProps { 
-  item: CartItemType; // The cart item object with properties 
+interface BasketItemProps { 
+  item: BasketItemType; // The cart item object with properties 
   index: number; // Index of this item in the cart array, used in callbacks
   onIncrease: (index: number) => void; // Callback to increase quantity by one
   onDecrease: (index: number) => void; // Callback to decrease quantity by one (or remove if zero)
   onRemove: (index: number) => void; // Callback to remove this item from the cart entirely
 }
 
-const CartItem: React.FC<CartItemProps> = ({ item, index, onIncrease, onDecrease, onRemove }) => ( // add some pseudocode here
+const BasketItem: React.FC<BasketItemProps> = ({ item, index, onIncrease, onDecrease, onRemove }) => ( // add some pseudocode here
   <div className="row align-items-center border-bottom py-2">
     <div className="col-2">
       <img
@@ -50,4 +50,4 @@ const CartItem: React.FC<CartItemProps> = ({ item, index, onIncrease, onDecrease
   </div>
 );
 
-export default CartItem;
+export default BasketItem;
