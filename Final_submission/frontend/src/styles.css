@@ -78,7 +78,7 @@ h1 {
 }
 
 .icon-links i:hover {
-    color: var(--primary-orange);
+    color: var(--primary-orange) !important;
 }
 
 #logoutButton {
@@ -367,7 +367,7 @@ a:visited {
 
 .mobile-menu a:hover {
     background-color: var(--primary-green);
-    color: white;
+    color: white !important;
 }
 
 /* Utilities */

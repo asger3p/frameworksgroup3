@@ -49,7 +49,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
       Add To Cart
     </button>
     {justAdded && (
-      <div className="mt-1 text-black" style={{ position: "absolute", fontSize: '0.85rem', marginTop: '0.3rem' }}>
+      <div className="mt-1 text-black" style={{ position: "absolute", fontSize: '0.85rem', marginTop: '0.4rem' }}>
         Added to cart!
         </div>
       )}
