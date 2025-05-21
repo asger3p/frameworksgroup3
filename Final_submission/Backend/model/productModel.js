@@ -11,6 +11,33 @@ export default class ProductModel {
     return db["products"];
   }
 
+  getProductsByFilters(cuisines = [], types = []) {
+  const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
+
+  // If no filters, return all products
+  if (cuisines.length === 0 && types.length === 0) {
+    return db.products;
+  }
+
+  // Filter products by cuisines and types
+  const filteredProducts = db.products.filter((product) => {
+    let cuisineMatch = true;
+    let typeMatch = true;
+
+    if (cuisines.length > 0) {
+      cuisineMatch = product.cuisine.some((c) => cuisines.includes(c));
+    }
+
+    if (types.length > 0) {
+      typeMatch = types.includes(product.type);
+    }
+
+    return cuisineMatch && typeMatch;
+  });
+
+  return filteredProducts;
+}
+
   createProduct(body) {
     const {
       product_id,

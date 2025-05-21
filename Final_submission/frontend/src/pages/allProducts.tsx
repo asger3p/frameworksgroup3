@@ -1,65 +1,46 @@
+// AllProductsPage.tsx
 import React, { useEffect, useState } from "react";
 import ProductFilter from "../components/allproducts/productFilter";
 import ProductGrid from "../components/allproducts/productGrid";
 import { Product, CuisineType, ProductTypeCategory } from "../types/product";
 
-// AllProductsPage component to display all products with filtering options
 const AllProductsPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [selectedCuisines, setSelectedCuisines] = useState<CuisineType[]>([]);
-  const [selectedProductTypes, setSelectedProductTypes] = useState<
-    ProductTypeCategory[]
-  >([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch products from the API
+  const [selectedCuisines, setSelectedCuisines] = useState<CuisineType[]>([]);
+  const [selectedProductTypes, setSelectedProductTypes] = useState<ProductTypeCategory[]>([]);
+
   useEffect(() => {
-    fetch("http://localhost:3000/products")
+    setLoading(true);
+    setError(null);
+
+    const cuisineParams = selectedCuisines.join(",");
+    const typeParams = selectedProductTypes.join(",");
+
+    const query = new URLSearchParams();
+    if (cuisineParams) query.append("cuisines", cuisineParams);
+    if (typeParams) query.append("types", typeParams);
+
+    fetch(`http://localhost:3000/products?${query.toString()}`)
       .then((res) => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! Status: ${res.status}`);
-        }
+        if (!res.ok) throw new Error("Network response was not ok");
         return res.json();
       })
-      .then((data: Product[]) => {
-        setProducts(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
-  }, []);
+      .then((data) => setProducts(data))
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
+  }, [selectedCuisines, selectedProductTypes]);
 
-  // Toggle selected cuisines and product types
-  const toggleCuisine = (cuisine: CuisineType) => {
-    setSelectedCuisines((prev) =>
-      prev.includes(cuisine)
-        ? prev.filter((c) => c !== cuisine)
-        : [...prev, cuisine]
-    );
+  // Callback passed to ProductFilter
+  const handleFilterChange = (
+    newSelectedCuisines: CuisineType[],
+    newSelectedProductTypes: ProductTypeCategory[]
+  ) => {
+    setSelectedCuisines(newSelectedCuisines);
+    setSelectedProductTypes(newSelectedProductTypes);
   };
-
-  // Toggle selected product types
-  const toggleProductType = (type: ProductTypeCategory) => {
-    setSelectedProductTypes((prev) =>
-      prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type]
-    );
-  };
-
-  // Filter products based on selected cuisines and product types
-  const filteredProducts = products.filter((product) => {
-    const isCuisineMatch =
-      selectedCuisines.length === 0 ||
-      product.cuisine.some(cuisine => selectedCuisines.includes(cuisine));
-
-    const isProductTypeMatch =
-      selectedProductTypes.length === 0 ||
-      selectedProductTypes.includes(product.type);
-
-    return isCuisineMatch && isProductTypeMatch;
-  });
 
   return (
     <div className="container mt-4">
@@ -68,16 +49,13 @@ const AllProductsPage: React.FC = () => {
           <ProductFilter
             selectedCuisines={selectedCuisines}
             selectedProductTypes={selectedProductTypes}
-            onCuisineChange={toggleCuisine}
-            onProductTypeChange={toggleProductType}
+            onFilterChange={handleFilterChange}
           />
         </div>
         <div className="col-md-9">
           {loading && <p>Loading products...</p>}
           {error && <p className="text-danger">Error: {error}</p>}
-          {!loading && !error && (
-            <ProductGrid products={filteredProducts} />
-          )}
+          {!loading && !error && <ProductGrid products={products} />}
         </div>
       </div>
     </div>
