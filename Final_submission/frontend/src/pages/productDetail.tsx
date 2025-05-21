@@ -82,6 +82,7 @@ const navigate = useNavigate();
               product={product}
               selectedSize={selectedSize!}
               quantity={quantity}
+              layout="stacked"
             />
             </div>
             {/* Back button */}
