@@ -4,7 +4,6 @@ import * as basketController from '../controller/basketController.js';
 const router = Router();
 
 router.get('/:customerId', basketController.getBasket);
-router.get('/', basketController.getAllBaskets);
 router.put('/:customerId', basketController.updateBasket);
 router.delete('/:customerId/:productId', basketController.removeProductFromBasket);
 
