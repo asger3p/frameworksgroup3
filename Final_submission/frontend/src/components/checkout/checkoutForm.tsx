@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import BillingAddressForm from "./billingAddress";
 import ShippingOptions from "./shippingOptions";
 import PaymentOptions from "./paymentOptions";
+import { useBasket } from "../../context/basketContext"; // brings in the basket API so we can clear it when order completes
+import { useNavigate } from "react-router-dom"; // React Router hook to navigate user to home
 import { OrderFormValues } from "../../types/order";
 
 interface CheckoutFormProps {
@@ -34,6 +36,8 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ shippingOption, setShipping
             cvv: "",
         });
         const [errors, setErrors] = useState<{ [key: string]: boolean }>({});
+        const navigate = useNavigate(); // use this to redirect the user after placing order
+        const { clearBasket } = useBasket(); // call this to empty both in-memory and persisted basket
 
     // Update formData whenever input field changes
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -77,7 +81,8 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ shippingOption, setShipping
         setErrors({});
         console.log("Order placed:", formData);
         alert('Thank you for your order!');
-        localStorage.removeItem('cart');
+        clearBasket(); // clear out both local *and* server basket
+        navigate("/"); // send them back to home page
     };
 
     return (
