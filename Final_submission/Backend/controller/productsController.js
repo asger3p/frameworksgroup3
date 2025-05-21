@@ -14,6 +14,7 @@ export async function createProduct(req, res){
 
 
 // GET all /products - retrieve all available products
+/*
 export async function getAllProducts(req, res){
     try{
         const products = await model.getAllProducts();
@@ -21,6 +22,35 @@ export async function getAllProducts(req, res){
     } catch (error){
         res.status(500).json({ error: `Could not retrieve products: ${error.message}` });
     }
+}
+    */
+
+export async function getFilteredProducts(req, res) {
+  try {
+    let { cuisines, types } = req.query;
+
+    if (typeof cuisines === "string") {
+      cuisines = cuisines.split(",").map((c) => c.trim());
+    } else {
+      cuisines = [];
+    }
+
+    if (typeof types === "string") {
+      types = types.split(",").map((t) => t.trim());
+    } else {
+      types = [];
+    }
+
+    const products = await model.getProductsByFilters(cuisines, types);
+
+    if (products.length > 0) {
+      res.status(200).json(products);
+    } else {
+      res.status(404).json({ error: "No products found matching filters" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: `Failed to retrieve products: ${error.message}` });
+  }
 }
 
 
