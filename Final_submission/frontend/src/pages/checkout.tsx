@@ -13,7 +13,7 @@ const CheckoutPage: React.FC = () => {
     if (items.length === 0) {
         return (
             <div className='container mt-4'>
-                <h3>Oops... Looks like you don't have anything in your basket yet</h3>
+                <h4>Oops... Looks like you don't have anything in your basket yet</h4>
             </div>
         );
     }
