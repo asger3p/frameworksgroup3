@@ -1,16 +1,22 @@
 import CustomerModel from "../model/customerModel.js";
+import basketModel from '../model/basketModel.js';
+const basketModelInstance = new basketModel();
 const model = new CustomerModel();
 
 
 // POST (create) a new customer (/customers)
 export async function createCustomer(req, res) {
-    try {
-      const newCustomer = await model.createCustomer(req.body);
-      res.status(201).json({ message: 'Customer created successfully', customer: newCustomer });
-    } catch (error) {
-      res.status(400).json({ error: `Invalid customer data: ${error.message}` });
-    }
+  try {
+    const newCustomer = await model.createCustomer(req.body);
+
+    // Create an empty basket for the new customer
+    await basketModelInstance.createEmptyBasket(newCustomer.customer_id);
+
+    res.status(201).json({ message: 'Customer created successfully', customer: newCustomer });
+  } catch (error) {
+    res.status(400).json({ error: `Invalid customer data: ${error.message}` });
   }
+}
 
 
 // GET all customers (/customers)

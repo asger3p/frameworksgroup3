@@ -1,9 +1,10 @@
 import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { useBasket } from "./basketContext";  // adjust path as needed
 
 // Define the shape of your auth context state
 interface AuthContextType {
   user: User | null;
-  login: (user: User) => void;
+  login: (user: User) => Promise<void>; // now async
   logout: () => void;
 }
 
@@ -20,34 +21,32 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // Provide the context to your app
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-
   const [user, setUser] = useState<User | null>(() => {
-    const saved = localStorage.getItem('user');
+    const saved = localStorage.getItem("user");
     return saved ? JSON.parse(saved) : null;
   });
 
-  useEffect(() => {
-    try {
-      localStorage.setItem("testKey", "1");
-      localStorage.removeItem("testKey");
-    } catch {
-      alert("You're in Safari Private Mode. Login sessions may not work properly.");
-    }
-  }, []);
-  
-  
-  // Login function — sets state and stores user
-  const login = (userData: User) => {
+
+  // Access basket context's setCustomer
+  const { setCustomer } = useBasket();
+
+  // Login function — sets state, stores user, and sync basket
+  const login = async (userData: User) => {
+
     setUser(userData);
-    localStorage.setItem('user', JSON.stringify(userData));
+    localStorage.setItem("user", JSON.stringify(userData));
+
+    // Sync basket on login
+    await setCustomer(userData.customer_id);
   };
 
   // Logout function — clears state and localStorage
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('user');
+    localStorage.removeItem("user");
+    // Optionally clear basket or set customer to null in BasketContext here if needed
   };
-  
+
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
       {children}
@@ -59,7 +58,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
-  return context;
+  return context;  // <-- return the context here
 };
