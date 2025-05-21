@@ -477,18 +477,6 @@
       "name": "Stine Derror",
       "mail": "stinederror@gmail.com",
       "password": "1234"
-    },
-    {
-      "customer_id": "customer_3",
-<<<<<<< HEAD
-      "name": "saaga sasy",
-      "mail": "testing@gmail.com",
-      "password": "testing"
-=======
-      "name": "tester123 totest",
-      "mail": "tester@gmail.com",
-      "password": "1234"
->>>>>>> 71ab2d4c1dc461415d0c978096ea9dd7dfb804f7
     }
   ],
   "baskets": [
@@ -508,27 +496,7 @@
     {
       "customer_id": "customer_2",
       "items": []
-    },
-    {
-      "customer_id": "customer_3",
-<<<<<<< HEAD
-      "items": []
-=======
-      "items": [
-        {
-          "product_id": "product_starAnis",
-          "quantity": 2
-        },
-        {
-          "product_id": "product_bayLeaves",
-          "quantity": 1
-        },
-        {
-          "product_id": "product_cuminSeeds",
-          "quantity": 1
-        }
-      ]
->>>>>>> 71ab2d4c1dc461415d0c978096ea9dd7dfb804f7
     }
+  
   ]
 }
