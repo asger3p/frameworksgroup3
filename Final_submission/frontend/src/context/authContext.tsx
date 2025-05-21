@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
 // Define the shape of your auth context state
 interface AuthContextType {
@@ -25,6 +25,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const saved = localStorage.getItem('user');
     return saved ? JSON.parse(saved) : null;
   });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem("testKey", "1");
+      localStorage.removeItem("testKey");
+    } catch {
+      alert("You're in Safari Private Mode. Login sessions may not work properly.");
+    }
+  }, []);
+  
   
   // Login function — sets state and stores user
   const login = (userData: User) => {

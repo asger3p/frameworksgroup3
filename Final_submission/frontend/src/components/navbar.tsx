@@ -40,7 +40,6 @@ function Navbar() {
             <i className="bi bi-person-circle me-1"></i>
           </Link>
          )}
-          <Link to="/checkout"><i className="bi bi-credit-card"></i></Link> {/* NEW */}
           <Link to="/basket"><i className="bi bi-cart"></i></Link>
       </div>
 
@@ -57,7 +56,6 @@ function Navbar() {
         <div className={`mobile-menu ${menuOpen ? 'show-menu' : ''}`}>
           <Link to="/products">All products</Link>
           <Link to="/login">Login/profile</Link>
-          <Link to="/basket">Checkout</Link>
           <Link to="/basket">Basket</Link>
         </div>
     </nav>

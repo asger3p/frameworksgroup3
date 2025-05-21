@@ -477,6 +477,12 @@
       "name": "Stine Derror",
       "mail": "stinederror@gmail.com",
       "password": "1234"
+    },
+    {
+      "customer_id": "customer_3",
+      "name": "saaga sasy",
+      "mail": "testing@gmail.com",
+      "password": "testing"
     }
   ],
   "baskets": [
@@ -495,6 +501,10 @@
     },
     {
       "customer_id": "customer_2",
+      "items": []
+    },
+    {
+      "customer_id": "customer_3",
       "items": []
     }
   ]
