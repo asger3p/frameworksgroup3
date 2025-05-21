@@ -1,6 +1,7 @@
 import basketModel from "../model/basketModel.js";
 const model = new basketModel()
 
+
 // GET a user's basket
 export async function getBasket(req, res){
   const customerId = req.params.customerId;
@@ -56,5 +57,17 @@ export async function removeProductFromBasket(req, res){
   }
 }
 
+export const getAllBaskets = (req, res) => {
+  try {
+    const baskets = model.getAllBaskets();
+    res.json(baskets);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to load baskets' });
+  }
+};
+
   
+
+
+
 

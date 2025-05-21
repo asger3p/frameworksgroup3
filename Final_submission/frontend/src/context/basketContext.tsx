@@ -9,13 +9,14 @@ interface BasketContextType {
   updateQty: (index: number, qty: number) => void;
   clearBasket: () => void;
   fetchBasket: (customerId: string) => Promise<void>;
+  setCustomer: (customerId: string) => Promise<void>;
 }
 
 export const BasketContext = createContext<BasketContextType | undefined>(undefined);
 
 // 2. Helper for fetching product details
-async function fetchProductDetails(productId: string): Promise<Omit<BasketItem, 'quantity'>> {
-  const res = await fetch(`/api/products/${productId}`);
+async function fetchProductDetails(productId: string): Promise<Omit<BasketItem, "quantity">> {
+  const res = await fetch(`http://localhost:3000/products/${productId}`);
   if (!res.ok) throw new Error("Product not found");
 
   const product = await res.json();
@@ -42,13 +43,13 @@ export const BasketProvider = ({ children }: { children: ReactNode }) => {
     }
 
     try {
-      await fetch(`/api/basket/${customerId}`, {
+      await fetch(`http://localhost:3000/basket/${customerId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          items: updatedItems.map(item => ({
+          items: updatedItems.map((item) => ({
             product_id: item.productId,
             quantity: item.quantity,
           })),
@@ -59,26 +60,52 @@ export const BasketProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  // 5. Load basket on mount
+  // 4a. Transfer guest basket to backend for a customerId (called on login/register)
+  const transferGuestBasketToCustomer = async (newCustomerId: string) => {
+    const guestBasketStr = localStorage.getItem("guest_basket");
+    if (!guestBasketStr) return;
+
+    const guestItems: BasketItem[] = JSON.parse(guestBasketStr);
+
+    try {
+      await fetch(`http://localhost:3000/basket/${newCustomerId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          items: guestItems.map((item) => ({
+            product_id: item.productId,
+            quantity: item.quantity,
+          })),
+        }),
+      });
+
+      // Clear guest basket localStorage after transferring
+      localStorage.removeItem("guest_basket");
+    } catch (error) {
+      console.error("Failed to transfer guest basket", error);
+    }
+  };
+
+  // 5. Load basket on mount - only loads guest basket locally, no backend fetch here
   useEffect(() => {
-    const storedId = localStorage.getItem("customerId");
-    if (storedId) {
-      fetchBasket(storedId);
-    } else {
+    if (!customerId) {
       const localItems = localStorage.getItem("guest_basket");
       if (localItems) {
         setItems(JSON.parse(localItems));
       }
     }
-  }, []);
+  }, [customerId]);
 
   // 6. Fetch basket from backend
-  const fetchBasket = async (customerId: string) => {
+  const fetchBasket = async (custId: string) => {
     try {
-      const res = await fetch(`/api/basket/${customerId}`);
+      const res = await fetch(`http://localhost:3000/basket/${custId}`);
 
       if (!res.ok) {
         console.warn("Could not load basket");
+        setItems([]);
         return;
       }
 
@@ -101,7 +128,14 @@ export const BasketProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  // 7. Add item
+  // 7. Set customer and load basket + transfer guest basket if present
+  const setCustomer = async (newCustomerId: string) => {
+    await transferGuestBasketToCustomer(newCustomerId);
+    await fetchBasket(newCustomerId);
+    setCustomerId(newCustomerId);
+  };
+
+  // 8. Add item
   const addItem = (item: BasketItem) => {
     setItems((prev) => {
       const updated = (() => {
@@ -123,7 +157,7 @@ export const BasketProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  // 8. Remove item
+  // 9. Remove item
   const removeItem = (index: number) => {
     setItems((prev) => {
       const updated = prev.filter((_item, i) => i !== index);
@@ -132,7 +166,7 @@ export const BasketProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  // 9. Update quantity
+  // 10. Update quantity
   const updateQty = (index: number, qty: number) => {
     setItems((prev) => {
       const updated = prev.map((item, i) =>
@@ -143,23 +177,23 @@ export const BasketProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  // 10. Clear basket
+  // 11. Clear basket
   const clearBasket = () => {
     setItems([]);
     syncBasketToServer([]);
   };
 
-  // 11. Context provider
+  // 12. Context provider
   return (
     <BasketContext.Provider
-      value={{ items, addItem, removeItem, updateQty, clearBasket, fetchBasket }}
+      value={{ items, addItem, removeItem, updateQty, clearBasket, fetchBasket, setCustomer }}
     >
       {children}
     </BasketContext.Provider>
   );
 };
 
-// 12. Hook to consume basket
+// 13. Hook to consume basket
 export const useBasket = () => {
   const ctx = useContext(BasketContext);
   if (!ctx) {

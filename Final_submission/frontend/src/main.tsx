@@ -12,11 +12,11 @@ import 'bootstrap-icons/font/bootstrap-icons.css'; //icon support
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-    <AuthProvider>
-    <BasketProvider>
-      <App />
+      <BasketProvider>
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </BasketProvider>
-      </AuthProvider>
     </BrowserRouter>
   </StrictMode>
 );
