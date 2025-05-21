@@ -8,10 +8,29 @@ export default function Register() {
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
   const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState(''); // state to track email error
   const [password, setPassword] = useState('');
+  
+  // Email validation function
+  const isEmailValid = (email: string) =>
+  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+
+
+  // overall form validity checker (used to disable submit button)
+   const isFormValid = () =>
+    fname.trim().length > 0 &&
+    lname.trim().length > 0 &&
+    password.length > 0 &&
+    isEmailValid(email);
 
   const handleSubmit = async (e: React.FormEvent) => { // async marks a function as “returns a promise”
     e.preventDefault();
+
+    // prevent form submission if email is inval
+    if (!isEmailValid(email)) {
+      setEmailError('Please enter a valid email address');
+      return;
+    }
 
     // Build the payload (the JSON data object) you’ll send to the server: contains the new user’s name, mail, and password
     const payload = {
@@ -95,15 +114,30 @@ export default function Register() {
           </div>
           <div className="mb-3">
             <label htmlFor="email" className="form-label">Email address</label>
+            {/* apply is-invalid class when email is wrong */}
             <input
               type="email"
-              className="form-control"
+              className={`form-control ${emailError ? 'is-invalid' : ''}`}
               id="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value;
+                setEmail(value);
+
+                //live validation as user types
+                if (!isEmailValid(value)) {
+                  setEmailError('Please enter a valid email address');
+                } else {
+                  setEmailError('');
+                }
+              }}
               required
             />
+
+            {/* show error message */}
+            {emailError && <div className="invalid-feedback">{emailError}</div>}
           </div>
+
           <div className="mb-3">
             <label htmlFor="password" className="form-label">Password</label>
             <input
@@ -115,7 +149,10 @@ export default function Register() {
               required
             />
           </div>
-          <button type="submit" className="btn btn-primary w-100">Register</button>
+          <button type="submit" className="btn btn-primary w-100" disabled={!isFormValid()}>
+            Register
+          </button>
+
         </form>
       </div>
     </div>
