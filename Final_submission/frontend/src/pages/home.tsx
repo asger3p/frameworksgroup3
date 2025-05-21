@@ -68,11 +68,21 @@ const HomePage: React.FC = () => {
       </div>
     </div>
 
-      {/* Deals Carousel */}
-      <div className="container mt-4">
-        <h2 className="text-center">Deals</h2>
-        <Carousel id="dealsCarousel" products={Deals} />
-      </div>
+      {/* Fan Favourites Section */}
+<div className="container mt-5">
+  <div className="text-center mb-4">
+    <h3 className="fw-semibold" style={{ color: "var(--primary-orange)" }}>
+      Signature Spices
+    </h3>
+    <p className="text-muted" style={{ fontSize: "0.95rem" }}>
+      Essential flavours from our collection.
+    </p>
+  </div>
+
+  <Carousel id="dealsCarousel" products={Deals} />
+</div>
+
+
     </div>
   );
 };
