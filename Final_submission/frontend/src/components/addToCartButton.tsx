@@ -9,12 +9,14 @@ interface AddToCartButtonProps {
   product: Product
   quantity?: number  /** how many to add; defaults to 1 */
   selectedSize?: Size /** which size to add; if omitted, we’ll default to “100 g” or first size */
+  layout?: 'inline' | 'stacked' /** controls confirmation message placement */
 }
 
 const AddToCartButton: React.FC<AddToCartButtonProps> = ({
   product,
   quantity = 1, // default 1 piece
   selectedSize,
+  layout = 'inline', // default layout: beside the button
 }) => {
   const { addItem } = useCart()
   const [justAdded, setJustAdded] = useState(false)
@@ -43,18 +45,41 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
   // Ensure any leftover timer is cleared on unmount
   useEffect(() => () => { setJustAdded(false) }, [])
 
-  return ( // bootstrap-styled button that fires handleClick on user click
-    <div>
-      <button className="btn add-to-cart" style={{ height: "40px "}} onClick={handleClick}>  
-      Add To Cart
-    </button>
-    {justAdded && (
-      <div className="mt-1 text-black" style={{ position: "absolute", fontSize: '0.85rem', marginTop: '0.4rem' }}>
-        Added to cart!
-        </div>
-      )}
-    </div>
-  )
-}
+  return layout === 'inline' ? (  // bootstrap-styled button that fires handleClick on user click
+      <div className="d-flex align-items-center gap-2" style={{ position: 'relative' }}>
+        <button className="btn add-to-cart" style={{ height: '40px' }} onClick={handleClick}>
+          Add To Cart
+        </button>
+        {justAdded && (
+          <div
+            className="text-black bg-light px-2 py-1 rounded shadow-sm"
+            style={{ fontSize: '0.85rem', whiteSpace: 'nowrap' }}
+          >
+            Added to cart!
+          </div>
+        )}
+      </div>
+    ) : (
+      <div style={{ position: 'relative', display: 'inline-block' }}>
+        <button className="btn add-to-cart" style={{ height: '40px' }} onClick={handleClick}>
+          Add To Cart
+        </button>
+        {justAdded && (
+          <div
+            className="mt-1 text-black"
+            style={{
+              fontSize: '0.85rem',
+              position: 'absolute',
+              left: 0,
+              top: '100%',
+              marginTop: '0.25rem',
+            }}
+          >
+            Added to cart!
+          </div>
+        )}
+      </div>
+    );
+  };
 
 export default AddToCartButton
