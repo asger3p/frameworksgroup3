@@ -6,10 +6,10 @@ export default class ProductModel {
     this.dbPath = path.join(process.cwd(), "DB/database.json");  // save path to data.json
 }
 
-  getAllProducts() {
+  /*getAllProducts() {
     const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
     return db["products"];
-  }
+  } */
 
   getProductsByFilters(cuisines = [], types = []) {
   const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
