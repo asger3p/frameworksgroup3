@@ -4,7 +4,7 @@
       "product_id": "product_cuminSeeds",
       "name": "Cumin Seeds",
       "subheading": "Earthy, Bold, Essential",
-      "description": "A cornerstone of countless cuisines, these aromatic seeds bring a nutty warmth to curries, stews, and roasted veggies. Toast them lightly to unlock their smoky magic. Used in Indian dal, Mexican chili, roasted carrots. Bloom cumin seeds in hot oil before adding other ingredients — it intensifies their flavor!It Pairs well with Coriander seeds and turmeric.",
+      "description": "A cornerstone of countless cuisines, these aromatic seeds bring a nutty warmth to curries, stews, and roasted veggies. Toast them lightly to unlock their smoky magic. Used in Indian dal, Mexican chili, roasted carrots. Bloom cumin seeds in hot oil before adding other ingredients — it intensifies their flavor!It Pairs well with Coriander seeds, turmeric, paprika.",
       "image": "/images/products/1-cumin_seeds.jpg",
       "cuisine": [
         "Indian",
@@ -58,7 +58,7 @@
       "product_id": "product_cardamonPods",
       "name": "Cardamom Pods",
       "subheading": "The Jewel of Spices",
-      "description": "Sweet, citrusy, with a hint of mint — these vibrant green pods elevate both sweet and savory dishes. Add them to rice, tea, or even desserts for a bold, exotic flair.<br><br><strong>Dishes:</strong> Basmati rice, masala chai, cardamom buns.<br><strong>Usage Tip:</strong> Gently crack open the pods to release the tiny black seeds — that’s where the magic lives!<br><strong>Pairs well with:</strong> Cinnamon, cloves, star anise.",
+      "description": "Sweet, citrusy, with a hint of mint — these vibrant green pods elevate both sweet and savory dishes. Add them to rice, tea, or even desserts for a bold, exotic flair. Dishes: Basmati rice, masala chai, cardamom buns. Usage Tip: Gently crack open the pods to release the tiny black seeds — that’s where the magic lives! Pairs well with: Cinnamon, cloves, star anise.",
       "image": "/images/products/3-cardamom_pods.jpg",
       "cuisine": [
         "Indian"
@@ -319,9 +319,7 @@
       "subheading": "Warmth and Complexity",
       "description": "A classic Indian blend of roasted spices — cumin, cinnamon, and cardamom — adding bold, layered flavor to curries, soups, and roasted dishes. Used in dishes like butter chicken, lentil curry, roasted vegetables. Usage Tip: Add garam masala at the end of cooking for a fragrant finish — it’s all about capturing those bold aromas! It pairs well with turmeric, ginger powder, bay leaves.",
       "image": "/images/products/13-garammasala.jpg",
-      "cuisine": [
-        "Indian"
-      ],
+      "cuisine": ["Indian"],
       "type": "Blend",
       "sizes": [
         {
@@ -471,12 +469,6 @@
       "name": "Stine Derror",
       "mail": "stde@itu.dk",
       "password": "supersecret"
-    },
-    {
-      "customer_id": "customer_2",
-      "name": "Saaga Syrjänen",
-      "mail": "sasy@itu.dk",
-      "password": "test3"
     }
   ],
   "baskets": [
@@ -492,10 +484,6 @@
           "quantity": 1
         }
       ]
-    },
-    {
-      "customer_id": "customer_2",
-      "items": []
     }
   ]
 }
