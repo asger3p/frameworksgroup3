@@ -58,7 +58,7 @@ function Navbar() {
           <Link to="/products">All products</Link>
           <Link to="/login">Login/profile</Link>
           <Link to="/cart">Checkout</Link>
-          <Link to="/cart">Cart</Link>
+          <Link to="/cart">Basket</Link>
         </div>
     </nav>
   );

@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { useCart } from '../context/cartContext';      // Import to get cart items
+import { useBasket } from '../context/basketContext';      // Import to get cart items
 import CheckoutForm from '../components/checkout/checkoutForm';     // Import checkout form
-import CartItem from '../components/cart/cartItem';
-import { CartItem as CartItemType } from '../types/cart';
+import BasketItem from '../components/basket/basketItem';
+import { BasketItem as BasketItemType } from '../types/basket';
 import '../styles.css';
 
 const CheckoutPage: React.FC = () => {
-    const { items, updateQty, removeItem } = useCart();
+    const { items, updateQty, removeItem } = useBasket();
     const [shippingOption, setShippingOption] = useState<"standard" | "express">("standard");
 
     // If cart is empty
     if (items.length === 0) {
         return (
             <div className='container mt-4'>
-                <h3>Oops... Looks like you don't have anything in your cart yet</h3>
+                <h3>Oops... Looks like you don't have anything in your basket yet</h3>
             </div>
         );
     }
@@ -36,7 +36,7 @@ const CheckoutPage: React.FC = () => {
                         <div className='card-body'>
                             {/* Retrieve items in the cart and increase/decrease/remove buttons with CartItem component */}
                             {items.map((item, idx) => (
-                                <CartItem
+                                <BasketItem
                                 key={`${item.productId}-${item.size}`}
                                 index={idx}
                                 item={item}

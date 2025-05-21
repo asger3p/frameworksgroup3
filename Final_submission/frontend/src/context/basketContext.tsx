@@ -4,27 +4,27 @@ import {
     ReactNode,
     useContext,
   } from "react";
-  import { CartItem } from "../types/cart"; // importing CartItem type which defines the shape of each cart entry
+  import { BasketItem } from "../types/basket"; // importing CartItem type which defines the shape of each cart entry
 
   
   // first defining the structure and available actions of our cart context
-  interface CartContextType {
-    items: CartItem[]; // array holding current cart items
-    addItem: (item: CartItem) => void; // function to add new items or increase quantity
+  interface BasketContextType {
+    items: BasketItem[]; // array holding current cart items
+    addItem: (item: BasketItem) => void; // function to add new items or increase quantity
     removeItem: (index: number) => void;  // function to remove an item completely
     updateQty: (index: number, qty: number) => void; // function to set exact quantity
-    clearCart: () => void;  // function to empty the cart
+    clearBasket: () => void;  // function to empty the cart
   }
   
   // create context with an initial undefined value so we can detect missing provider
-  export const CartContext = createContext<CartContextType | undefined>(undefined);
+  export const BasketContext = createContext<BasketContextType | undefined>(undefined);
   
   // provider component that wraps parts of our app needing cart access
-  export const CartProvider = ({ children }: { children: ReactNode }) => {
-    const [items, setItems] = useState<CartItem[]>([]); // local state to store cart items
+  export const BasketProvider = ({ children }: { children: ReactNode }) => {
+    const [items, setItems] = useState<BasketItem[]>([]); // local state to store cart items
 
     // adds an item to the cart OR increments quantity if it already exists
-    const addItem = (item: CartItem) => {
+    const addItem = (item: BasketItem) => {
       setItems((prev) => {
         // check if the item is already in cart (same product + same size)
         const exists = prev.find(i => i.productId === item.productId  && i.size === item.size)
@@ -56,22 +56,22 @@ import {
     };
   
     // clears all items from the cart
-    const clearCart = () => {
+    const clearBasket = () => {
       setItems([]);
     };
   
     return ( // providing state and actions to consumer components
-      <CartContext.Provider
-        value={{ items, addItem, removeItem, updateQty, clearCart }}
+      <BasketContext.Provider
+        value={{ items, addItem, removeItem, updateQty, clearBasket }}
       >
         {children}
-      </CartContext.Provider>
+      </BasketContext.Provider>
     );
   };
   
   // hook to grab the cart easily
-  export const useCart = () => {
-    const ctx = useContext(CartContext);
+  export const useBasket = () => {
+    const ctx = useContext(BasketContext);
     if (!ctx) {
       throw new Error("useCart must be used inside a <CartProvider>");
     }

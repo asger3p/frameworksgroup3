@@ -5,6 +5,6 @@ const router = Router();
 
 router.get('/:customerId', basketController.getBasket);
 router.put('/:customerId', basketController.updateBasket);
-router.delete('/:customerId', basketController.removeProductFromBasket);
+router.delete('/:customerId/:productId', basketController.removeProductFromBasket);
 
 export default router;

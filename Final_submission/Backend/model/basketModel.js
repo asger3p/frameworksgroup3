@@ -18,10 +18,13 @@ class BasketModel {
     const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
     const basket = db.baskets.find(b => b.customer_id === customerId);
 
-    if (!basket) return null;
+    if (!basket) {
+      const newBasket = { customer_id: customerId, items: [] };
+      db.baskets.push(newBasket);
+    }
 
     items.forEach(update => {
-      const existingItemIndex = basket.items.findIndex(item => item.product_id === update.productId);
+      const existingItemIndex = basket.items.findIndex(item => item.product_id === update.product_id);
 
       if (update.quantity === 0) {
         // Remove the product completely
@@ -34,7 +37,7 @@ class BasketModel {
           basket.items[existingItemIndex].quantity = update.quantity;
         } else {
           // Add new product
-          basket.items.push({ productId: update.productId, quantity: update.quantity });
+          basket.items.push({ product_id: update.product_id, quantity: update.quantity });
         }
       }
     });
@@ -77,7 +80,7 @@ class BasketModel {
     if (existingItem) {
       existingItem.quantity += quantity;
     } else {
-      basket.items.push({ productId, quantity });
+      basket.items.push({ product_id: productId, quantity });
     }
 
     fs.writeFileSync(this.dbPath, JSON.stringify(db, null, 2));

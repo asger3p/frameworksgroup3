@@ -40,7 +40,7 @@ export async function updateBasket(req, res){
 // DELETE: remove a specific product, productId comes from body
 export async function removeProductFromBasket(req, res){
   const customerId = req.params.customerId;
-  const { productId } = req.body;
+  const productId = req.params.productId;
 
   try {
     const updatedBasket = await model.removeProductFromBasket(customerId, productId);

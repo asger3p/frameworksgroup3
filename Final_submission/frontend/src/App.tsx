@@ -3,7 +3,7 @@ import Navbar from './components/navbar';
 import HomePage from "./pages/home";
 import AllProductsPage from './pages/allProducts';
 //import ProductDetail from './pages/productDetail';
-import CartPage from './pages/cart';
+import BasketPage from './pages/basket';
 import CheckoutPage from './pages/checkout';
 import Login from './pages/login';
 import Profile from './pages/profile';
@@ -20,7 +20,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/cart" element={<CartPage />} />
+        <Route path="/basket" element={<BasketPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />

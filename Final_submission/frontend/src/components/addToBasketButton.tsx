@@ -1,22 +1,22 @@
 // Description: Renders an “Add to Cart” button for a given product. When clicked, it picks a size (default 100 g if available, or the first size), uses the provided quantity (default 1), builds a CartItem object, and calls the cart context’s addItem function to add it to the user’s cart.
 
 import React, { useState, useEffect } from 'react'
-import { useCart } from '../context/cartContext'
+import { useBasket } from '../context/basketContext'
 import { Product, Size } from '../types/product'
-import { CartItem } from '../types/cart'
+import { BasketItem } from '../types/basket'
 
-interface AddToCartButtonProps {
+interface AddToBasketButtonProps {
   product: Product
   quantity?: number  /** how many to add; defaults to 1 */
   selectedSize?: Size /** which size to add; if omitted, we’ll default to “100 g” or first size */
 }
 
-const AddToCartButton: React.FC<AddToCartButtonProps> = ({
+const AddToBasketButton: React.FC<AddToBasketButtonProps> = ({
   product,
   quantity = 1, // default 1 piece
   selectedSize,
 }) => {
-  const { addItem } = useCart()
+  const { addItem } = useBasket()
   const [justAdded, setJustAdded] = useState(false)
 
   // pick “100 g” if it exists, else fall back to first size
@@ -25,7 +25,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
   const sizeToAdd = selectedSize ?? defaultSize
 
   const handleClick = () => { // building a CartItem object matching our cartContext shape
-    const item: CartItem = {
+    const item: BasketItem = {
       productId: product.product_id,
       name: product.name,
       size: sizeToAdd.size,
@@ -57,4 +57,4 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
   )
 }
 
-export default AddToCartButton
+export default AddToBasketButton
