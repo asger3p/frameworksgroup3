@@ -51,7 +51,7 @@ const CartSummary: React.FC<CartSummaryProps> = ({ total, onClear }) => {
           disabled={!agreed}                          // disable until agreed
           onClick={handleCheckout}
         >
-          CHECKOUT
+          Checkout
         </button>
       </div>
     </>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from 'react-router-dom'; // retrieves a temporary notification ("flash message") sent via React Router’s navigation state, used to show success messages after actions like login or logout
 import Carousel from "../components/carousel/Carousel";
 import { Product } from "../types/product";
 import Greeting from "../components/greeting";
@@ -23,9 +24,21 @@ const HomePage: React.FC = () => {
       "product_rasElHanout",
       "product_bayLeaves",
       "product_chineseFiveSpice",
-      "product_taco"
+      "product_taco",
+      "product_starAnis"
     ].includes(p.product_id)
   );
+
+  const location = useLocation() // get React Router state
+  const state = (location.state as { flash?: string }) ?? {}  // type‑cast state
+  const [flash, setFlash] = useState<string | undefined>(state.flash) // initialize flash message
+  
+    // clear flash message after 2s
+  useEffect(() => {  
+    if (!flash) return  
+    const t = setTimeout(() => setFlash(undefined), 2000)
+    return () => clearTimeout(t)
+  }, [flash])
 
   return (
     <div>
@@ -40,11 +53,11 @@ const HomePage: React.FC = () => {
   
         <div className="position-absolute top-50 start-50 translate-middle d-flex flex-column justify-content-center align-items-center bg-dark bg-opacity-50 text-white p-4 rounded">
         <div className="d-flex flex-column justify-content-center align-items-center text-center">
-          <h4 className="mb-2"><Greeting /></h4>
+          <h4 className="mb-0"><Greeting /></h4>
           <div className="d-flex align-items-center">
             <img
               src="http://localhost:3000/images/logos/spiceplanet-icon-white.png"
-              className="me-2"
+              className="me-2 mb-0"
               style={{ height: "3em", width: "auto" }}
               alt="Spice Planet Icon"
             />

@@ -60,8 +60,11 @@ const navigate = useNavigate();
               {/* Right Column */}
               <div className="col-6">
               <h2 className="text-left">{product?.name}</h2>
+
                 <h5 className="text-muted">{product?.subheading}</h5>
                 <p>{product?.description}</p>
+
+
 
                 {/* supply available sizes and callbacks to update selectedSize & quantity */}
                 {/* onSelectSize: callback so that when the selector chooses a new size, we update our `selectedSize` state here*/}
@@ -72,16 +75,18 @@ const navigate = useNavigate();
                   onSelectQuantity={(q: number) => setQuantity(q)} 
                 />
                 {/* pass product, chosen size, and quantity for adding to cart */}
-               <div className="d-flex mt-3">
+               <div className="d-flex mt-3 align-items-center gap-3">
             {/* Add to Cart button */}
+            <div style={{ position: 'relative' }}>
             <AddToCartButton
               product={product}
               selectedSize={selectedSize!}
               quantity={quantity}
             />
+            </div>
             {/* Back button */}
             <button
-              className="btn-primary ml-2 ms-2"
+              className="btn-primary back-button ms-2" style={{ height: "40px" }}
               onClick={() => navigate('/')}
             >
               Back

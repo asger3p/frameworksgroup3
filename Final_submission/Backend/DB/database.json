@@ -319,7 +319,9 @@
       "subheading": "Warmth and Complexity",
       "description": "A classic Indian blend of roasted spices — cumin, cinnamon, and cardamom — adding bold, layered flavor to curries, soups, and roasted dishes. Used in dishes like butter chicken, lentil curry, roasted vegetables. Usage Tip: Add garam masala at the end of cooking for a fragrant finish — it’s all about capturing those bold aromas! It pairs well with turmeric, ginger powder, bay leaves.",
       "image": "/images/products/13-garammasala.jpg",
-      "cuisine": ["Indian"],
+      "cuisine": [
+        "Indian"
+      ],
       "type": "Blend",
       "sizes": [
         {
@@ -469,6 +471,12 @@
       "name": "Stine Derror",
       "mail": "stde@itu.dk",
       "password": "supersecret"
+    },
+    {
+      "customer_id": "customer_2",
+      "name": "Saaga Syrjänen",
+      "mail": "sasy@itu.dk",
+      "password": "test3"
     }
   ],
   "baskets": [
@@ -484,6 +492,10 @@
           "quantity": 1
         }
       ]
+    },
+    {
+      "customer_id": "customer_2",
+      "items": []
     }
   ]
 }
