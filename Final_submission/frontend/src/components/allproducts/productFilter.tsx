@@ -1,25 +1,57 @@
-import React from "react";
+// ProductFilter.tsx
+import React, { useEffect, useState } from "react";
 import { CuisineType, ProductTypeCategory } from "../../types/product";
 
-// Define the props for the ProductFilter component
 interface ProductFilterProps {
   selectedCuisines: CuisineType[];
   selectedProductTypes: ProductTypeCategory[];
-  onCuisineChange: (cuisine: CuisineType) => void;
-  onProductTypeChange: (type: ProductTypeCategory) => void;
+  onFilterChange: (
+    selectedCuisines: CuisineType[],
+    selectedProductTypes: ProductTypeCategory[]
+  ) => void;
 }
 
-// Define the available cuisines and product types
-const cuisines: CuisineType[] = ["Indian", "Mediterranean", "Latin American", "Asian"];
-const productTypes: ProductTypeCategory[] = ["Whole", "Ground", "Blend"];
-
-// ProductFilter component allowing users to filter products based on cuisine and product type
-const ProductFilter: React.FC<ProductFilterProps> = ({
+function ProductFilter({
   selectedCuisines,
   selectedProductTypes,
-  onCuisineChange,
-  onProductTypeChange
-}) => {
+  onFilterChange,
+}: ProductFilterProps) {
+  const [cuisines, setCuisines] = useState<CuisineType[]>([]);
+  const [productTypes, setProductTypes] = useState<ProductTypeCategory[]>([]);
+
+  // Fetch available categories on mount
+  useEffect(() => {
+    fetch("http://localhost:3000/categories")
+      .then((res) => res.json())
+      .then((data) => {
+        setCuisines(data.categories.cuisines);
+        setProductTypes(data.categories.types);
+      })
+      .catch((err) => console.error("Failed to fetch categories:", err));
+  }, []);
+
+  // Handle checkbox toggling for cuisines
+  const toggleCuisine = (cuisine: CuisineType) => {
+    let newSelected: CuisineType[];
+    if (selectedCuisines.includes(cuisine)) {
+      newSelected = selectedCuisines.filter((c) => c !== cuisine);
+    } else {
+      newSelected = [...selectedCuisines, cuisine];
+    }
+    onFilterChange(newSelected, selectedProductTypes);
+  };
+
+  // Handle checkbox toggling for product types
+  const toggleProductType = (type: ProductTypeCategory) => {
+    let newSelected: ProductTypeCategory[];
+    if (selectedProductTypes.includes(type)) {
+      newSelected = selectedProductTypes.filter((t) => t !== type);
+    } else {
+      newSelected = [...selectedProductTypes, type];
+    }
+    onFilterChange(selectedCuisines, newSelected);
+  };
+
   return (
     <div className="mb-4">
       <h5>Cuisines</h5>
@@ -30,7 +62,7 @@ const ProductFilter: React.FC<ProductFilterProps> = ({
             type="checkbox"
             id={`cuisine-${cuisine}`}
             checked={selectedCuisines.includes(cuisine)}
-            onChange={() => onCuisineChange(cuisine)}
+            onChange={() => toggleCuisine(cuisine)}
           />
           <label className="form-check-label" htmlFor={`cuisine-${cuisine}`}>
             {cuisine}
@@ -46,7 +78,7 @@ const ProductFilter: React.FC<ProductFilterProps> = ({
             type="checkbox"
             id={`type-${type}`}
             checked={selectedProductTypes.includes(type)}
-            onChange={() => onProductTypeChange(type)}
+            onChange={() => toggleProductType(type)}
           />
           <label className="form-check-label" htmlFor={`type-${type}`}>
             {type}
@@ -55,6 +87,6 @@ const ProductFilter: React.FC<ProductFilterProps> = ({
       ))}
     </div>
   );
-};
+}
 
 export default ProductFilter;

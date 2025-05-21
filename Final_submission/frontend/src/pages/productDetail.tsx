@@ -88,7 +88,7 @@ const navigate = useNavigate();
             {/* Back button */}
             <button
               className="btn-primary back-button ms-2" style={{ height: "40px" }}
-              onClick={() => navigate('/')}
+              onClick={() => navigate(-1)}
             >
               Back
             </button>

@@ -13,10 +13,6 @@ class BasketModel {
     return db.baskets.find(basket => basket.customer_id === customerId); // Looks for the basket that matches the user ID
   }
 
-  getAllBaskets() {
-    const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
-    return db.baskets;
-  }
 
   // Update basket quantities or remove products (if quantity = 0)
   updateBasket(customerId, items) {

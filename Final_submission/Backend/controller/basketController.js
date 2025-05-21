@@ -57,14 +57,6 @@ export async function removeProductFromBasket(req, res){
   }
 }
 
-export const getAllBaskets = (req, res) => {
-  try {
-    const baskets = model.getAllBaskets();
-    res.json(baskets);
-  } catch (err) {
-    res.status(500).json({ error: 'Failed to load baskets' });
-  }
-};
 
   
 
