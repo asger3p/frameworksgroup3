@@ -62,10 +62,10 @@ export function QuantitySelector({
             </select>
       
             {/*Quantity Selector*/}
-            <div id="quantitySelector" className="d-flex align-items-center gap-2 mt-3">
-              <button className="btn btn-sm btn-outline-secondary px-3 py-2" onClick={decreaseQuantity}>-</button>
-              <input id="quantity" className="mx-1 fs-5 text-center w-25" type="number" value={quantity} min="1" readOnly />
-              <button id="increase" className="btn btn-sm btn-outline-secondary px-3 py-2" onClick={increaseQuantity}>+</button>
+            <div id="quantitySelector" className="d-flex align-items-center gap-2 mt-2">
+              <button className="btn btn-sm btn-outline-secondary px-2 py-1" onClick={decreaseQuantity}>-</button>
+              <input id="quantity" className="mx-1 fs-6 text-center w-25" type="number" value={quantity} min="1" readOnly />
+              <button id="increase" className="btn btn-sm btn-outline-secondary px-2 py-1" onClick={increaseQuantity}>+</button>
             </div>
       
             {/*Price*/}

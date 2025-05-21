@@ -115,7 +115,7 @@ const parseDescription = (description: string) => {
               {/* Right Column */}
               <div className="col-6">
               <h2 className="text-left">{product?.name}</h2>
-                <h5 className="text-muted">{product?.subheading}</h5>
+                <h5 className="text-muted mb-3">{product?.subheading}</h5>
                 <div>{parseDescription(product?.description || '')}</div>
 
                 {/* supply available sizes and callbacks to update selectedSize & quantity */}
@@ -127,16 +127,18 @@ const parseDescription = (description: string) => {
                   onSelectQuantity={(q: number) => setQuantity(q)} 
                 />
                 {/* pass product, chosen size, and quantity for adding to cart */}
-               <div className="d-flex mt-3">
+               <div className="d-flex mt-3 align-items-center gap-3">
             {/* Add to Cart button */}
+            <div style={{ position: 'relative' }}>
             <AddToCartButton
               product={product}
               selectedSize={selectedSize!}
               quantity={quantity}
             />
+            </div>
             {/* Back button */}
             <button
-              className="btn-primary back-button ms-2"
+              className="btn-primary back-button ms-2" style={{ height: "40px" }}
               onClick={() => navigate('/')}
             >
               Back

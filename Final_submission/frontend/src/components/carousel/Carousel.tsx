@@ -11,21 +11,23 @@ interface CarouselProps {
   // Carousel component displays products in a responsive Bootstrap carousel
   const Carousel: React.FC<CarouselProps> = ({ id, products }) => {
     const [slides, setSlides] = useState<Product[][]>([]);
+    const [cardsPerSlide, setCardsPerSlide] = useState<number>(4); // for width calculation
   
     useEffect(() => {
        // Determine number of product cards per slide based on window width
       const getCardsPerSlide = () => {
-        if (window.innerWidth >= 1200) return 5;
-        if (window.innerWidth >= 768) return 4;
-        return 3;
+        if (window.innerWidth >= 1200) return 4; // large screens
+        if (window.innerWidth >= 768) return 3; // tablets/laptops
+        return 2;
       };
 
       // Group products into slides depending on cardsPerSlide
       const getSlides = (cards: Product[]) => {
-        const cardsPerSlide = getCardsPerSlide();
+        const cps = getCardsPerSlide();
+        setCardsPerSlide(cps);
         const result: Product[][] = [];
-        for (let i = 0; i < cards.length; i += cardsPerSlide) {
-          result.push(cards.slice(i, i + cardsPerSlide));
+        for (let i = 0; i < cards.length; i += cps) {
+          result.push(cards.slice(i, i + cps));
         }
         return result;
       };
@@ -45,9 +47,18 @@ interface CarouselProps {
         <div className="carousel-inner">
           {slides.map((slide, index) => (
             <div className={`carousel-item ${index === 0 ? "active" : ""}`} key={index}>
-              <div className="d-flex justify-content-center gap-4">
+              <div className="d-flex w-100 justify-content-center">
                 {slide.map((product) => (
+                  <div key={product.product_id} 
+                  style={{
+                    flex: `0 0 ${100 / cardsPerSlide}%`,
+                    maxWidth: `${100 / cardsPerSlide}%`,
+                    padding: "0 1rem",
+                    boxSizing: "border-box",
+                  }}
+                  >
                   <ProductCard key={product.product_id} product={product} />
+                  </div>
                 ))}
               </div>
             </div>

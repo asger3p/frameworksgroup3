@@ -204,18 +204,28 @@ h1 {
 }
 
 /* Carousel */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 3rem;
+    height: 100%;
+    top: 0;
+    z-index: 10;
+}
+
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
     background-color: var(--primary-green);
     opacity: 1;
     border-radius: 50%;
+    padding: 1rem;
+    z-index: 11;
 }
 
 .carousel-control-prev:hover, 
 .carousel-control-next:hover {
     background-color: var(--primary-green); 
     opacity: 1;
-    width: 70px;
+    width: 3.5rem;
   }
 
 /* Links */

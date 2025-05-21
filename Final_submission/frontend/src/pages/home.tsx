@@ -24,7 +24,8 @@ const HomePage: React.FC = () => {
       "product_rasElHanout",
       "product_bayLeaves",
       "product_chineseFiveSpice",
-      "product_taco"
+      "product_taco",
+      "product_starAnis"
     ].includes(p.product_id)
   );
 
@@ -52,11 +53,11 @@ const HomePage: React.FC = () => {
   
         <div className="position-absolute top-50 start-50 translate-middle d-flex flex-column justify-content-center align-items-center bg-dark bg-opacity-50 text-white p-4 rounded">
         <div className="d-flex flex-column justify-content-center align-items-center text-center">
-          <h4 className="mb-2"><Greeting /></h4>
+          <h4 className="mb-0"><Greeting /></h4>
           <div className="d-flex align-items-center">
             <img
               src="http://localhost:3000/images/logos/spiceplanet-icon-white.png"
-              className="me-2"
+              className="me-2 mb-0"
               style={{ height: "3em", width: "auto" }}
               alt="Spice Planet Icon"
             />
