@@ -158,13 +158,35 @@ export const BasketProvider = ({ children }: { children: ReactNode }) => {
   };
 
   // 9. Remove item
-  const removeItem = (index: number) => {
+const removeItem = async (index: number) => {
+  const productId = items[index].productId;
+
+  if (!customerId) {
+    // Guest user: update local storage and state
     setItems((prev) => {
       const updated = prev.filter((_item, i) => i !== index);
-      syncBasketToServer(updated);
+      localStorage.setItem("guest_basket", JSON.stringify(updated));
       return updated;
     });
-  };
+    return;
+  }
+
+  try {
+    const response = await fetch(`http://localhost:3000/basket/${customerId}/${productId}`, {
+      method: 'DELETE',
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to remove product');
+    }
+
+    // Update local state by removing the item
+    setItems((prev) => prev.filter((_item, i) => i !== index));
+  } catch (error) {
+    console.error('Failed to remove item from basket', error);
+  }
+};
+
 
   // 10. Update quantity
   const updateQty = (index: number, qty: number) => {
