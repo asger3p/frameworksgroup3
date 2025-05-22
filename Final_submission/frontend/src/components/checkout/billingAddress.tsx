@@ -1,58 +1,132 @@
-import React from "react";
-import { OrderFormValues } from "../../types/order";
+import React from 'react';
 
-interface Props {
-    formData: OrderFormValues;
-    onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+interface BillingAddressFormProps {
+  formData: any; // Holds the values of each input field
+  errors: any; // Holds validation error messages for all fields
+  handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void; // Handles input changes
+  handleBlur: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement>) => void; // Handles blur event for validation
 }
 
-const BillingAddressForm: React.FC<Props> = ({ formData, onChange }) => {
-    return (
-        <div className="mb-4">
-            <div className="form-check mb-3">
-                <input
-                    type="checkbox"
-                    name="billingDifferent"
-                    className="form-check-input"
-                    checked={formData.billingDifferent}
-                    onChange={onChange}
-                    id="billingDifferent"
-                    />
-                    <label htmlFor="billingDifferent" className="form-check-label">
-                        Use different billing address
-                    </label>
-            </div>
+// Billing address form component
+const BillingAddressForm: React.FC<BillingAddressFormProps> = ({
+  formData,
+  errors,
+  handleChange,
+  handleBlur,
+}) => {
+  return (
+    <div className="mt-4">
+      <h5>Billing Address</h5>
 
-            {/* Extra fields are only shown if user checks the checkbox for different billing address */}
-            {formData.billingDifferent && (
-                <div className="card p-3">
-                    <h6>Billing Address</h6>
+      {/* First Name */}
+      <div className="mb-3">
+        <label htmlFor="billingFirstName" className="form-label">First Name *</label>
+        <input
+          type="text"
+          className={`form-control ${errors.billingFirstName ? 'is-invalid' : ''}`}
+          id="billingFirstName"
+          name="billingFirstName"
+          value={formData.billingFirstName}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        {/* Display validation error if present */}
+        {errors.billingFirstName && (
+          <div className="invalid-feedback">{errors.billingFirstName}</div>
+        )}
+      </div>
 
-                    <input name="billingFirstName" placeholder="First Name *" value={formData.billingFirstName} onChange={onChange} className="form-control mb-2" />
-                    <input name="billingLastName" placeholder="Last Name *" value={formData.billingLastName} onChange={onChange} className="form-control mb-2" />
-                    <input name="billingAddress" placeholder="Street Address *" value={formData.billingAddress} onChange={onChange} className="form-control mb-2" />
-                    <input name="billingCity" placeholder="City *" value={formData.billingCity} onChange={onChange} className="form-control mb-2" />
-                    <input name="billingZip" placeholder="ZIP Code *" value={formData.billingZip} onChange={onChange} className="form-control mb-2" />
+      {/* Last Name */}
+      <div className="mb-3">
+        <label htmlFor="billingLastName" className="form-label">Last Name *</label>
+        <input
+          type="text"
+          className={`form-control ${errors.billingLastName ? 'is-invalid' : ''}`}
+          id="billingLastName"
+          name="billingLastName"
+          value={formData.billingLastName}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        {errors.billingLastName && (
+          <div className="invalid-feedback">{errors.billingLastName}</div>
+        )}
+      </div>
 
-                    <label htmlFor="billingCountry" className="form-label">Billing Country *</label>
-                    <select
-                        id="billingCountry"
-                        name="billingCountry"
-                        value={formData.billingCountry} 
-                        onChange={onChange} 
-                        className="form-control" 
-                        >
-                        <option value="">Choose a Country</option>
-                        <option value="Denmark">Denmark</option>
-                        <option value="Sweden">Finland</option>
-                        <option value="Denmark">Germany</option>
-                        <option value="Sweden">Norway</option>
-                        <option value="Sweden">Sweden</option>
-                    </select>
-                </div>
-            )}
-        </div>
-    );
+      {/* Address */}
+      <div className="mb-3">
+        <label htmlFor="billingAddress" className="form-label">Address *</label>
+        <input
+          type="text"
+          className={`form-control ${errors.billingAddress ? 'is-invalid' : ''}`}
+          id="billingAddress"
+          name="billingAddress"
+          value={formData.billingAddress}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        {errors.billingAddress && (
+          <div className="invalid-feedback">{errors.billingAddress}</div>
+        )}
+      </div>
+
+      {/* City */}
+      <div className="mb-3">
+        <label htmlFor="billingCity" className="form-label">City *</label>
+        <input
+          type="text"
+          className={`form-control ${errors.billingCity ? 'is-invalid' : ''}`}
+          id="billingCity"
+          name="billingCity"
+          value={formData.billingCity}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        {errors.billingCity && (
+          <div className="invalid-feedback">{errors.billingCity}</div>
+        )}
+      </div>
+
+      {/* ZIP Code */}
+      <div className="mb-3">
+        <label htmlFor="billingZip" className="form-label">ZIP Code *</label>
+        <input
+          type="text"
+          className={`form-control ${errors.billingZip ? 'is-invalid' : ''}`}
+          id="billingZip"
+          name="billingZip"
+          value={formData.billingZip}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        {errors.billingZip && (
+          <div className="invalid-feedback">{errors.billingZip}</div>
+        )}
+      </div>
+
+      {/* Country */}
+      <div className="mb-3">
+        <label htmlFor="billingCountry" className="form-label">Country *</label>
+        <select
+          className={`form-select ${errors.billingCountry ? 'is-invalid' : ''}`}
+          id="billingCountry"
+          name="billingCountry"
+          value={formData.billingCountry}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        >
+          <option value="">Select your country</option>
+          <option value="Denmark">Denmark</option>
+          <option value="Sweden">Sweden</option>
+          <option value="Norway">Norway</option>
+          <option value="Finland">Finland</option>
+        </select>
+        {errors.billingCountry && (
+          <div className="invalid-feedback">{errors.billingCountry}</div>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default BillingAddressForm;
