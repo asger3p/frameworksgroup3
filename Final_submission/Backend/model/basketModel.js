@@ -69,6 +69,18 @@ class BasketModel {
     fs.writeFileSync(this.dbPath, JSON.stringify(db, null, 2));
     return basket;
   }
+//clears all items in basket for a customer
+  clearBasket(customerId) {
+  const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
+  const basket = db.baskets.find(b => b.customer_id === customerId);
+
+  if (!basket) return null;
+
+  basket.items = []; // Clear all items from the basket
+
+  fs.writeFileSync(this.dbPath, JSON.stringify(db, null, 2));
+  return basket;
+}
 
   // (Optional) Add a product to a customer's basket — unused in updated routes
   addProductToBasket(customerId, productId, quantity) {

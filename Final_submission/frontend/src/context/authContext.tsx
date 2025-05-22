@@ -1,11 +1,11 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
-import { useBasket } from "./basketContext";  // adjust path as needed
-import { Customer } from "../types/customer"; // adjust path as needed
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { useBasket } from "./basketContext";  // Adjust path as needed
+import { Customer } from "../types/customer"; // Adjust path as needed
 
 // Define the shape of your auth context state
 interface AuthContextType {
   customer: Customer | null;
-  login: (customer: Customer) => Promise<void>; // now async
+  login: (customer: Customer) => Promise<void>;
   logout: () => void;
 }
 
@@ -19,28 +19,32 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return saved ? JSON.parse(saved) : null;
   });
 
-  // Access basket context's setCustomer
-   const { setCustomer: setBasketCustomer } = useBasket();
+  const { setCustomer: setBasketCustomer } = useBasket();
 
-  // Login function — sets state, stores customer, and sync basket
+  // Login function — sets state, stores customer, and syncs basket
   const login = async (customerData: Customer) => {
-
     setCustomerState(customerData);
     localStorage.setItem("customer", JSON.stringify(customerData));
-
-    // Sync basket on login
-    await setBasketCustomer(customerData.customer_id);
+    await setBasketCustomer(customerData.customer_id); // Sync basket from DB
   };
 
   // Logout function — clears state and localStorage
-  const logout = () => {
-    setCustomerState(null);
-    localStorage.removeItem("customer");
-    // Optionally clear basket or set customer to null in BasketContext here if needed
-  };
+ const logout = () => {
+  setCustomerState(null);
+  localStorage.removeItem("customer");
+  setBasketCustomer(null); // Clear basket customer on logout
+ 
+};
+
+  // Sync basket if customer is remembered on page load
+  useEffect(() => {
+    if (customer) {
+      setBasketCustomer(customer.customer_id);
+    }
+  }, [customer]);
 
   return (
-    <AuthContext.Provider value={{ customer: customer, login, logout }}>
+    <AuthContext.Provider value={{ customer, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
@@ -52,5 +56,5 @@ export const useAuth = (): AuthContextType => {
   if (!context) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
-  return context;  // <-- return the context here
+  return context;
 };

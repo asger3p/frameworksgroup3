@@ -37,6 +37,23 @@ export async function updateBasket(req, res){
     res.status(500).json({ error: "Failed to update basket" });
   }  
 }
+//DELETE: removes everything product in the basket
+export const clearBasket = (req, res) => {
+  const { customerId } = req.params;
+
+  try {
+    const clearedBasket = model.clearBasket(customerId);
+
+    if (!clearedBasket) {
+      return res.status(404).json({ message: "Basket not found" });
+    }
+
+    res.status(200).json({ message: "Basket cleared" });
+  } catch (error) {
+    console.error("Error clearing basket:", error);
+    res.status(500).json({ message: "Failed to clear basket" });
+  }
+};
 
 // DELETE: remove a specific product, productId comes from body
 export async function removeProductFromBasket(req, res){

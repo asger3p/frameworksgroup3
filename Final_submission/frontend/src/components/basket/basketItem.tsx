@@ -1,14 +1,12 @@
-// Description: Renders one item row in the cart, with imageUrl, name, quantity controls, price, and remove button.
-
 import React from "react";
-import { BasketItem as BasketItemType } from "../../types/basket"; // Type for individual cart item data
+import { BasketItem as BasketItemType } from "../../types/basket";
 
 interface BasketItemProps {
-  item: BasketItemType; // The cart item object with properties
-  index: number; // Index of this item in the cart array, used in callbacks
-  onIncrease: (index: number) => void; // Callback to increase quantity by one
-  onDecrease: (index: number) => void; // Callback to decrease quantity by one (or remove if zero)
-  onRemove: (index: number) => void; // Callback to remove this item from the cart entirely
+  item: BasketItemType;        // The cart item data
+  index: number;               // Index in the cart array
+  onIncrease: (index: number) => void;  // Increase quantity callback
+  onDecrease: (index: number) => void;  // Decrease quantity callback
+  onRemove: (index: number) => void;    // Remove item callback
 }
 
 const BasketItem: React.FC<BasketItemProps> = ({
@@ -21,14 +19,13 @@ const BasketItem: React.FC<BasketItemProps> = ({
   <div className="row align-items-center border-bottom py-2">
     <div className="col-2">
       <img
-        src={item.imageUrl ? `http://localhost:3000${item.imageUrl}` : ""} // fallback if no image URL provided
+        src={item.imageUrl ? `http://localhost:3000${item.imageUrl}` : ""}
         alt={item.name}
         className="img-fluid"
         style={{ maxWidth: 50 }}
       />
     </div>
     <div className="col-4">
-      {/* Product name in bold, with size as muted text */}
       <div>
         <strong>{item.name}</strong>
         <small className="text-muted ms-2">{item.size}</small>
@@ -45,7 +42,7 @@ const BasketItem: React.FC<BasketItemProps> = ({
         type="number"
         className="quantity-input mx-1 text-center w-25 fs-6"
         value={item.quantity}
-        readOnly // quantity is controlled via buttons
+        readOnly
       />
       <button
         className="increase btn btn-sm btn-outline-secondary px-2 py-1"
@@ -55,7 +52,7 @@ const BasketItem: React.FC<BasketItemProps> = ({
       </button>
     </div>
     <div className="col-2 price" data-price={item.price}>
-      {item.price * item.quantity} kr {/* computed subtotal for this item */}
+      {item.price * item.quantity} kr
     </div>
     <div className="col-1">
       <button
