@@ -1,5 +1,5 @@
 import {useEffect, useState } from 'react'  // React hooks for lifecycle & state
-import { useNavigate, Navigate } from 'react-router-dom' // navigation & redirect in React Router
+import { useNavigate } from 'react-router-dom' // navigation & redirect in React Router
 import { useAuth } from '../context/authContext' // AuthContext for user session
 
 export default function Profile() {

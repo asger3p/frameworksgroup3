@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {useAuth} from '../context/authContext'; // AuthContext to set user after signup
+import {useAuth} from '../context/authContext'; // AuthContext to set customer after signup
 
 export default function Register() {
   const navigate = useNavigate();
-  const { login } = useAuth(); // so we can make sure the user is logged in automatically when creating account
+  const { login } = useAuth(); // so we can make sure the customer is logged in automatically when creating account
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
   const [email, setEmail] = useState('');
@@ -32,7 +32,7 @@ export default function Register() {
       return;
     }
 
-    // Build the payload (the JSON data object) you’ll send to the server: contains the new user’s name, mail, and password
+    // Build the payload (the JSON data object) you’ll send to the server: contains the new customer name, mail, and password
     const payload = {
       name:  `${fname} ${lname}`,
       mail:  email,
@@ -55,11 +55,11 @@ export default function Register() {
       }
 
       // AUTO LOGIN:
-      // otherwise it succeeded — data.customer is the new user record (data.customer is what the backend sent back)
+      // otherwise it succeeded — data.customer is the new customer record (data.customer is what the backend sent back)
       const created = data.customer;
       const firstName = created.name.split(' ')[0]; // Pull first name out of the full name
       
-      // call `login(...)` from authContext to set the user in state & localStorage
+      // call `login(...)` from authContext to set the customer in state & localStorage
       login({
         customer_id: created.customer_id,
         fname:       firstName,
@@ -74,15 +74,6 @@ export default function Register() {
     console.error(err);
     alert('Registration failed: ' + err.message);
   }
-
-    // TO BE DELETED - IS DONE IN AUTHCONTEXT NOW
-    // // Save to localStorage
-    // localStorage.setItem('fname', fname);
-    // localStorage.setItem('lname', lname);
-    // localStorage.setItem('email', email);
-    // localStorage.setItem('password', password);
-
-    
 };
 
   return (
@@ -124,7 +115,7 @@ export default function Register() {
                 const value = e.target.value;
                 setEmail(value);
 
-                //live validation as user types
+                //live validation as customer types
                 if (!isEmailValid(value)) {
                   setEmailError('Please enter a valid email address');
                 } else {

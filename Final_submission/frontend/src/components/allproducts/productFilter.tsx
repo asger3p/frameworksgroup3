@@ -1,61 +1,42 @@
-// ProductFilter.tsx
-import React, { useEffect, useState } from "react";
-import { CuisineType, ProductTypeCategory } from "../../types/product";
-
 interface ProductFilterProps {
-  selectedCuisines: CuisineType[];
-  selectedProductTypes: ProductTypeCategory[];
+  selectedCuisines: string[];
+  selectedProductTypes: string[];
+  availableCuisines: string[];  
+  availableProductTypes: string[];   
   onFilterChange: (
-    selectedCuisines: CuisineType[],
-    selectedProductTypes: ProductTypeCategory[]
+    selectedCuisines: string[],
+    selectedProductTypes: string[]
   ) => void;
 }
 
 function ProductFilter({
   selectedCuisines,
   selectedProductTypes,
+  availableCuisines,
+  availableProductTypes,
   onFilterChange,
 }: ProductFilterProps) {
-  const [cuisines, setCuisines] = useState<CuisineType[]>([]);
-  const [productTypes, setProductTypes] = useState<ProductTypeCategory[]>([]);
 
-  // Fetch available categories on mount
-  useEffect(() => {
-    fetch("http://localhost:3000/categories")
-      .then((res) => res.json())
-      .then((data) => {
-        setCuisines(data.categories.cuisines);
-        setProductTypes(data.categories.types);
-      })
-      .catch((err) => console.error("Failed to fetch categories:", err));
-  }, []);
+  const toggleCuisine = (cuisine: string) => {
+    const newSelected = selectedCuisines.includes(cuisine)
+      ? selectedCuisines.filter((c) => c !== cuisine)
+      : [...selectedCuisines, cuisine];
 
-  // Handle checkbox toggling for cuisines
-  const toggleCuisine = (cuisine: CuisineType) => {
-    let newSelected: CuisineType[];
-    if (selectedCuisines.includes(cuisine)) {
-      newSelected = selectedCuisines.filter((c) => c !== cuisine);
-    } else {
-      newSelected = [...selectedCuisines, cuisine];
-    }
     onFilterChange(newSelected, selectedProductTypes);
   };
 
-  // Handle checkbox toggling for product types
-  const toggleProductType = (type: ProductTypeCategory) => {
-    let newSelected: ProductTypeCategory[];
-    if (selectedProductTypes.includes(type)) {
-      newSelected = selectedProductTypes.filter((t) => t !== type);
-    } else {
-      newSelected = [...selectedProductTypes, type];
-    }
+  const toggleProductType = (type: string) => {
+    const newSelected = selectedProductTypes.includes(type)
+      ? selectedProductTypes.filter((t) => t !== type)
+      : [...selectedProductTypes, type];
+
     onFilterChange(selectedCuisines, newSelected);
   };
 
   return (
     <div className="mb-4">
       <h5>Cuisines</h5>
-      {cuisines.map((cuisine) => (
+      {availableCuisines.map((cuisine) => ( 
         <div key={cuisine} className="form-check">
           <input
             className="form-check-input"
@@ -71,7 +52,7 @@ function ProductFilter({
       ))}
 
       <h5 className="mt-4">Product Types</h5>
-      {productTypes.map((type) => (
+      {availableProductTypes.map((type) => (   
         <div key={type} className="form-check">
           <input
             className="form-check-input"

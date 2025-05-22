@@ -1,19 +1,12 @@
-import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { createContext, useContext, useState, ReactNode } from 'react';
 import { useBasket } from "./basketContext";  // adjust path as needed
+import { Customer } from "../types/customer"; // adjust path as needed
 
 // Define the shape of your auth context state
 interface AuthContextType {
-  user: User | null;
-  login: (user: User) => Promise<void>; // now async
+  customer: Customer | null;
+  login: (customer: Customer) => Promise<void>; // now async
   logout: () => void;
-}
-
-// Define the shape of a user (you can customize this)
-interface User {
-  customer_id: string; // to keep track of user data
-  fname: string;
-  email: string;
-  // Add more fields if needed (e.g. role, token)
 }
 
 // Create the context
@@ -21,34 +14,33 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // Provide the context to your app
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(() => {
-    const saved = localStorage.getItem("user");
+  const [customer, setCustomerState] = useState<Customer | null>(() => {
+    const saved = localStorage.getItem("customer");
     return saved ? JSON.parse(saved) : null;
   });
 
-
   // Access basket context's setCustomer
-  const { setCustomer } = useBasket();
+   const { setCustomer: setBasketCustomer } = useBasket();
 
-  // Login function — sets state, stores user, and sync basket
-  const login = async (userData: User) => {
+  // Login function — sets state, stores customer, and sync basket
+  const login = async (customerData: Customer) => {
 
-    setUser(userData);
-    localStorage.setItem("user", JSON.stringify(userData));
+    setCustomerState(customerData);
+    localStorage.setItem("customer", JSON.stringify(customerData));
 
     // Sync basket on login
-    await setCustomer(userData.customer_id);
+    await setBasketCustomer(customerData.customer_id);
   };
 
   // Logout function — clears state and localStorage
   const logout = () => {
-    setUser(null);
-    localStorage.removeItem("user");
+    setCustomerState(null);
+    localStorage.removeItem("customer");
     // Optionally clear basket or set customer to null in BasketContext here if needed
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ customer: customer, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

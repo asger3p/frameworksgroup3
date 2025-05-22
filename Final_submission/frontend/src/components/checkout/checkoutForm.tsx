@@ -46,12 +46,13 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
 
   // Handle input field changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value, type, checked } = e.target;
-
+    const { name, value, type } = e.target;
     // Update formData with new value or checkbox state
     setFormData((prevData) => ({
       ...prevData,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: type === 'checkbox'
+        ? (e.target as HTMLInputElement).checked
+        : value,
     }));
   };
 

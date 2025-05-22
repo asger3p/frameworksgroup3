@@ -1,27 +1,45 @@
-// AllProductsPage.tsx
 import React, { useEffect, useState } from "react";
 import ProductFilter from "../components/allproducts/productFilter";
 import ProductGrid from "../components/allproducts/productGrid";
-import { Product, CuisineType, ProductTypeCategory } from "../types/product";
+import { Product } from "../types/product";
 
 const AllProductsPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const [selectedCuisines, setSelectedCuisines] = useState<CuisineType[]>([]);
-  const [selectedProductTypes, setSelectedProductTypes] = useState<ProductTypeCategory[]>([]);
+  const [availableCuisines, setAvailableCuisines] = useState<string[]>([]);
+  const [availableProductTypes, setAvailableProductTypes] = useState<string[]>(
+    []
+  );
+
+  const [selectedCuisines, setSelectedCuisines] = useState<string[]>([]);
+  const [selectedProductTypes, setSelectedProductTypes] = useState<string[]>(
+    []
+  );
+
+  useEffect(() => {
+    fetch("http://localhost:3000/categories")
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch filter categories");
+        return res.json();
+      })
+      .then((data) => {
+        setAvailableCuisines(data.categories.cuisines || []);
+        setAvailableProductTypes(data.categories.types || []);
+      })
+      .catch((err) => console.error("Error fetching categories:", err));
+  }, []);
 
   useEffect(() => {
     setLoading(true);
     setError(null);
 
-    const cuisineParams = selectedCuisines.join(",");
-    const typeParams = selectedProductTypes.join(",");
-
     const query = new URLSearchParams();
-    if (cuisineParams) query.append("cuisines", cuisineParams);
-    if (typeParams) query.append("types", typeParams);
+    if (selectedCuisines.length)
+      query.append("cuisines", selectedCuisines.join(","));
+    if (selectedProductTypes.length)
+      query.append("types", selectedProductTypes.join(","));
 
     fetch(`http://localhost:3000/products?${query.toString()}`)
       .then((res) => {
@@ -33,10 +51,9 @@ const AllProductsPage: React.FC = () => {
       .finally(() => setLoading(false));
   }, [selectedCuisines, selectedProductTypes]);
 
-  // Callback passed to ProductFilter
   const handleFilterChange = (
-    newSelectedCuisines: CuisineType[],
-    newSelectedProductTypes: ProductTypeCategory[]
+    newSelectedCuisines: string[],
+    newSelectedProductTypes: string[]
   ) => {
     setSelectedCuisines(newSelectedCuisines);
     setSelectedProductTypes(newSelectedProductTypes);
@@ -49,6 +66,8 @@ const AllProductsPage: React.FC = () => {
           <ProductFilter
             selectedCuisines={selectedCuisines}
             selectedProductTypes={selectedProductTypes}
+            availableCuisines={availableCuisines}
+            availableProductTypes={availableProductTypes}
             onFilterChange={handleFilterChange}
           />
         </div>

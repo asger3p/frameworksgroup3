@@ -1,18 +1,14 @@
 import { Routes, Route } from "react-router-dom";
-import Navbar from './components/navbar';
+import Navbar from "./components/navbar";
 import HomePage from "./pages/home";
-import AllProductsPage from './pages/allProducts';
-//import ProductDetail from './pages/productDetail';
-import BasketPage from './pages/basket';
-import CheckoutPage from './pages/checkout';
-import Login from './pages/login';
-import Profile from './pages/profile';
-import Register from './pages/register';
-import Footer from './components/footer';
-import {ProductDetail}  from './pages/productDetail';
-
-
-
+import AllProductsPage from "./pages/allProducts";
+import BasketPage from "./pages/basket";
+import CheckoutPage from "./pages/checkout";
+import Login from "./pages/login";
+import Profile from "./pages/profile";
+import Register from "./pages/register";
+import Footer from "./components/footer";
+import { ProductDetail } from "./pages/productDetail";
 
 function App() {
   return (

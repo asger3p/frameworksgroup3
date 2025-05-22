@@ -1,14 +1,14 @@
-// Description: Displays the greeting and subtitle, pulling the user's first name from localStorage.
+// Description: Displays the greeting and subtitle, pulling the customer's first name from context.
 
-import React from 'react'; // importing React, useState for username state, useEffect for on-mount side effect
-import { useAuth } from '../context/authContext'; //import for context
+import React from 'react';
+import { useAuth } from '../context/authContext';
 
 const Greeting: React.FC = () => {
-  const { user } = useAuth(); //get user from context
+  const { customer } = useAuth(); 
 
   return (
     <div className="container mt-4">
-      <h2>{user ? `Hello, ${user.fname}!` : ''}</h2>
+      <h2>{customer ? `Hello, ${customer.fname}!` : ''}</h2> 
     </div>
   );
 };

@@ -483,6 +483,12 @@
       "name": "tester_tester to test",
       "mail": "testing@gmail.com",
       "password": "246857"
+    },
+    {
+      "customer_id": "customer_4",
+      "name": "kalsmd asd",
+      "mail": "oinwf@aismfsa.dk",
+      "password": "asd"
     }
   ],
   "baskets": [
@@ -508,6 +514,15 @@
       "items": [
         {
           "product_id": "product_bayLeaves",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "customer_id": "customer_4",
+      "items": [
+        {
+          "product_id": "product_corianderSeeds",
           "quantity": 1
         }
       ]

@@ -43,23 +43,6 @@ function Login() {
     const fname = found.name.split(' ')[0]// derive first name from full name for greeting
     login({ customer_id: found.customer_id, fname, email })  // this call saves the user object in AuthContext + writes it to localStorage so the session persists across refreshes
     navigate('/', { state: { flash: 'Welcome back!' }}) // redirect to home page with a flash message
-    
-    // TO BE DELETED (OLD LOCAL STORAGE):
-    // const storedEmail = localStorage.getItem('email');
-    // const storedPassword = localStorage.getItem('password');
-    // const storedFname = localStorage.getItem('fname');
-
-    // // Compare user input to stored values
-    // if (email === storedEmail && password === storedPassword) {
-    //   // Mark user as logged in
-    //   login({ fname: storedFname || 'Guest', email }); //authContext login
-
-    //   // Redirect to homepage
-    //   navigate('/');
-    // } else {
-    //   // Show error if login fails
-    //   setError('Invalid email or password.');
-    // }
   };
 
   return (
