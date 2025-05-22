@@ -1,4 +1,4 @@
-import { QuantitySelector } from "../components/QuantitySelector";
+import QuantitySelector from '../components/QuantitySelector';
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Product, Size } from "../types/product";
