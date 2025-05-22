@@ -488,16 +488,8 @@
           "quantity": 1
         },
         {
-          "product_id": "product_cloves",
-          "quantity": 1
-        },
-        {
-          "product_id": "product_cardamonPods",
-          "quantity": 1
-        },
-        {
-          "product_id": "product_starAnis",
-          "quantity": 1
+          "product_id": "product_bayLeaves",
+          "quantity": 2
         }
       ]
     },

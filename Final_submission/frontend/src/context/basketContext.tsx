@@ -34,6 +34,7 @@ export const BasketProvider = ({ children }: { children: ReactNode }) => {
   const [items, setItems] = useState<BasketItem[]>([]);
   const [customerId, setCustomerId] = useState<string | null>(null);
 
+
   const syncBasketToServer = async (updatedItems: BasketItem[]) => {
     if (!customerId) {
       localStorage.setItem("guest_basket", JSON.stringify(updatedItems));
@@ -157,7 +158,7 @@ export const BasketProvider = ({ children }: { children: ReactNode }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/basket/${customerId}/${productId}/${encodeURIComponent(size)}`,
+        `http://localhost:3000/basket/${customerId}/${productId}`,
         { method: "DELETE" }
       );
       if (!response.ok) throw new Error("Failed to remove product");
@@ -178,10 +179,20 @@ export const BasketProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  const clearBasket = () => {
-    setItems([]);
-    syncBasketToServer([]);
-  };
+const clearBasket = async () => {
+  setItems([]);
+  localStorage.removeItem("guest_basket");
+
+  if (!customerId) return;
+
+  try {
+    await fetch(`http://localhost:3000/basket/${customerId}`, {
+      method: "DELETE",
+    });
+  } catch (error) {
+    console.error("Failed to clear basket in backend", error);
+  }
+};
 
   return (
     <BasketContext.Provider
