@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { useBasket } from "./basketContext";  // Adjust path as needed
-import { Customer } from "../types/customer"; // Adjust path as needed
+import { useBasket } from "./basketContext"; 
+import { Customer } from "../types/customer"; 
 
 // Define the shape of your auth context state
 interface AuthContextType {

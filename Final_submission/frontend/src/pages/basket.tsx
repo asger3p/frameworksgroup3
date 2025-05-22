@@ -18,7 +18,7 @@ const BasketPage: React.FC = () => {
       <h4 className="text-left">See your cart here</h4>
         <div id="cartItems">
           {items.length === 0 ? (
-            <p>Your basket is empty.</p>
+            <p>Your cart is empty.</p>
           ) : (
             items.map((item, idx) => (
               <BasketItem

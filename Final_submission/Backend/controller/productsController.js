@@ -12,19 +12,6 @@ export async function createProduct(req, res){
     }
   }
 
-
-// GET all /products - retrieve all available products
-/*
-export async function getAllProducts(req, res){
-    try{
-        const products = await model.getAllProducts();
-        res.status(200).json(products);
-    } catch (error){
-        res.status(500).json({ error: `Could not retrieve products: ${error.message}` });
-    }
-}
-    */
-
 export async function getFilteredProducts(req, res) {
   try {
     let { cuisines, types } = req.query;

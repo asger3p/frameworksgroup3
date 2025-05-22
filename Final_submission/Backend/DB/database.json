@@ -466,36 +466,9 @@
     }
   ],
   "customers": [
-    {
-      "customer_id": "customer_1",
-      "name": "Stine Derror",
-      "mail": "stde@itu.dk",
-      "password": "supersecret"
-    },
-    {
-      "customer_id": "customer_2",
-      "name": "tester_tester to test",
-      "mail": "testing@gmail.com",
-      "password": "246857"
-    }
+
   ],
   "baskets": [
-    {
-      "customer_id": "customer_1",
-      "items": []
-    },
-    {
-      "customer_id": "customer_2",
-      "items": []
-    },
-    {
-      "customer_id": "customer_3",
-      "items": [
-        {
-          "product_id": "product_bayLeaves",
-          "quantity": 1
-        }
-      ]
-    }
+
   ]
 }
