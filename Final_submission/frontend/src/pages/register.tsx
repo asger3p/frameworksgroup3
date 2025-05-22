@@ -59,14 +59,11 @@ export default function Register() {
       // AUTO LOGIN:
       // otherwise it succeeded — data.customer is the new user record (data.customer is what the backend sent back)
       const created = data.customer as Customer;
-      const firstName = created.name.split(' ')[0]; // Pull first name out of the full name
+      const firstName = created.fname; // 
+
       
-      // call `login(...)` from authContext to set the customer in state & localStorage
-      login({
-        customer_id: created.customer_id,
-        fname:       firstName,
-        email:       created.mail,
-      });
+      await login(created); // Pass full Customer object (what your context expects)
+
 
     // navigate to “/” (home page) with a flash message
     navigate('/', { state: { flash: 'Welcome, ' + firstName + '!' } });

@@ -477,12 +477,6 @@
       "name": "tester_tester to test",
       "mail": "testing@gmail.com",
       "password": "246857"
-    },
-    {
-      "customer_id": "customer_3",
-      "name": "Asger Pjetursson",
-      "mail": "aspj@itu.dk",
-      "password": "1234"
     }
   ],
   "baskets": [
@@ -511,10 +505,6 @@
           "quantity": 1
         }
       ]
-    },
-    {
-      "customer_id": "customer_3",
-      "items": []
     }
   ]
 }
