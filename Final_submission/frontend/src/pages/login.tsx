@@ -33,14 +33,14 @@ function Login() {
 
     const all = await resp.json() as Customer[]; //updated after using customer type
 
-    const found = all.find(c => c.mail === email && c.password === password) // find the user whose email/password match the inputs
+    const found = all.find(c => c.email === email && c.password === password) // find the user whose email/password match the inputs
       if (!found) { // if no matching user found, display error
         setError('Invalid email or password')
       return
     }
 
-    const fname = found.name.split(' ')[0]// derive first name from full name for greeting
-    login({ customer_id: found.customer_id, fname, email })  // this call saves the user object in AuthContext + writes it to localStorage so the session persists across refreshes
+    login(found); // passes full Customer
+
     navigate('/', { state: { flash: 'Welcome back!' }}) // redirect to home page with a flash message
   };
 
