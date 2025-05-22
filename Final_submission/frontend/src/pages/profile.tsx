@@ -1,72 +1,75 @@
-import {useEffect, useState } from 'react'  // React hooks for lifecycle & state
-import { useNavigate } from 'react-router-dom' // navigation & redirect in React Router
-import { useAuth } from '../context/authContext' // AuthContext for customer session
-import { useAuth } from '../context/authContext' // AuthContext for customer session
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/authContext';
 
 export default function Profile() {
-    const navigate = useNavigate()
-    const { customer: customer, logout} = useAuth();  // get current customer object & logout function
-    
-    // if customer has logged out (or never logged in), send them to /login
+  const navigate = useNavigate();
+  const { customer, logout } = useAuth();
+  const [profile, setProfile] = useState({ name: '', mail: '' });
+
+  // Redirect to login if not logged in
+  useEffect(() => {
     if (!customer) {
-    // if customer has logged out (or never logged in), send them to /login
+      navigate('/login');
+    }
+  }, [customer, navigate]);
+
+  // Fetch customer profile
+  useEffect(() => {
+    if (!customer) return;
+
+    fetch(`http://localhost:3000/customers/${customer.customer_id}`)
+      .then((r) => {
+        if (!r.ok) throw new Error();
+        return r.json();
+      })
+      .then((data) => setProfile({ name: data.name, mail: data.mail }))
+      .catch(() => alert('Could not load profile'));
+  }, [customer]);
+
+  const doLogout = () => {
+    logout();
+    navigate('/', { state: { flash: 'You are now logged out' } });
+  };
+
+  const doDelete = async () => {
+    if (!confirm('Really delete your account? This cannot be undone.')) return;
+
     if (!customer) {
-      return <div className="text-center mt-5">Loading your profile...</div>;
-    }    
-
-      // Local component state to hold the profile fields fetched from the backend
-    const [profile, setProfile] = useState({ name: '', mail: '' }) 
-    
-    useEffect(() => {   // On mount (or when customer ID changes), fetch the full profile
-      fetch(`http://localhost:3000/customers/${customer.customer_id}`) // Fetch the full customer record by ID
-    useEffect(() => {   // On mount (or when customer ID changes), fetch the full profile
-      fetch(`http://localhost:3000/customers/${customer.customer_id}`) // Fetch the full customer record by ID
-        .then(r=> {
-          if (!r.ok) throw new Error() // handle HTTP errors
-            return r.json() // parse JSON
-        })
-        .then(data=> setProfile({ name: data.name, mail: data.mail})) // update form fields
-        .catch(() =>alert('Could not load profile')) // show alert on any failure
-    }, [customer]) // re-run if the customer ID ever changes
-    }, [customer]) // re-run if the customer ID ever changes
-    
-     // Log out: clear context, send customer back home
-     // Log out: clear context, send customer back home
-    const doLogout = () => { 
-      logout()
-      navigate('/', { state: { flash: 'You are now logged out' }}) // logout and send a one‑time flash message to show success on HomePage
-   }
-
-    // Delete account: confirm, call DELETE, then clear context + redirect
-    const doDelete = async () => {
-      if (!confirm('Really delete your account? This cannot be undone.')) return 
-      const r = await fetch(
-        `http://localhost:3000/customers/${customer.customer_id}`,   // call DELETE on the customer's endpoint to remove their record
-        `http://localhost:3000/customers/${customer.customer_id}`,   // call DELETE on the customer's endpoint to remove their record
-        { method: 'DELETE' }
-      )
-      if(!r.ok) {
-        alert('Could not delete account')// notify if deletion fails
-        return
-      }
-      logout()
-      navigate('/', { state: { flash: 'Your account is deleted' }})   // clear auth context and redirect home with a deletion confirmation flash
-
+      alert('No customer found.');
+      return;
     }
 
+    const r = await fetch(
+      `http://localhost:3000/customers/${customer.customer_id}`,
+      { method: 'DELETE' }
+    );
 
-    return (
-    <div className="container mt-5" style={{ maxWidth: 400 }}> {/* container with max width for form */}
+    if (!r.ok) {
+      alert('Could not delete account');
+      return;
+    }
+
+    logout();
+    navigate('/', { state: { flash: 'Your account is deleted' } });
+  };
+
+  if (!customer) {
+    return <div className="text-center mt-5">Loading your profile...</div>;
+  }
+
+  return (
+    <div className="container mt-5" style={{ maxWidth: 400 }}>
       <h2 className="mb-4 text-center">My Profile</h2>
       <div className="mb-3">
         <label className="form-label">Name</label>
-        <input readOnly className="form-control" value={profile.name} /> {/* display fetched name */}
+        <input readOnly className="form-control" value={profile.name} />
       </div>
       <div className="mb-3">
         <label className="form-label">Email</label>
-        <input readOnly className="form-control" value={profile.mail} /> {/* display fetched email */}
+        <input readOnly className="form-control" value={profile.mail} />
       </div>
-      <div className="d-flex justify-content-between"> {/* action buttons row */}
+      <div className="d-flex justify-content-between">
         <button className="btn btn-secondary" onClick={doLogout}>
           Log out
         </button>
@@ -75,5 +78,5 @@ export default function Profile() {
         </button>
       </div>
     </div>
-  )
+  );
 }
