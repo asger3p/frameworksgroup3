@@ -5,7 +5,7 @@ import { Customer } from '../types/customer';
 
 function Login() {
   // React state for email and password input fields
-  const [email, setEmail] = useState(''); 
+  const [mail, setEmail] = useState(''); 
   const [password, setPassword] = useState('');
 
   // Toggle to show/hide password
@@ -33,7 +33,7 @@ function Login() {
 
     const all = await resp.json() as Customer[]; //updated after using customer type
 
-    const found = all.find(c => c.email === email && c.password === password) // find the user whose email/password match the inputs
+    const found = all.find(c => c.mail === mail && c.password === password) // find the user whose email/password match the inputs
       if (!found) { // if no matching user found, display error
         setError('Invalid email or password')
       return
@@ -41,7 +41,8 @@ function Login() {
 
     login(found); // passes full Customer
 
-    navigate('/', { state: { flash: 'Welcome back!' }}) // redirect to home page with a flash message
+    const firstName = found.name.split(' ')[0];
+    navigate('/', { state: { flash: `Welcome back, ${firstName}!` }}) // redirect to home page with a flash message
   };
 
   return (
@@ -61,7 +62,7 @@ function Login() {
               id="email"
               type="email"
               className="form-control"
-              value={email}
+              value={mail}
               onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="Enter your email"

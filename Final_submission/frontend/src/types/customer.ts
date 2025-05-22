@@ -1,6 +1,6 @@
 export interface Customer {
   customer_id: string;
-  fname: string;
-  email: string;
+  name: string;
+  mail: string;
   password: string;
 }

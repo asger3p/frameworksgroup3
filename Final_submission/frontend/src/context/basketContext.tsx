@@ -129,11 +129,11 @@ export const BasketProvider = ({ children }: { children: ReactNode }) => {
   };
 
   // 7. Set customer and load basket + transfer guest basket if present
-  const setCustomer = async (newCustomerId: string) => {
-    await transferGuestBasketToCustomer(newCustomerId);
-    await fetchBasket(newCustomerId);
-    setCustomerId(newCustomerId);
-  };
+ const setCustomer = async (newCustomerId: string) => {
+  setCustomerId(newCustomerId);        // Set the customerId state immediately
+  await transferGuestBasketToCustomer(newCustomerId);
+  await fetchBasket(newCustomerId);
+};
 
   // 8. Add item
   const addItem = (item: BasketItem) => {

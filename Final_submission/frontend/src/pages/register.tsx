@@ -36,6 +36,7 @@ export default function Register() {
 
     // Build the payload (the JSON data object) you’ll send to the server: contains the new customer name, mail, and password
     const payload = {
+
       name:  `${fname} ${lname}`,
       mail:  email,
       password,
@@ -59,7 +60,7 @@ export default function Register() {
       // AUTO LOGIN:
       // otherwise it succeeded — data.customer is the new user record (data.customer is what the backend sent back)
       const created = data.customer as Customer;
-      const firstName = created.fname; // 
+      const firstName = created.name.split(' ')[0];
 
       
       await login(created); // Pass full Customer object (what your context expects)
