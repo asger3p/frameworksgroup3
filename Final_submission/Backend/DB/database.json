@@ -485,10 +485,6 @@
       "items": [
         {
           "product_id": "product_cuminSeeds",
-          "quantity": 2
-        },
-        {
-          "product_id": "product_cloves",
           "quantity": 1
         }
       ]
