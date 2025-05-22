@@ -15,60 +15,68 @@ class BasketModel {
 
 
   // Update basket quantities or remove products (if quantity = 0)
-  updateBasket(customerId, items) {
-    const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
-    let basket = db.baskets.find(b => b.customer_id === customerId);
+ updateBasket(customerId, items) {
+  const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
+  let basket = db.baskets.find(b => b.customer_id === customerId);
 
-    if (!basket) {
-      const newBasket = { customer_id: customerId, items: [] };
-      db.baskets.push(newBasket);
-      basket = newBasket;
-    }
-
-    items.forEach(update => {
-      const existingItemIndex = basket.items.findIndex(item => item.product_id === update.product_id);
-
-      if (update.quantity === 0) {
-        // Remove the product completely
-        if (existingItemIndex !== -1) {
-          basket.items.splice(existingItemIndex, 1);
-        }
-      } else {
-        if (existingItemIndex !== -1) {
-          // Update quantity
-          basket.items[existingItemIndex].quantity = update.quantity;
-        } else {
-          // Add new product
-          basket.items.push({ product_id: update.product_id, quantity: update.quantity });
-        }
-      }
-    });
-
-    fs.writeFileSync(this.dbPath, JSON.stringify(db, null, 2));
-    return basket;
+  if (!basket) {
+    const newBasket = { customer_id: customerId, items: [] };
+    db.baskets.push(newBasket);
+    basket = newBasket;
   }
+
+  items.forEach(update => {
+    const existingItemIndex = basket.items.findIndex(
+      item => item.product_id === update.product_id && item.size === update.size
+    );
+
+    if (update.quantity === 0) {
+      if (existingItemIndex !== -1) {
+        basket.items.splice(existingItemIndex, 1);
+      }
+    } else {
+      if (existingItemIndex !== -1) {
+        basket.items[existingItemIndex].quantity = update.quantity;
+      } else {
+        basket.items.push({ 
+          product_id: update.product_id, 
+          size: update.size, 
+          quantity: update.quantity 
+        });
+      }
+    }
+  });
+
+  fs.writeFileSync(this.dbPath, JSON.stringify(db, null, 2));
+  return basket;
+}
 
   // Remove a specific product from the customer's basket (reduce by 1 or remove if quantity is 1)
-  removeProductFromBasket(customerId, productId) {
-    const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
-    const basket = db.baskets.find(b => b.customer_id === customerId);
+  removeProductFromBasket(customerId, productId, size) {
+  const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));
+  const basket = db.baskets.find(b => b.customer_id === customerId);
 
-    if (!basket) return null;
+  if (!basket) return null;
 
-    const existingItemIndex = basket.items.findIndex(item => item.product_id === productId);
-    if (existingItemIndex === -1) return null;
+  const existingItemIndex = basket.items.findIndex(
+    item => item.product_id === productId && item.size === size
+  );
 
-    const existingItem = basket.items[existingItemIndex];
+  if (existingItemIndex === -1) return null;
 
-    if (existingItem.quantity > 1) {
-      existingItem.quantity -= 1;
-    } else {
-      basket.items.splice(existingItemIndex, 1);
-    }
+  const existingItem = basket.items[existingItemIndex];
 
-    fs.writeFileSync(this.dbPath, JSON.stringify(db, null, 2));
-    return basket;
+  if (existingItem.quantity > 1) {
+    existingItem.quantity -= 1;
+  } else {
+    basket.items.splice(existingItemIndex, 1);
   }
+
+  fs.writeFileSync(this.dbPath, JSON.stringify(db, null, 2));
+  return basket;
+}
+
+
 //clears all items in basket for a customer
   clearBasket(customerId) {
   const db = JSON.parse(fs.readFileSync(this.dbPath, "utf-8"));

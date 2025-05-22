@@ -482,16 +482,7 @@
   "baskets": [
     {
       "customer_id": "customer_1",
-      "items": [
-        {
-          "product_id": "product_cuminSeeds",
-          "quantity": 1
-        },
-        {
-          "product_id": "product_bayLeaves",
-          "quantity": 2
-        }
-      ]
+      "items": []
     },
     {
       "customer_id": "customer_2",

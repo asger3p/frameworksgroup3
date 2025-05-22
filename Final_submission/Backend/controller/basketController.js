@@ -59,12 +59,13 @@ export const clearBasket = (req, res) => {
 export async function removeProductFromBasket(req, res){
   const customerId = req.params.customerId;
   const productId = req.params.productId;
+  const size = req.query.size;
 
   try {
-    const updatedBasket = await model.removeProductFromBasket(customerId, productId);
+    const updatedBasket = model.removeProductFromBasket(customerId, productId, size);
 
     if (!updatedBasket) {
-      return res.status(404).json({ error: `Product not found in basket for user ${customerId}`});
+      return res.status(404).json({ error: `Product with size "${size}" not found in basket for user ${customerId}` });
     } 
 
     res.status(200).json(updatedBasket); 
