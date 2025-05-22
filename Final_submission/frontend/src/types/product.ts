@@ -1,3 +1,6 @@
+export type CuisineType = 'Indian' | 'Mediterranean' | 'Latin American'  | 'Asian';
+export type ProductTypeCategory = 'Whole' | 'Ground' | 'Blend';
+
 export interface Size {
   size: string;
   price: number;
@@ -9,7 +12,7 @@ export interface Product {
   subheading: string;
   description: string;
   image: string;
-  cuisine: string[];
-  type: string;     
+  cuisine: CuisineType[];
+  type: ProductTypeCategory;
   sizes: Size[];
 }
