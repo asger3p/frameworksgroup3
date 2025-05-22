@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/authContext';
+import { Customer } from '../types/customer';
 
 function Login() {
   // React state for email and password input fields
@@ -30,9 +31,7 @@ function Login() {
         return
       }
 
-    const all = await resp.json() as Array<{ // tell TypeScript "this JSON will match this array of objects" (type assertion)
-      customer_id: string, name: string, mail: string, password: string 
-    }>
+    const all = await resp.json() as Customer[]; //updated after using customer type
 
     const found = all.find(c => c.mail === email && c.password === password) // find the user whose email/password match the inputs
       if (!found) { // if no matching user found, display error

@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {useAuth} from '../context/authContext'; // AuthContext to set user after signup
+import { Customer } from '../types/customer';
+
 
 export default function Register() {
   const navigate = useNavigate();
@@ -56,7 +58,7 @@ export default function Register() {
 
       // AUTO LOGIN:
       // otherwise it succeeded — data.customer is the new user record (data.customer is what the backend sent back)
-      const created = data.customer;
+      const created = data.customer as Customer;
       const firstName = created.name.split(' ')[0]; // Pull first name out of the full name
       
       // call `login(...)` from authContext to set the user in state & localStorage
