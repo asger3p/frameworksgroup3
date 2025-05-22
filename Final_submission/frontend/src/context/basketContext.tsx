@@ -152,40 +152,42 @@ const setCustomer = async (newCustomerId: string | null) => {
   };
 
   const removeItem = async (index: number) => {
-    if (!customerId) {
-      setItems((prev) => {
-        const updated = prev.filter((_item, i) => i !== index);
-        localStorage.setItem("guest_basket", JSON.stringify(updated));
-        return updated;
-      });
-      return;
-    }
+  const itemToRemove = items[index];
 
-    const productId = items[index].productId;
-    const size = items[index].size;
-
-    try {
-      const response = await fetch(
-        `http://localhost:3000/basket/${customerId}/${productId}`,
-        { method: "DELETE" }
-      );
-      if (!response.ok) throw new Error("Failed to remove product");
-
-      setItems((prev) => prev.filter((_item, i) => i !== index));
-    } catch (error) {
-      console.error("Failed to remove item from basket", error);
-    }
-  };
-
-  const updateQty = (index: number, qty: number) => {
+  if (!customerId) {
     setItems((prev) => {
-      const updated = prev.map((item, i) =>
-        i === index ? { ...item, quantity: qty } : item
-      );
-      syncBasketToServer(updated);
+      const updated = prev.filter((_item, i) => i !== index);
+      localStorage.setItem("guest_basket", JSON.stringify(updated));
       return updated;
     });
-  };
+    return;
+  }
+
+  const { productId, size } = itemToRemove;
+
+  try {
+    const response = await fetch(
+      `http://localhost:3000/basket/${customerId}/${productId}?size=${encodeURIComponent(size)}`,
+      { method: "DELETE" }
+    );
+
+    if (!response.ok) throw new Error("Failed to remove product");
+
+    setItems((prev) => prev.filter((_item, i) => i !== index));
+  } catch (error) {
+    console.error("Failed to remove item from basket", error);
+  }
+};
+
+const updateQty: (index: number, qty: number) => void = (index, qty) => {
+  setItems((prev) => {
+    const updated = prev.map((item, i) =>
+      i === index ? { ...item, quantity: qty } : item
+    );
+    syncBasketToServer(updated);
+    return updated;
+  });
+};
 
 const clearBasket = async () => {
   setItems([]);
