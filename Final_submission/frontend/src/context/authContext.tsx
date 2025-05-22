@@ -29,11 +29,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   // Logout function — clears state and localStorage
-  const logout = () => {
-    setCustomerState(null);
-    localStorage.removeItem("customer");
-    // Optional: clearBasket() if you want to also clear cart on logout
-  };
+ const logout = () => {
+  setCustomerState(null);
+  localStorage.removeItem("customer");
+  setBasketCustomer(null); // Clear basket customer on logout
+ 
+};
 
   // Sync basket if customer is remembered on page load
   useEffect(() => {

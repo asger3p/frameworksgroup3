@@ -8,7 +8,7 @@ interface BasketContextType {
   updateQty: (index: number, qty: number) => void;
   clearBasket: () => void;
   fetchBasket: (customerId: string) => Promise<void>;
-  setCustomer: (customerId: string) => Promise<void>;
+  setCustomer: (customerId: string | null) => Promise<void>;
 }
 
 export const BasketContext = createContext<BasketContextType | undefined>(undefined);
@@ -119,11 +119,19 @@ export const BasketProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const setCustomer = async (newCustomerId: string) => {
-    await transferGuestBasketToCustomer(newCustomerId);
-    await fetchBasket(newCustomerId);
-    setCustomerId(newCustomerId);
-  };
+const setCustomer = async (newCustomerId: string | null) => {
+  if (!newCustomerId) {
+    // User logged out or guest — clear basket state and localStorage
+    setItems([]);
+    setCustomerId(null);
+    localStorage.removeItem("guest_basket");
+    return;
+  }
+
+  await transferGuestBasketToCustomer(newCustomerId);
+  await fetchBasket(newCustomerId);
+  setCustomerId(newCustomerId);
+};
 
   const addItem = (item: BasketItem) => {
     setItems((prev) => {
