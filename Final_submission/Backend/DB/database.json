@@ -489,6 +489,12 @@
       "name": "kalsmd asd",
       "mail": "oinwf@aismfsa.dk",
       "password": "asd"
+    },
+    {
+      "customer_id": "customer_5",
+      "name": "Gabriella Olah",
+      "mail": "gaol@itu.dk",
+      "password": "123"
     }
   ],
   "baskets": [
@@ -526,6 +532,10 @@
           "quantity": 1
         }
       ]
+    },
+    {
+      "customer_id": "customer_5",
+      "items": []
     }
   ]
 }
