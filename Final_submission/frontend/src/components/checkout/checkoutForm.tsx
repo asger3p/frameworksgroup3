@@ -64,11 +64,11 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
     // Validate input data
     switch (name) {
       case 'email':
-        if (!value) error = 'Email is required.';
+        if (!value) error = 'Required';
         else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) error = 'Invalid email address.';
         break;
       case 'phone':
-        if (!value) error = 'Phone number is required.';
+        if (!value) error = 'Required.';
         else if (!/^\+?\d{1,12}$/.test(value)) error = 'Invalid phone number.';
         break;
         // Required text fields
@@ -78,7 +78,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
       case 'city':
       case 'zip':
       case 'country':
-        if (!value) error = `${name} is required.`;
+        if (!value) error = `Required`;
         break;
         // Conditionally required fields
       case 'billingFirstName':
@@ -87,14 +87,14 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
       case 'billingCity':
       case 'billingZip':
       case 'billingCountry':
-        if (formData.billingDifferent && !value) error = `${name} is required.`;
+        if (formData.billingDifferent && !value) error = `Required`;
         break;
         // Required if payment method = credit card
       case 'cardName':
       case 'cardNumber':
       case 'expDate':
       case 'cvv':
-        if (formData.paymentMethod === 'creditCard' && !value) error = `${name} is required.`;
+        if (formData.paymentMethod === 'creditCard' && !value) error = `Required`;
         break;
     }
 
@@ -125,7 +125,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
   // Validate all required fields are filled
   requiredFields.forEach((field) => {
     if (!formData[field as keyof typeof formData]) {
-      newErrors[field] = `${field} is required.`;
+      newErrors[field] = `Required`;
     }
   });
 
@@ -141,7 +141,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
     ];
     billingFields.forEach((field) => {
       if (!formData[field as keyof typeof formData]) {
-        newErrors[field] = `${field} is required.`;
+        newErrors[field] = `Required`;
       }
     });
   }
@@ -151,7 +151,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({
     const cardFields = ['cardName', 'cardNumber', 'expDate', 'cvv'];
     cardFields.forEach((field) => {
       if (!formData[field as keyof typeof formData]) {
-        newErrors[field] = `${field} is required.`;
+        newErrors[field] = `Required`;
       }
     });
   }
